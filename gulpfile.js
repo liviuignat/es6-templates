@@ -72,8 +72,8 @@ gulp.task('scripts', ['reload'], function (done) {
 
 gulp.task('styles', function (done) {
   tools.compileLess({
-    from: 'src/theme-default.less',
-    to: '.tmp/theme-default.css',
+    from: 'src/index.less',
+    to: '.tmp/index.css',
     base: 'src',
     embedErrors: true,
     csswring: {
@@ -126,8 +126,8 @@ gulp.task('build:prod-styles', function (done) {
   });
 
   tools.compileLess({
-    from: 'src/theme-default.less',
-    to: '.dist/theme-default.css',
+    from: 'src/index.less',
+    to: '.dist/index.css',
     base: 'src',
     embedErrors: true,
     csswring: {
@@ -144,7 +144,7 @@ gulp.task('build:html', function () {
   return gulp.src('src/index.html')
     .pipe(htmlReplace({
       css: {
-        src: '/theme-default.css?q=' + time,
+        src: '/index.css?q=' + time,
         tpl: '<link rel="stylesheet" href="%s" data-type="theme">'
       },
       js: {
