@@ -5,7 +5,7 @@
   "author": "",
   "main": "",
   "engines": {
-    "node": "0.12.x"
+    "node": "4.0.0"
   },
   "repository": {
     "type": "git",
