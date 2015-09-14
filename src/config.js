@@ -17,6 +17,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.7.0",
     "core-js": "npm:core-js@0.9.18",
     "jquery": "github:components/jquery@2.1.4",
+    "moment": "github:moment/moment@2.10.6",
     "text": "github:systemjs/plugin-text@0.0.2",
     "underscore": "npm:underscore@1.8.3",
     "github:components/jqueryui@1.11.4": {
