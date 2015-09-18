@@ -1,0 +1,5 @@
+node_modules/
+app/bower_components/
+.tmp/
+.dist/
+app/scripts/env.js
