@@ -1,0 +1,14 @@
+{
+  "name": "react-parse-typescript",
+  "version": "0.0.1",
+  "description": "",
+  "main": "gulp",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  }
+}

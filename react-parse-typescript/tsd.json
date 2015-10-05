@@ -1,0 +1,30 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "defs",
+  "bundle": "defs/tsd.d.ts",
+  "installed": {
+    "flux/flux.d.ts": {
+      "commit": "30daf61172ff7160cb191fbdca095f5b8e3f752b"
+    },
+    "react/react.d.ts": {
+      "commit": "30daf61172ff7160cb191fbdca095f5b8e3f752b"
+    },
+    "node/node.d.ts": {
+      "commit": "30daf61172ff7160cb191fbdca095f5b8e3f752b"
+    },
+    "react-router/react-router.d.ts": {
+      "commit": "30daf61172ff7160cb191fbdca095f5b8e3f752b"
+    },
+    "parse/parse.d.ts": {
+      "commit": "30daf61172ff7160cb191fbdca095f5b8e3f752b"
+    },
+    "underscore/underscore.d.ts": {
+      "commit": "30daf61172ff7160cb191fbdca095f5b8e3f752b"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "30daf61172ff7160cb191fbdca095f5b8e3f752b"
+    }
+  }
+}

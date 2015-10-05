@@ -1,0 +1,4 @@
+.tmp
+.dist
+defs
+node_modules
