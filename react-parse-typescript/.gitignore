@@ -2,3 +2,4 @@
 .dist
 defs
 node_modules
+npm-debug.log
