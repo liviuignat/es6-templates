@@ -17,7 +17,7 @@ const bundler = {
   w: null,
   init: function () {
     this.w = watchify(browserify({
-      entries: ['_tmp/app.js'],
+      entries: ['.tmp/app.js'],
       insertGlobals: true,
       cache: {},
       packageCache: {}
@@ -27,7 +27,7 @@ const bundler = {
     return this.w && this.w.bundle()
       .on('error', $.util.log.bind($.util, 'Browserify Error'))
       .pipe(source('app.js'))
-      .pipe(gulp.dest('_dist'));
+      .pipe(gulp.dest('.dist'));
   },
   watch: function () {
     this.w && this.w.on('update', this.bundle.bind(this));
@@ -52,7 +52,7 @@ gulp.task('tsc', ['clean-tmp'], function() {
       preserveConstEnums: true,
       sourceMap: true
     }))
-    .pipe(gulp.dest('_tmp'));
+    .pipe(gulp.dest('.tmp'));
 });
 
 gulp.task('scripts', [], function () {
@@ -86,12 +86,12 @@ gulp.task('styles', function () {
     .pipe($.inject(injectFiles, injectOptions))
     .pipe($.less())
     .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('_dist/styles'))
+    .pipe(gulp.dest('.dist/styles'))
     .pipe($.size());
 });
 
-gulp.task('clean-tmp', del.bind(null, '_tmp'));
-gulp.task('clean-dist', del.bind(null, '_dist'));
+gulp.task('clean-tmp', del.bind(null, '.tmp'));
+gulp.task('clean-dist', del.bind(null, '.dist'));
 
 gulp.task('html', function () {
   var assets = $.useref.assets();
@@ -99,12 +99,12 @@ gulp.task('html', function () {
     .pipe(assets)
     .pipe(assets.restore())
     .pipe($.useref())
-    .pipe(gulp.dest('_dist'))
+    .pipe(gulp.dest('.dist'))
     .pipe($.size());
 });
 
 gulp.task('serve', function () {
-  gulp.src('_dist')
+  gulp.src('.dist')
     .pipe($.webserver({
       livereload: true,
       port: 9000,

@@ -32,5 +32,10 @@
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "react-tools": "^0.13.3"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
   }
 }
