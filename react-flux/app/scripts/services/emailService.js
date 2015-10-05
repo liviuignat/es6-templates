@@ -10,17 +10,25 @@ class EmailService {
   getEmails() {
     const url = this.getUrl(0, 10);
 
-    return new Promise((resolve) => {
-      return fetch(url).then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Error fetching the emails');
-        }
-
-        response.json().then((data) => {
-          return resolve(data);
-        });
-      });
-    });
+    return Promise.resolve([{
+      from: {
+        name: 'Liviu Ignat'
+      },
+      subject: 'Message from admin',
+      date: new Date()
+    }, {
+      from: {
+        name: 'Alina Staicu'
+      },
+      subject: 'From your girlfriend',
+      date: new Date()
+    }, {
+      from: {
+        name: 'Lau'
+      },
+      subject: 'I am a contribuitor',
+      date: new Date()
+    }]);
   }
 }
 
