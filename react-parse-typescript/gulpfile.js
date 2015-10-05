@@ -11,6 +11,8 @@ const del = require('del');
 const path = require('path');
 const url = require('url');
 
+require('harmonize')();
+
 const bundler = {
   w: null,
   init: function () {
