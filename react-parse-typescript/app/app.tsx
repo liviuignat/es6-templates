@@ -1,5 +1,4 @@
-/// <reference path="./interfaces.d.ts" />
-
+import React from 'react';
 import HomePage from './components/HomePage';
 
 class Demo extends React.Component<any, any> {

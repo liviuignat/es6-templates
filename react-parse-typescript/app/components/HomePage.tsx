@@ -1,4 +1,4 @@
-class HomePage extends React.Component<any, any> {
+export default class HomePage extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
   }
@@ -9,5 +9,3 @@ class HomePage extends React.Component<any, any> {
     );
   }
 }
-
-export default HomePage;
