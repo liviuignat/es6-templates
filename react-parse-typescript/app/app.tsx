@@ -1,7 +1,9 @@
 import React from 'react';
-import HomePage from './components/HomePage';
+import parseConfig from './config/parse.config';
+import AppRouter from './components/AppRouter';
 
 window.React = React;
-const mountNode = window.document.getElementById('app');
+parseConfig.init();
 
-React.render(<HomePage />, mountNode);
+const appNode = window.document.getElementById('app');
+React.render(<AppRouter />, appNode);
