@@ -1,5 +1,5 @@
 export default {
-  textField: {
-    width: '300px'
+  textFieldStyles: {
+    width: '100%'
   }
 };

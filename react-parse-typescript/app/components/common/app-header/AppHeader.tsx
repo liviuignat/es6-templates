@@ -10,9 +10,9 @@ export default class extends React.Component<any, any> {
     return (
       <header>
         <AppBar
-          title={<a className='AppHeader-homeLink' href={`/`}>MATERIAL MAILS</a>}
+          title={<a className='AppHeader-homeLink' href='/'>MATERIAL MAILS</a>}
           showMenuIconButton={false}
-          iconElementRight={<a className='AppHeader-navigationLink' href={`/auth/login`}>Login</a>} 
+          iconElementRight={<a className='AppHeader-navigationLink' href='/auth/login'>Login</a>} 
           />
       </header>
     );
