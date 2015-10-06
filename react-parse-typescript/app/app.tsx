@@ -1,17 +1,7 @@
 import React from 'react';
 import HomePage from './components/HomePage';
 
-class Demo extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
-  }
+window.React = React;
+const mountNode = window.document.getElementById('app');
 
-  render() {
-    return (
-      <div>
-        <header>Page header</header>
-        <HomePage />
-      </div>
-    );
-  }
-}
+React.render(<HomePage />, mountNode);
