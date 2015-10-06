@@ -16,7 +16,8 @@ const url = require('url');
 require('harmonize')();
 
 const paths = {
-  tsc: '.tmp/tsc'
+  tsc: '.tmp/tsc',
+  dist: '.tmp/dist'
 };
 
 const bundler = {
@@ -34,7 +35,7 @@ const bundler = {
     return this.w && this.w.bundle()
       .on('error', $.util.log.bind($.util, 'Browserify Error'))
       .pipe(source('app.js'))
-      .pipe(gulp.dest('.dist'));
+      .pipe(gulp.dest(paths.dist));
   },
   watch: function () {
     this.w && this.w.on('update', this.bundle.bind(this));
@@ -91,7 +92,7 @@ gulp.task('styles', function () {
     .pipe($.inject(injectFiles, injectOptions))
     .pipe($.less())
     .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('.dist/styles'))
+    .pipe(gulp.dest(paths.dist + '/styles'))
     .pipe($.size());
 });
 
@@ -102,18 +103,18 @@ gulp.task('images', function () {
       progressive: true,
       interlaced: true
     })))
-    .pipe(gulp.dest('.dist/images'))
+    .pipe(gulp.dest(paths.dist + '/images'))
     .pipe($.size());
 });
 
 gulp.task('extras', function () {
   return gulp.src(['app/*.txt', 'app/*.ico'])
-    .pipe(gulp.dest('.dist/'))
+    .pipe(gulp.dest(paths.dist))
     .pipe($.size());
 });
 
 gulp.task('clean-tsc', del.bind(null, paths.tsc));
-gulp.task('clean-dist', del.bind(null, '.dist'));
+gulp.task('clean-dist', del.bind(null, paths.dist));
 gulp.task('clean', ['clean-tsc', 'clean-dist']);
 
 gulp.task('html', function () {
@@ -122,12 +123,12 @@ gulp.task('html', function () {
     .pipe(assets)
     .pipe(assets.restore())
     .pipe($.useref())
-    .pipe(gulp.dest('.dist'))
+    .pipe(gulp.dest(paths.dist))
     .pipe($.size());
 });
 
 gulp.task('serve', function () {
-  gulp.src('.dist')
+  gulp.src(paths.dist)
     .pipe($.webserver({
       livereload: true,
       port: 9000,
