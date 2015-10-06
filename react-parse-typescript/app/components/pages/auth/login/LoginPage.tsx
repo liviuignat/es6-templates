@@ -1,6 +1,7 @@
 import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/text-field';
+import styles from './../../../materialStyles';
 
 export default class extends React.Component<any, any> {
   constructor(props: any) {
@@ -34,6 +35,7 @@ export default class extends React.Component<any, any> {
 
         <div>
           <TextField
+            style={styles.textField}
             value={this.state.username}
             onChange={this.handleUsernameChange.bind(this)}
             type='email'
@@ -44,13 +46,16 @@ export default class extends React.Component<any, any> {
         <div>
           <TextField
             value={this.state.password}
+            style={styles.textField}
             onChange={this.handlePasswordChange.bind(this)}
             type='password'
             hintText='Your password'
             floatingLabelText='Your password' />
         </div>
 
-        <RaisedButton label='Login' onClick={this.login.bind(this)} />
+        <RaisedButton
+          label='Login' 
+          onClick={this.login.bind(this)} />
       </div>
     );
   }

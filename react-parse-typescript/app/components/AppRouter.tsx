@@ -3,9 +3,9 @@ import { Router, Route } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import HomePage from './pages/home/HomePage';
-import LoginPage from './pages/auth/LoginPage';
-import ResetPasswordPage from './pages/auth/ResetPasswordPage';
-import CreateUserPage from './pages/auth/CreateUserPage';
+import LoginPage from './pages/auth/login/LoginPage';
+import ResetPasswordPage from './pages/auth/reset-password/ResetPasswordPage';
+import CreateUserPage from './pages/auth/create-user/CreateUserPage';
 
 export default class extends React.Component<any, any> {
   render() {

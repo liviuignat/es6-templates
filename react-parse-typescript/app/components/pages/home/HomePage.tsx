@@ -7,7 +7,9 @@ export default class HomePage extends React.Component<any, any> {
 
   render() {
     return (
-      <div>Hello world!</div>
+      <div>
+        <h3>Welcome to material emails</h3>
+      </div>
     );
   }
 }
