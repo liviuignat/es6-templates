@@ -38,7 +38,7 @@
     ],
     "no-construct": true,
     "no-constructor-vars": true,
-    "no-debugger": false,
+    "no-debugger": true,
     "no-duplicate-key": true,
     "no-shadowed-variable": true,
     "no-duplicate-variable": true,
