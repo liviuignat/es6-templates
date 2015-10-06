@@ -7,6 +7,7 @@ const $ = require('gulp-load-plugins')();
 var browserify = require('browserify');
 var watchify = require('watchify');
 var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 const merge = require('merge2');
 const runSequence = require('run-sequence');
 const del = require('del');
@@ -34,7 +35,10 @@ const bundler = {
   bundle: function () {
     return this.w && this.w.bundle()
       .on('error', $.util.log.bind($.util, 'Browserify Error'))
-      .pipe(source('app.js'))
+      .pipe(source('app.js', './app'))
+      .pipe(buffer())
+      .pipe($.sourcemaps.init({loadMaps: true}))
+      .pipe($.sourcemaps.write('./'))
       .pipe(gulp.dest(paths.dist));
   },
   watch: function () {
