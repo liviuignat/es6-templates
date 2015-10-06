@@ -187,3 +187,5 @@ gulp.task('watch', ['build', 'serve'], function () {
     gulp.watch('app/images/**/*', ['images']);
     //gulp.watch(paths.tsc + '/**/*.js', ['test']);
 });
+
+gulp.task('default', ['watch']);
