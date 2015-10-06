@@ -1,6 +1,6 @@
 {
   "rules": {
-  "align": [false,
+  "align": [true,
         "parameters",
         "arguments",
         "statements"],
@@ -63,7 +63,7 @@
         "check-else",
         "check-whitespace"
     ],
-    "quotemark": [false, "single", "avoid-escape"],
+    "quotemark": [true, "single", "avoid-escape"],
     "radix": true,
     "semicolon": true,
     "sort-object-literal-keys": true,
