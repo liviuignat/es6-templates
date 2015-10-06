@@ -4,7 +4,7 @@ import TextField from 'material-ui/lib/text-field';
 import { textFieldStyles } from './../../../materialStyles';
 import { authActions } from './../../../../actions/auth/authActions';
 import { TextFieldData } from './../../../../utils/FormFieldData';
-import { RequiredStringValidator, PasswordValidator } from './../../../../utils/Validators';
+import { RequiredStringValidator, PasswordValidator, formValidator } from './../../../../utils/Validators';
 
 export default class extends React.Component<any, any> {
   constructor(props: any) {
@@ -19,31 +19,20 @@ export default class extends React.Component<any, any> {
       })
     };
   }
-
-  login() {
+  
+  onFormSubmit(event) {
     const user = this.state;
-    let isValid = true;
-    
-    let formData: any = this.state;
-    
-    Object.keys(formData).forEach((key) => {
-      const formFieldData: IValidators = formData[key];
-      if (formFieldData && formFieldData.validators && formFieldData.validators.length) {
-        const validator = formFieldData.validators[0]; 
-        if (!validator.isValid(formFieldData.value)) {
-          formFieldData.error = validator.message;
-          isValid = false;
-        } else {
-          formFieldData.error = '';
-        }
-      }
-    });
+    let validatorResponse = formValidator.validate(user);
+    const formData = validatorResponse.formData;
+    const isValid = validatorResponse.isValid;
     
     this.setState(formData);
     
     if (isValid) {
       authActions.login(user.username.value, user.password.value); 
     }
+    
+    event.preventDefault();
   }
 
   handleUsernameChange(event) {
@@ -62,9 +51,8 @@ export default class extends React.Component<any, any> {
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.onFormSubmit.bind(this)}>
         <h1>Login</h1>
-
         <div>
           <TextField
             style={textFieldStyles}
@@ -86,11 +74,11 @@ export default class extends React.Component<any, any> {
             hintText='Your password'
             floatingLabelText='Your password' />
         </div>
-
+        
         <RaisedButton
-          label='Login' 
-          onClick={this.login.bind(this)} />
-      </div>
+          type='submit'
+          label='Login' />
+      </form>
     );
   }
 }

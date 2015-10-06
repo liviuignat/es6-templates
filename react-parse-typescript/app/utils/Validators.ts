@@ -25,7 +25,36 @@ class PasswordValidator implements IValidator<string> {
   }
 }
 
+class FormValidator {
+  validate(formData: any) {
+    let isValid = true;
+    
+    Object.keys(formData).forEach((key) => {
+      const formFieldData: IValidators = formData[key];
+      
+      if (formFieldData && formFieldData.validators && formFieldData.validators.length) {
+        
+        formFieldData.validators.forEach((validator) => {
+          if (!validator.isValid(formFieldData.value)) {
+            formFieldData.error = validator.message;
+            isValid = false;
+          } else {
+            formFieldData.error = '';
+          }
+        });
+        
+      }
+    });
+    
+    return {
+      isValid: isValid,
+      formData: formData 
+    };
+  }
+}
+
 export default {
   RequiredStringValidator,
-  PasswordValidator
+  PasswordValidator,
+  formValidator: new FormValidator()
 };
