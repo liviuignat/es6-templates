@@ -1,7 +1,7 @@
 class TextFieldData implements ITextFieldData {
   public value = '';
   public error = '';
-  public validators = [];
+  public validators: IValidator[] = [];
 
   constructor(data: ITextFieldData) {
     if (data) {
@@ -13,6 +13,22 @@ class TextFieldData implements ITextFieldData {
 
   setValue(value: string): TextFieldData {
     this.value = value;
+    return this;
+  }
+
+  setError(message: string): TextFieldData {
+    this.error = message;
+    return this;
+  }
+
+  removeError(): TextFieldData {
+    this.error = '';
+    return this;
+  }
+
+  reset(): TextFieldData {
+    this.error = '';
+    this.value = '';
     return this;
   }
 }

@@ -1,0 +1,6 @@
+export default {
+  AUTH_ACTION_TYPES: {
+    LOG_IN_SUCCESS: 'AUTH_LOG_IN_SUCCESS',
+    LOG_OUT_SUCCESS: 'AUTH_LOG_OUT_SUCCESS'
+  }
+};

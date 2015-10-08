@@ -29,7 +29,19 @@ export default class extends React.Component<any, any> {
     this.setState(formData);
 
     if (isValid) {
-      authActions.login(user.username.value, user.password.value);
+      authActions
+        .login(user.username.value, user.password.value)
+        .then(() => {
+          this.setState({
+            password: this.state.password.reset(),
+            username: this.state.username.reset()
+          });
+        })
+        .catch((error) => {
+          this.setState({
+            password: this.state.password.setError(error.message)
+          });
+        });
     }
 
     event.preventDefault();

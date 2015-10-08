@@ -6,7 +6,7 @@
   "bundle": "defs/tsd.d.ts",
   "installed": {
     "flux/flux.d.ts": {
-      "commit": "30daf61172ff7160cb191fbdca095f5b8e3f752b"
+      "commit": "d6c98baa7fd703e449cf37f3ec39ed3bd92cfd35"
     },
     "react/react.d.ts": {
       "commit": "30daf61172ff7160cb191fbdca095f5b8e3f752b"
@@ -25,6 +25,9 @@
     },
     "jquery/jquery.d.ts": {
       "commit": "05557455c49043ff0189182e27c9e04403a70802"
+    },
+    "jest/jest.d.ts": {
+      "commit": "d6c98baa7fd703e449cf37f3ec39ed3bd92cfd35"
     }
   }
 }
