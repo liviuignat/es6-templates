@@ -1,6 +1,7 @@
 import React from 'react';
 import AppBar from 'material-ui/lib/app-bar';
 
+import history from './../../../history';
 import { currentUserActions } from './../../../actions';
 import { currentUserStore } from './../../../stores';
 
@@ -26,7 +27,10 @@ export default class extends React.Component<any, any> {
   }
 
   logout() {
-    currentUserActions.logout();
+    currentUserActions.logout()
+      .then(() => {
+        history.replaceState(null, '/');
+      });
   }
 
   render() {

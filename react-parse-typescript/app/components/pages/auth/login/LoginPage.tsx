@@ -6,11 +6,14 @@ import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
 
 import { currentUserActions } from './../../../../actions';
-//import { currentUserStore } from './../../../../stores';
 
-export default class extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
+class LoginPage extends React.Component<any, any> {
+  static contextTypes = {
+    router: React.PropTypes.func.isRequired
+  };
+
+  constructor(props: any, context: any) {
+    super(props, context);
 
     this.state = {
       username: new TextFieldData({
@@ -38,6 +41,8 @@ export default class extends React.Component<any, any> {
             password: this.state.password.reset(),
             username: this.state.username.reset()
           });
+
+          this.props.history.pushState(null, '/app');
         })
         .catch((error) => {
           this.setState({
@@ -96,3 +101,5 @@ export default class extends React.Component<any, any> {
     );
   }
 }
+
+export default LoginPage;

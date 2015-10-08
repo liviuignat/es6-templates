@@ -8,7 +8,7 @@ export default class extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <h3>Welcome to material emails</h3>
+        <h3>Hello logged in user</h3>
       </div>
     );
   }
