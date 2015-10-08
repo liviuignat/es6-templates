@@ -1,42 +1,32 @@
 import React from 'react';
 import AppBar from 'material-ui/lib/app-bar';
-import { appDispatcher } from './../../../appDispatcher';
-import { authActions } from './../../../actions/auth/authActions';
-import {AUTH_ACTION_TYPES} from './../../../actions/actionTypes';
+
+import { currentUserActions } from './../../../actions';
+import { currentUserStore } from './../../../stores';
 
 export default class extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
 
     this.state = {
-      isLoggedIn: true
+      isLoggedIn: currentUserStore.getIsLoggedIn()
     };
 
-    appDispatcher.register(this.onAppDispatch.bind(this));
-  }
+    currentUserStore.addLoginListener(() => {
+      this.setState({
+        isLoggedIn: currentUserStore.getIsLoggedIn()
+      });
+    });
 
-  onAppDispatch(data: IDispatcherPayload) {
-    console.log(data);
-    switch (data.type) {
-      case AUTH_ACTION_TYPES.LOG_IN_SUCCESS:
-        this.setState({
-          isLoggedIn: true
-        });
-        break;
-
-      case AUTH_ACTION_TYPES.LOG_OUT_SUCCESS:
-        this.setState({
-          isLoggedIn: false
-        });
-        break;
-
-      default:
-        break;
-    }
+    currentUserStore.addLogoutListener(() => {
+      this.setState({
+        isLoggedIn: currentUserStore.getIsLoggedIn()
+      });
+    });
   }
 
   logout() {
-    authActions.logout();
+    currentUserActions.logout();
   }
 
   render() {

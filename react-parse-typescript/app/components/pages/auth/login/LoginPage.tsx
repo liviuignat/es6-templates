@@ -2,9 +2,11 @@ import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/text-field';
 import { textFieldStyles } from './../../../materialStyles';
-import { authActions } from './../../../../actions/auth/authActions';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
+
+import { currentUserActions } from './../../../../actions';
+//import { currentUserStore } from './../../../../stores';
 
 export default class extends React.Component<any, any> {
   constructor(props: any) {
@@ -29,7 +31,7 @@ export default class extends React.Component<any, any> {
     this.setState(formData);
 
     if (isValid) {
-      authActions
+      currentUserActions
         .login(user.username.value, user.password.value)
         .then(() => {
           this.setState({
