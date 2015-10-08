@@ -1,26 +1,26 @@
-class RequiredStringValidator implements IValidator<string> {
+class RequiredStringValidator implements IValidator {
   constructor(public message: string = 'Field is required') {
   }
-  
-  isValid(value: string): boolean {
+
+  getIsValid(value: any): boolean {
     return !!value;
   }
 }
 
-class PasswordValidator implements IValidator<string> {
+class PasswordValidator implements IValidator {
   constructor(public message: string = 'Password is required') {
   }
-  
-  isValid(value: string): boolean {
-    if (!new RequiredStringValidator().isValid(value)) {
-      return false; 
+
+  getIsValid(value: string): boolean {
+    if (!new RequiredStringValidator().getIsValid(value)) {
+      return false;
     }
-    
+
     if (value.length < 6) {
       this.message = 'Password should be greater than 6 characters';
       return false;
     }
-    
+
     return true;
   }
 }
@@ -28,33 +28,33 @@ class PasswordValidator implements IValidator<string> {
 class FormValidator {
   validate(formData: any) {
     let isValid = true;
-    
+
     Object.keys(formData).forEach((key) => {
-      const formFieldData: IValidators = formData[key];
-      
+      const formFieldData = formData[key];
+
       if (formFieldData && formFieldData.validators && formFieldData.validators.length) {
-        
-        formFieldData.validators.forEach((validator) => {
-          if (!validator.isValid(formFieldData.value)) {
+
+        formFieldData.validators.forEach((validator: IValidator) => {
+          if (!validator.getIsValid(formFieldData.value)) {
             formFieldData.error = validator.message;
             isValid = false;
           } else {
             formFieldData.error = '';
           }
         });
-        
+
       }
     });
-    
+
     return {
       isValid: isValid,
-      formData: formData 
+      formData: formData
     };
   }
 }
 
 export default {
-  RequiredStringValidator,
-  PasswordValidator,
+  RequiredStringValidator: RequiredStringValidator,
+  PasswordValidator: PasswordValidator,
   formValidator: new FormValidator()
 };

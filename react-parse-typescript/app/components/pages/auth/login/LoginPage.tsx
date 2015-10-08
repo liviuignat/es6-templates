@@ -4,7 +4,7 @@ import TextField from 'material-ui/lib/text-field';
 import { textFieldStyles } from './../../../materialStyles';
 import { authActions } from './../../../../actions/auth/authActions';
 import { TextFieldData } from './../../../../utils/FormFieldData';
-import { RequiredStringValidator, PasswordValidator, formValidator } from './../../../../utils/Validators';
+import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
 
 export default class extends React.Component<any, any> {
   constructor(props: any) {
@@ -15,36 +15,36 @@ export default class extends React.Component<any, any> {
         validators: [ new RequiredStringValidator() ]
       }),
       password: new TextFieldData({
-        validators: [ new PasswordValidator() ]
+        validators: [ new RequiredStringValidator() ]
       })
     };
   }
-  
+
   onFormSubmit(event) {
     const user = this.state;
     let validatorResponse = formValidator.validate(user);
     const formData = validatorResponse.formData;
     const isValid = validatorResponse.isValid;
-    
+
     this.setState(formData);
-    
+
     if (isValid) {
-      authActions.login(user.username.value, user.password.value); 
+      authActions.login(user.username.value, user.password.value);
     }
-    
+
     event.preventDefault();
   }
 
   handleUsernameChange(event) {
     const value = event.target.value;
-    this.setState({ 
-      username: this.state.username.setValue(value) 
+    this.setState({
+      username: this.state.username.setValue(value)
     });
   }
 
   handlePasswordChange(event) {
     const value = event.target.value;
-    this.setState({ 
+    this.setState({
       password: this.state.password.setValue(value)
     });
   }
@@ -74,7 +74,7 @@ export default class extends React.Component<any, any> {
             hintText='Your password'
             floatingLabelText='Your password' />
         </div>
-        
+
         <RaisedButton
           type='submit'
           label='Login' />

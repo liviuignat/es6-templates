@@ -6,7 +6,12 @@ interface ITextFieldData {
   validators?: any[];
 }
 
-interface IValidator<T> {
+interface IValidator {
   message: string;
-  isValid(value: T): boolean;
+  getIsValid(value: any): boolean;
+}
+
+interface IFormValidatorResponse {
+  isValid: boolean;
+  formData: any;
 }

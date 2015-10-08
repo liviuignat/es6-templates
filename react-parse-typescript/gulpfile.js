@@ -185,7 +185,7 @@ gulp.task('watch', ['build', 'serve'], function () {
     gulp.watch('app/*.html', ['html']);
     gulp.watch('app/**/*.less', ['styles']);
     gulp.watch('app/images/**/*', ['images']);
-    //gulp.watch(paths.tsc + '/**/*.js', ['test']);
+    gulp.watch(paths.tsc + '/**/*.js', ['test']);
 });
 
 gulp.task('default', ['watch']);
