@@ -180,12 +180,12 @@ gulp.task('build', ['clean'], function (callback) {
 });
 
 gulp.task('watch', ['build', 'serve'], function () {
-    bundler.watch();
     gulp.watch(['app/**/*.ts', 'app/**/*.tsx'], ['tslint', 'tsc']);
     gulp.watch('app/*.html', ['html']);
     gulp.watch('app/**/*.less', ['styles']);
     gulp.watch('app/images/**/*', ['images']);
-    gulp.watch(paths.tsc + '/**/*.js', ['test']);
+    bundler.watch();
+    //gulp.watch(paths.tsc + '/**/*.js', ['test']);
 });
 
 gulp.task('default', ['watch']);

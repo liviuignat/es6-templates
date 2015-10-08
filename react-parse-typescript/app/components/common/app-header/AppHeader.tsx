@@ -1,5 +1,8 @@
 import React from 'react';
 import AppBar from 'material-ui/lib/app-bar';
+import FontIcon from 'material-ui/lib/font-icon';
+import { Colors } from 'material-ui/lib/styles';
+import IconButton from 'material-ui/lib/icon-button';
 
 import history from './../../../history';
 import { currentUserActions } from './../../../actions';
@@ -47,7 +50,13 @@ export default class extends React.Component<any, any> {
 
   renderButtonsRight() {
     if (this.state.isLoggedIn) {
-      return <span className='AppHeader-navigationLink' onClick={this.logout.bind(this)}>Logout</span>;
+      return (
+        <div>
+          <IconButton tooltip='logout' onClick={this.logout.bind(this)}>
+            <FontIcon className='material-icons' color={Colors.purple500}>power_settings_new</FontIcon>
+          </IconButton>
+        </div>
+      );
     } else {
       return <a className='AppHeader-navigationLink' href='/auth/login'>Login</a>;
     }
