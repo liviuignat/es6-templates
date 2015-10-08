@@ -31,19 +31,19 @@ class FormValidator {
 
     Object.keys(formData).forEach((key) => {
       const formFieldData = formData[key];
+      formFieldData.error = '';
 
-      if (formFieldData && formFieldData.validators && formFieldData.validators.length) {
-
-        formFieldData.validators.forEach((validator: IValidator) => {
-          if (!validator.getIsValid(formFieldData.value)) {
-            formFieldData.error = validator.message;
-            isValid = false;
-          } else {
-            formFieldData.error = '';
-          }
-        });
-
+      if (!formFieldData || !formFieldData.validators || !formFieldData.validators.length) {
+        return;
       }
+        
+      formFieldData.validators.forEach((validator: IValidator) => {
+        if (!validator.getIsValid(formFieldData.value)) {
+          formFieldData.error = validator.message;
+          isValid = false;
+          return;
+        } 
+      });
     });
 
     return {
