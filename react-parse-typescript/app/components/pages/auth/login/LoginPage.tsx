@@ -1,6 +1,8 @@
 import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/text-field';
+import Card from 'material-ui/lib/card/card';
+
 import { Link } from 'react-router';
 import { textFieldStyles } from './../../../materialStyles';
 import { TextFieldData } from './../../../../utils/FormFieldData';
@@ -71,44 +73,49 @@ class LoginPage extends React.Component<any, any> {
 
   render() {
     return (
-      <form onSubmit={this.onFormSubmit.bind(this)}>
-        <h1>Login</h1>
-        <div>
-          <TextField
-            style={textFieldStyles}
-            value={this.state.username.value}
-            errorText={this.state.username.error}
-            onChange={this.handleUsernameChange.bind(this)}
-            type='email'
-            hintText='Your email'
-            floatingLabelText='Your email' />
-        </div>
-
-        <div>
-          <TextField
-            value={this.state.password.value}
-            errorText={this.state.password.error}
-            style={textFieldStyles}
-            onChange={this.handlePasswordChange.bind(this)}
-            type='password'
-            hintText='Your password'
-            floatingLabelText='Your password' />
-        </div>
-
-        <div>
-          <RaisedButton
-            type='submit'
-            label='Login' />
-        </div>
-          
-        <div>
-          <Link className='LoginPage-signUpLink' to={`/auth/signup`}>Don't have an account yet? Sign Up!</Link>
-        </div>
-        
-        <div>
-          <Link className='LoginPage-resetPasswordLink' to={`/auth/resetpassword`}>Forgot your password?</Link>
-        </div>
-      </form>
+      <div>
+        <Card>
+          <form onSubmit={this.onFormSubmit.bind(this)}>
+            <h2>Login</h2>
+            
+            <div>
+              <TextField
+                style={textFieldStyles}
+                value={this.state.username.value}
+                errorText={this.state.username.error}
+                onChange={this.handleUsernameChange.bind(this)}
+                type='email'
+                hintText='Your email'
+                floatingLabelText='Your email' />
+            </div>
+    
+            <div>
+              <TextField
+                value={this.state.password.value}
+                errorText={this.state.password.error}
+                style={textFieldStyles}
+                onChange={this.handlePasswordChange.bind(this)}
+                type='password'
+                hintText='Your password'
+                floatingLabelText='Your password' />
+            </div>
+    
+            <div>
+              <RaisedButton
+                type='submit'
+                label='Login' />
+            </div>
+              
+            <div>
+              <Link className='LoginPage-signUpLink' to={`/auth/signup`}>Don't have an account yet? Sign Up!</Link>
+            </div>
+            
+            <div>
+              <Link className='LoginPage-resetPasswordLink' to={`/auth/resetpassword`}>Forgot your password?</Link>
+            </div>
+          </form>
+        </Card>
+      </div>
     );
   }
 }
