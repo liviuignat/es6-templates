@@ -1,6 +1,7 @@
 import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/text-field';
+import { Link } from 'react-router';
 import { textFieldStyles } from './../../../materialStyles';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
@@ -94,9 +95,19 @@ class LoginPage extends React.Component<any, any> {
             floatingLabelText='Your password' />
         </div>
 
-        <RaisedButton
-          type='submit'
-          label='Login' />
+        <div>
+          <RaisedButton
+            type='submit'
+            label='Login' />
+        </div>
+          
+        <div>
+          <Link className='LoginPage-signUpLink' to={`/auth/signup`}>Don't have an account yet? Sign Up!</Link>
+        </div>
+        
+        <div>
+          <Link className='LoginPage-resetPasswordLink' to={`/auth/resetpassword`}>Forgot your password?</Link>
+        </div>
       </form>
     );
   }

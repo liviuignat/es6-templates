@@ -2,8 +2,10 @@ import React from 'react';
 import TextField from 'material-ui/lib/text-field';
 import RaisedButton from 'material-ui/lib/raised-button';
 
+import { Link } from 'react-router';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
+
 
 export default class extends React.Component<any, any> {
   standardActions = [
@@ -67,10 +69,21 @@ export default class extends React.Component<any, any> {
           />
         </div>
         
-        <RaisedButton
-          type='submit'
-          label='Create new account'
-          onClick={this.createNewAccount.bind(this)}/>
+        <div>
+          <RaisedButton
+            type='submit'
+            label='Create new account'
+            onClick={this.createNewAccount.bind(this)}/>
+        </div>
+         
+        <div>
+            <Link className='CreateUserPage-loginLink' to={`/auth/login`}>Already have an account? Login</Link>
+        </div>
+        
+        <div>
+            <Link className='CreateUserPage-resetPasswordLink' to={`/auth/resetpassword`}>Forgot your password?</Link>
+        </div>
+        
       </div>
     );
   }
