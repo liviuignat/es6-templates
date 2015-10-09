@@ -1,8 +1,9 @@
 import React from 'react';
-import Dialog from 'material-ui/lib/dialog';
 import TextField from 'material-ui/lib/text-field';
+import RaisedButton from 'material-ui/lib/raised-button';
 
-
+import { TextFieldData } from './../../../../utils/FormFieldData';
+import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
 
 export default class extends React.Component<any, any> {
   standardActions = [
@@ -14,46 +15,62 @@ export default class extends React.Component<any, any> {
     super(props);
     
     this.state = {
-      modal: false,
-      openImmediately: false,
-      username: ''
+      email: new TextFieldData({
+        validators: [ new RequiredStringValidator() ]
+      }),
+      password: ''
     };
   }
   
-  openDialog() {
-    this.refs.dialog.show();
-    console.log(this.state.username);
+  handleEmailChange(event) {
+    const value = event.target.value;
+    this.setState({
+      email: this.state.email.setValue(value)
+    });
   }
   
-  onUsernameChanged(evt) {
-    const value = evt.target.value;
-    this.setState({username: value}); 
-    console.log(value);
+  handlePasswordChange(event) {
+    const value = event.target.value;
+    this.setState({
+      password: value
+    });
+  }
+  
+  createNewAccount() {
+    const validatorResponse = formValidator.validate(this.state);
+    console.log(validatorResponse);
+    this.setState(validatorResponse.formData);
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.openDialog.bind(this)}>Open Dialog</button>
+        <h1>Create a new account</h1>
+        <div>
+          <TextField 
+            value={this.state.email.value}
+            errorText={this.state.email.error}
+            onChange={this.handleEmailChange.bind(this)}
+            type='email'
+            hintText='Your email'
+            floatingLabelText='Your email'
+           />       
+        </div>
         
         <div>
           <TextField
-            value={this.state.username}
-            onChange={this.onUsernameChanged.bind(this)}
-            type='email'
-            hintText='Username'
-            floatingLabelText='Please type your username bitch!!!!' />
+            value={this.state.password}
+            onChange={this.handlePasswordChange.bind(this)}
+            type='password'
+            hintText='Your new password'
+            floatingLabelText='Your new password'
+          />
         </div>
-      
-        <Dialog
-          ref='dialog'
-          title='Dialog With Standard Actions'
-          actions={this.standardActions}
-          actionFocus='submit'
-          modal={this.state.modal}
-          openImmediately={this.state.openImmediately}>
-          Welcome {this.state.username} !
-        </Dialog>
+        
+        <RaisedButton
+          type='submit'
+          label='Create new account'
+          onClick={this.createNewAccount.bind(this)}/>
       </div>
     );
   }
