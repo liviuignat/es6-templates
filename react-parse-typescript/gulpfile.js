@@ -35,6 +35,7 @@ const bundler = {
   bundle: function () {
     return this.w && this.w.bundle()
       .on('error', $.util.log.bind($.util, 'Browserify Error'))
+      .pipe($.wait(1000))
       .pipe(source('app.js', './app'))
       .pipe(buffer())
       .pipe($.sourcemaps.init({loadMaps: true}))
@@ -102,6 +103,7 @@ gulp.task('styles', function () {
 
 gulp.task('images', function () {
   return gulp.src('app/images/**/*')
+    .pipe($.plumber())
     .pipe($.cache($.imagemin({
       optimizationLevel: 3,
       progressive: true,
@@ -124,6 +126,7 @@ gulp.task('clean', ['clean-tsc', 'clean-dist']);
 gulp.task('html', function () {
   var assets = $.useref.assets();
   return gulp.src('app/*.html')
+    .pipe($.plumber())
     .pipe(assets)
     .pipe(assets.restore())
     .pipe($.useref())
@@ -133,6 +136,7 @@ gulp.task('html', function () {
 
 gulp.task('serve', function () {
   gulp.src(paths.dist)
+    .pipe($.plumber())
     .pipe($.webserver({
       livereload: true,
       port: 9000,
@@ -152,6 +156,7 @@ gulp.task('serve', function () {
 
 gulp.task('tslint', function(){
   return gulp.src(['./app/**/*.ts', './app/**/*.tsx'])
+    .pipe($.plumber())
     .pipe($.tslint())
     .pipe($.tslint.report('verbose'));
 });
@@ -172,7 +177,10 @@ gulp.task('test', function () {
     verbose: true
   };
 
-  return gulp.src(paths.tsc).pipe(gulpJest(options));
+  return gulp.src(paths.tsc)
+    .pipe($.plumber())
+    .pipe($.wait(1000))
+    .pipe(gulpJest(options));
 });
 
 gulp.task('build', ['clean'], function (callback) {
@@ -184,8 +192,9 @@ gulp.task('watch', ['build', 'serve'], function () {
     gulp.watch('app/*.html', ['html']);
     gulp.watch('app/**/*.less', ['styles']);
     gulp.watch('app/images/**/*', ['images']);
+
     bundler.watch();
-    //gulp.watch(paths.tsc + '/**/*.js', ['test']);
+    gulp.watch(paths.tsc + '/**/*.js', ['test']);
 });
 
 gulp.task('default', ['watch']);
