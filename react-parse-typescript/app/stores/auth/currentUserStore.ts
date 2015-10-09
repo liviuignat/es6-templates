@@ -40,7 +40,6 @@ class CurrentUserStore extends EventEmitter {
   }
 
   onAppDispatch(data) {
-    console.log(data);
     switch (data.type) {
       case AUTH_ACTION_TYPES.LOG_IN_SUCCESS:
         this.isLoggedIn = true;

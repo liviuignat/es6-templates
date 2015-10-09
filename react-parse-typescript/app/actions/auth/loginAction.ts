@@ -2,8 +2,8 @@ import Parse from 'parse';
 import { appDispatcher } from './../../appDispatcher';
 import { AUTH_ACTION_TYPES } from './../../constants';
 
-class CurrentUserActions {
-  login(username: string, password: string): Promise<any> {
+class LoginAction {
+  execute(username: string, password: string): Promise<any> {
     return new Promise((resolve, reject) => {
       Parse.User.logOut();
 
@@ -18,14 +18,8 @@ class CurrentUserActions {
       });
     });
   }
-
-  logout() {
-    Parse.User.logOut();
-    appDispatcher.dispatch(AUTH_ACTION_TYPES.LOG_OUT_SUCCESS);
-    return Promise.resolve();
-  }
 }
 
 export default {
-  currentUserActions: new CurrentUserActions()
+  loginAction: new LoginAction()
 };

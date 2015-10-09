@@ -8,7 +8,7 @@ import { textFieldStyles } from './../../../materialStyles';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
 
-import { currentUserActions } from './../../../../actions';
+import { loginAction } from './../../../../actions';
 
 class LoginPage extends React.Component<any, any> {
   static contextTypes = {
@@ -37,8 +37,8 @@ class LoginPage extends React.Component<any, any> {
     this.setState(formData);
 
     if (isValid) {
-      currentUserActions
-        .login(user.username.value, user.password.value)
+      loginAction
+        .execute(user.username.value, user.password.value)
         .then(() => {
           this.setState({
             password: this.state.password.reset(),

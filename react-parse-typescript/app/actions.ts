@@ -1,5 +1,9 @@
-import { currentUserActions } from './actions/auth/currentUserActions';
+import { loginAction } from './actions/auth/loginAction';
+import { createUserAction } from './actions/auth/createUserAction';
+import { logoutAction } from './actions/auth/logoutAction';
 
 export default {
-  currentUserActions
+  loginAction,
+  createUserAction,
+  logoutAction
 }

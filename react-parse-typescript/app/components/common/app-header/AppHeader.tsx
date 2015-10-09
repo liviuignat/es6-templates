@@ -5,7 +5,7 @@ import { Colors } from 'material-ui/lib/styles';
 import IconButton from 'material-ui/lib/icon-button';
 
 import history from './../../../history';
-import { currentUserActions } from './../../../actions';
+import { logoutAction } from './../../../actions';
 import { currentUserStore } from './../../../stores';
 
 export default class extends React.Component<any, any> {
@@ -30,7 +30,7 @@ export default class extends React.Component<any, any> {
   }
 
   logout() {
-    currentUserActions.logout()
+    logoutAction.execute()
       .then(() => {
         history.replaceState(null, '/');
       });
