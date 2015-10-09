@@ -33,14 +33,21 @@ const bundler = {
     }));
   },
   bundle: function () {
+    console.log('scripts bundler start');
+    const from = Date.now();
+    
     return this.w && this.w.bundle()
       .on('error', $.util.log.bind($.util, 'Browserify Error'))
       .pipe($.wait(1000))
+      .pipe($.plumber())
       .pipe(source('app.js', './app'))
       .pipe(buffer())
       .pipe($.sourcemaps.init({loadMaps: true}))
       .pipe($.sourcemaps.write('./'))
-      .pipe(gulp.dest(paths.dist));
+      .pipe(gulp.dest(paths.dist))
+      .on('end', () => { 
+        $.util.log(`scripts bundle finish after ${(Date.now() - from) / 1000} s`);
+      });
   },
   watch: function () {
     this.w && this.w.on('update', this.bundle.bind(this));
@@ -187,14 +194,16 @@ gulp.task('build', ['clean'], function (callback) {
   return runSequence('tslint', 'tsc', ['scripts', 'styles', 'html'], callback);
 });
 
-gulp.task('watch', ['build', 'serve'], function () {
-    gulp.watch(['app/**/*.ts', 'app/**/*.tsx'], ['tslint', 'tsc']);
-    gulp.watch('app/*.html', ['html']);
-    gulp.watch('app/**/*.less', ['styles']);
-    gulp.watch('app/images/**/*', ['images']);
+gulp.task('watch', ['build'], function (callback) {
+  gulp.watch(['app/**/*.ts', 'app/**/*.tsx'], ['tslint', 'tsc']);
+  gulp.watch('app/*.html', ['html']);
+  gulp.watch('app/**/*.less', ['styles']);
+  gulp.watch('app/images/**/*', ['images']);
 
-    bundler.watch();
-    gulp.watch(paths.tsc + '/**/*.js', ['test']);
+  bundler.watch();
+  gulp.watch(paths.tsc + '/**/*.js', ['test']);
+  
+  runSequence('serve', callback);
 });
 
 gulp.task('default', ['watch']);

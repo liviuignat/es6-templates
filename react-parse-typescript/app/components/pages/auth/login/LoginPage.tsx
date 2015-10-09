@@ -76,7 +76,7 @@ class LoginPage extends React.Component<any, any> {
       <div>
         <Card>
           <form onSubmit={this.onFormSubmit.bind(this)}>
-            <h2>Login</h2>
+            <h2>Login </h2>
             
             <div>
               <TextField
