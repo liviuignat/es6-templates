@@ -17,7 +17,7 @@ export default class extends React.Component<any, any> {
       <div>
         <List style={ this.props.menuStyle }>
           <ListItem primaryText='Dashboard' />
-          <ListItem primaryText={Layouts} />
+          <ListItem primaryText='Layouts' />
           <ListItem primaryText='Languages'/>
         </List>
       </div>
