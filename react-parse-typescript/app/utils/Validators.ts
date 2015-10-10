@@ -28,24 +28,25 @@ class PasswordValidator implements IValidator {
 class FormValidator {
   validate(formData: any) {
     let isValid = true;
-
+    
     Object.keys(formData).forEach((key) => {
       const formFieldData = formData[key];
-
-      if (formFieldData && formFieldData.validators && formFieldData.validators.length) {
-
-        formFieldData.validators.forEach((validator: IValidator) => {
-          if (!validator.getIsValid(formFieldData.value)) {
-            formFieldData.error = validator.message;
-            isValid = false;
-          } else {
-            formFieldData.error = '';
-          }
-        });
-
-      }
+      
+      if (!formFieldData) { return; }
+      if (!formFieldData.validators) { return; } 
+      if (!formFieldData.validators.length) { return; }
+      
+      formFieldData.error = '';
+    
+      for (var index: number = 0; index < formFieldData.validators.length; index++) {
+        var validator: IValidator  = <IValidator> formFieldData.validatorss[index];
+        if (typeof(validator.getIsValid) !== undefined && !validator.getIsValid(formFieldData.value)) {
+          formFieldData.error = validator.message;
+          isValid = false;
+        } 
+     };
     });
-
+  
     return {
       isValid: isValid,
       formData: formData
