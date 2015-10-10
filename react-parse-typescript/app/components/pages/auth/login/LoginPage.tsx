@@ -2,6 +2,7 @@ import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/text-field';
 import Card from 'material-ui/lib/card/card';
+import Colors from 'material-ui/lib/styles/colors';
 
 import { Link } from 'react-router';
 import { textFieldStyles } from './../../../materialStyles';
@@ -73,48 +74,53 @@ class LoginPage extends React.Component<any, any> {
 
   render() {
     return (
-      <div>
-        <Card>
-          <form onSubmit={this.onFormSubmit.bind(this)}>
-            <h2>Login </h2>
-            
-            <div>
-              <TextField
-                style={textFieldStyles}
-                value={this.state.username.value}
-                errorText={this.state.username.error}
-                onChange={this.handleUsernameChange.bind(this)}
-                type='email'
-                hintText='Your email'
-                floatingLabelText='Your email' />
-            </div>
-    
-            <div>
-              <TextField
-                value={this.state.password.value}
-                errorText={this.state.password.error}
-                style={textFieldStyles}
-                onChange={this.handlePasswordChange.bind(this)}
-                type='password'
-                hintText='Your password'
-                floatingLabelText='Your password' />
-            </div>
-    
-            <div>
-              <RaisedButton
-                type='submit'
-                label='Login' />
-            </div>
+      <div className='LoginPage'>
+        <div>
+          <Card>
+            <form className='LoginPage-content' onSubmit={this.onFormSubmit.bind(this)}>
+              <span className='LoginPage-title'>Login</span>
               
-            <div>
-              <Link className='LoginPage-signUpLink' to={`/auth/signup`}>Don't have an account yet? Sign Up!</Link>
-            </div>
-            
-            <div>
-              <Link className='LoginPage-resetPasswordLink' to={`/auth/resetpassword`}>Forgot your password?</Link>
-            </div>
-          </form>
-        </Card>
+              <div>
+                <TextField
+                  style={textFieldStyles}
+                  value={this.state.username.value}
+                  errorText={this.state.username.error}
+                  onChange={this.handleUsernameChange.bind(this)}
+                  type='email'
+                  hintText='Your email'
+                  floatingLabelText='Your email' />
+              </div>
+      
+              <div>
+                <TextField
+                  value={this.state.password.value}
+                  errorText={this.state.password.error}
+                  style={textFieldStyles}
+                  onChange={this.handlePasswordChange.bind(this)}
+                  type='password'
+                  hintText='Your password'
+                  floatingLabelText='Your password' />
+              </div>
+      
+              <div className='LoginPage-loginButtonContainer'>
+                <RaisedButton
+                  primary={true}
+                  backgroundColor={Colors.green500}
+                  style={{
+                    width: '100%'
+                  }}
+                  type='submit'
+                  label='Login' />
+              </div>
+                
+              <div>
+                <Link className='LoginPage-signUpLink' to={`/auth/signup`}>Create a new account</Link>
+                <Link className='LoginPage-resetPasswordLink' to={`/auth/resetpassword`}>I forgot my password</Link>
+                <div className='clearfix'/>
+              </div>
+            </form>
+          </Card>
+        </div>
       </div>
     );
   }

@@ -10,6 +10,18 @@ body {
   -ms-text-size-adjust: 100%;
 }
 
+.clearfix { 
+  display: inline-block;
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  } 
+}
+
 .action-link {
   color: @link-color;
   text-decoration: none;
