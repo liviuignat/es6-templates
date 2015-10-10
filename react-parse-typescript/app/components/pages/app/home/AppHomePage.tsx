@@ -8,8 +8,8 @@ export default class extends React.Component<any, any> {
     this.props.menuStyle = {
        width: '100px',
        marginLeft: '-16px',
-       marginTop: '-13px',
-    }
+       marginTop: '-13px'
+    };
   }
 
   render() {
