@@ -16,9 +16,13 @@ import {
 import { createUserAction } from './../../../../actions';
 
 
-export default class extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
+class CreateUserPage extends React.Component<any, any> {
+  static contextTypes = {
+    router: React.PropTypes.func.isRequired
+  };
+  
+  constructor(props: any, context: any) {
+    super(props, context);
     
     this.state = {
       email: new TextFieldData({
@@ -56,11 +60,18 @@ export default class extends React.Component<any, any> {
        
       createUserAction
         .execute(email, password)
-        .then((a, b, c) => {
-          console.log('success', a, b, c);
+        .then(() => {
+          this.setState({
+            email: this.state.email.reset(),
+            password: this.state.password.reset()
+          });
+
+          this.props.history.pushState(null, '/app');
         })
-        .catch((a, b, c) => {
-          console.log('error', a, b, c);
+        .catch((error) => {
+          this.setState({
+            password: this.state.password.setError(error.message)
+          });
         }); 
     }
   }
@@ -120,3 +131,5 @@ export default class extends React.Component<any, any> {
     );
   }
 }
+
+export default CreateUserPage;

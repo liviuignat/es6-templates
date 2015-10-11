@@ -42,6 +42,7 @@ class CurrentUserStore extends EventEmitter {
   onAppDispatch(data) {
     switch (data.type) {
       case AUTH_ACTION_TYPES.LOG_IN_SUCCESS:
+      case AUTH_ACTION_TYPES.SIGN_UP_SUCCESS:
         this.isLoggedIn = true;
         this.emit(EVENT_TYPES.AUTH_LOGIN);
         break;
