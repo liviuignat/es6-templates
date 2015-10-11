@@ -51,6 +51,9 @@ class CurrentUserStore extends EventEmitter {
         this.isLoggedIn = false;
         this.emit(EVENT_TYPES.AUTH_LOGOUT);
         break;
+     
+      case AUTH_ACTION_TYPES.RESET_PASSWORD_SUCCESS:
+        break;
 
       default:
         break;

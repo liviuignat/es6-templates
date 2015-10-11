@@ -1,11 +1,11 @@
 import RaisedButton from 'material-ui/lib/raised-button';
-import { getExtendedStyles } from './utils';
+import { extend } from './utils';
 import { raisedButton } from './../../styles';
 
 class AppRaisedButton extends RaisedButton {
   constructor(props, context) {
     super(props, context);
-    this.getStyles = getExtendedStyles(this, super.getStyles(), raisedButton);
+    this.getStyles = () => extend(super.getStyles(), raisedButton);
   }
 }
 

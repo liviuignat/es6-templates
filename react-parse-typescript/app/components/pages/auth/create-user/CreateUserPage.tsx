@@ -1,5 +1,5 @@
 import React from 'react';
-import { RaisedButton, TextField, Card, Colors } from './../../../common';
+import { RaisedButton, TextField, Card } from './../../../common';
 import { Link } from 'react-router';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { 

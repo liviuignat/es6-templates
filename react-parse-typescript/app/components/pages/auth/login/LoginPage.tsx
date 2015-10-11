@@ -1,5 +1,5 @@
 import React from 'react';
-import { RaisedButton, TextField, Card, Colors } from './../../../common';  
+import { RaisedButton, TextField, Card } from './../../../common';  
 import { Link } from 'react-router';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
@@ -16,9 +16,6 @@ class LoginPage extends React.Component<any, any> {
   constructor(props: any, context: any) {
     super(props, context);
     
-    console.log(this.context);
-    console.log(this.context.muiTheme.textField);
-
     this.state = {
       username: new TextFieldData({
         validators: [ new RequiredStringValidator() ]

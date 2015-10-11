@@ -1,14 +1,17 @@
 import React from 'react';
-import { RaisedButton, TextField, Card, Colors } from './../../../common';
+import { RaisedButton, TextField, Card } from './../../../common';
 import { Link } from 'react-router';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator} from './../../../../utils/Validators';
+
+import { resetPasswordAction } from './../../../../actions';
 
 export default class extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     
     this.state = {
+      showInfoMessage: false,
       email: new TextFieldData({
         validators: [ new RequiredStringValidator() ]
       })
@@ -16,14 +19,31 @@ export default class extends React.Component<any, any> {
   }
   
   onFormSubmit(event) {
+    event.preventDefault();
+    
     const validatorResponse = formValidator.validate(this.state);
     this.setState(validatorResponse.formData);
     
-    event.preventDefault();
+    if (validatorResponse.isValid) {
+      resetPasswordAction
+        .execute(this.state.email.value)
+        .then(() => {
+          this.setState({
+            showInfoMessage: true,
+            email: this.state.email.reset()
+          });
+        })
+        .catch((error) => {
+          this.setState({
+            email: this.state.email.setError(error.message)
+          });
+        });
+    }
   }
   
   onEmailChange(event) {
     this.setState({
+      showInfoMessage: false,
       email: this.state.email.setValue(event.target.value)
     });
   }
@@ -36,21 +56,23 @@ export default class extends React.Component<any, any> {
             <form className='PasswordReset-content' onSubmit={this.onFormSubmit.bind(this)}>
               <span className='PasswordReset-title'>Forgot your password?</span>
               
-              <div>
+               <div>
                 <TextField
                   onChange={this.onEmailChange.bind(this)}
                   value={this.state.email.value}
                   errorText={this.state.email.error}
                   type='email'
-                  hintText='Your email (your@email.com)'
+                  hintText='Your email'
                   floatingLabelText='Your email' />
                </div>
                   
                <div className='PasswordReset-buttonContainer'>
-                 <RaisedButton
+                <RaisedButton
                   primary={true}
                   type='submit'
                   label='Request Reset' />
+                  
+                  <span className='PasswordReset-infoMessage'>{ this.state.showInfoMessage ? `We have sent you an email with password reset instructions.` : `` }</span>
                </div>     
                
                <div>
