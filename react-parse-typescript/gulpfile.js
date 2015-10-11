@@ -38,7 +38,7 @@ const bundler = {
     
     return this.w && this.w.bundle()
       .on('error', $.util.log.bind($.util, 'Browserify Error'))
-      .pipe($.wait(1000))
+      .pipe($.wait(3000))
       .pipe($.plumber())
       .pipe(source('app.js', './app'))
       .pipe(buffer())

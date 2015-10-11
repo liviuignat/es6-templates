@@ -1,14 +1,8 @@
 import React from 'react';
-import RaisedButton from 'material-ui/lib/raised-button';
-import Card from 'material-ui/lib/card/card';
-import Colors from 'material-ui/lib/styles/colors';
-import { textFieldStyles } from './../../../materialStyles';
-import TextField from 'material-ui/lib/text-field';
-
+import { RaisedButton, TextField, Card, Colors } from './../../../common';
 import { Link } from 'react-router';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator} from './../../../../utils/Validators';
-
 
 export default class extends React.Component<any, any> {
   constructor(props: any) {
@@ -46,7 +40,6 @@ export default class extends React.Component<any, any> {
                 <TextField
                   onChange={this.onEmailChange.bind(this)}
                   value={this.state.email.value}
-                  style={textFieldStyles}
                   errorText={this.state.email.error}
                   type='email'
                   hintText='Your email (your@email.com)'
@@ -56,10 +49,6 @@ export default class extends React.Component<any, any> {
                <div className='PasswordReset-buttonContainer'>
                  <RaisedButton
                   primary={true}
-                  backgroundColor={Colors.green500}
-                  style={{
-                    width: '100%'
-                  }}
                   type='submit'
                   label='Request Reset' />
                </div>     

@@ -11,18 +11,38 @@ import CreateUserPage from './pages/auth/create-user/CreateUserPage';
 
 import AppHomePage from './pages/app/home/AppHomePage';
 
-export default class extends React.Component<any, any> {
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import AppTheme from './theme';
+
+class AppRouter extends React.Component<any, any> {
+  
+  static childContextTypes = {
+    muiTheme: React.PropTypes.object
+  };
+  
+  constructor(props, context) {
+    super(props, context);
+  }
+  
+  getChildContext() {
+    const muiTheme = ThemeManager.getMuiTheme(AppTheme);
+     
+    return {
+      muiTheme: muiTheme
+    };
+  }
+  
   requirePublic(nextState, replaceState) {
     if (currentUserStore.getIsLoggedIn()) {
       replaceState({ nextPathname: nextState.location.pathname }, '/app');
     }
-  };
+  }
 
   requireAuth(nextState, replaceState) {
     if (!currentUserStore.getIsLoggedIn()) {
       replaceState({ nextPathname: nextState.location.pathname }, '/auth/login');
     }
-  };
+  }
 
   render() {
     return (
@@ -39,3 +59,5 @@ export default class extends React.Component<any, any> {
     );
   }
 }
+
+export default AppRouter;

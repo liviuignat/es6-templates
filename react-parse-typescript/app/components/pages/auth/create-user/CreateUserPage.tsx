@@ -1,11 +1,6 @@
 import React from 'react';
-import TextField from 'material-ui/lib/text-field';
-import RaisedButton from 'material-ui/lib/raised-button';
-import Card from 'material-ui/lib/card/card';
-import Colors from 'material-ui/lib/styles/colors';
-
+import { RaisedButton, TextField, Card, Colors } from './../../../common';
 import { Link } from 'react-router';
-import { textFieldStyles } from './../../../materialStyles';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { 
   RequiredStringValidator, 
@@ -14,7 +9,6 @@ import {
 } from './../../../../utils/Validators';
 
 import { createUserAction } from './../../../../actions';
-
 
 class CreateUserPage extends React.Component<any, any> {
   static contextTypes = {
@@ -86,7 +80,6 @@ class CreateUserPage extends React.Component<any, any> {
               
               <div>
                 <TextField 
-                  style={textFieldStyles}
                   value={this.state.email.value}
                   errorText={this.state.email.error}
                   onChange={this.handleEmailChange.bind(this)}
@@ -98,7 +91,6 @@ class CreateUserPage extends React.Component<any, any> {
               
               <div>
                 <TextField
-                  style={textFieldStyles}
                   value={this.state.password.value}
                   errorText={this.state.password.error}
                   onChange={this.handlePasswordChange.bind(this)}
@@ -111,10 +103,6 @@ class CreateUserPage extends React.Component<any, any> {
               <div className='CreateUserPage-buttonContainer'>
                 <RaisedButton
                   primary={true}
-                  backgroundColor={Colors.green500}
-                  style={{
-                    width: '100%'
-                  }}
                   type='submit'
                   label='Create new account' />
               </div>

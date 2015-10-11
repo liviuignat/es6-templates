@@ -1,23 +1,23 @@
 import React from 'react';
-import RaisedButton from 'material-ui/lib/raised-button';
-import TextField from 'material-ui/lib/text-field';
-import Card from 'material-ui/lib/card/card';
-import Colors from 'material-ui/lib/styles/colors';
-
+import { RaisedButton, TextField, Card, Colors } from './../../../common';  
 import { Link } from 'react-router';
-import { textFieldStyles } from './../../../materialStyles';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
 
 import { loginAction } from './../../../../actions';
 
 class LoginPage extends React.Component<any, any> {
+  
   static contextTypes = {
-    router: React.PropTypes.func.isRequired
+    router: React.PropTypes.func.isRequired,
+    muiTheme: React.PropTypes.object
   };
 
   constructor(props: any, context: any) {
     super(props, context);
+    
+    console.log(this.context);
+    console.log(this.context.muiTheme.textField);
 
     this.state = {
       username: new TextFieldData({
@@ -31,7 +31,7 @@ class LoginPage extends React.Component<any, any> {
 
   onFormSubmit(event) {
     const user = this.state;
-    let validatorResponse = formValidator.validate(user);
+    const validatorResponse = formValidator.validate(user);
     const formData = validatorResponse.formData;
     const isValid = validatorResponse.isValid;
 
@@ -82,7 +82,6 @@ class LoginPage extends React.Component<any, any> {
               
               <div>
                 <TextField
-                  style={textFieldStyles}
                   value={this.state.username.value}
                   errorText={this.state.username.error}
                   onChange={this.handleUsernameChange.bind(this)}
@@ -95,7 +94,6 @@ class LoginPage extends React.Component<any, any> {
                 <TextField
                   value={this.state.password.value}
                   errorText={this.state.password.error}
-                  style={textFieldStyles}
                   onChange={this.handlePasswordChange.bind(this)}
                   type='password'
                   hintText='Your password'
@@ -105,10 +103,6 @@ class LoginPage extends React.Component<any, any> {
               <div className='LoginPage-loginButtonContainer'>
                 <RaisedButton
                   primary={true}
-                  backgroundColor={Colors.green500}
-                  style={{
-                    width: '100%'
-                  }}
                   type='submit'
                   label='Login' />
               </div>
