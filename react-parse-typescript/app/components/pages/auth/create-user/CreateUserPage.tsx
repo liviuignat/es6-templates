@@ -13,13 +13,10 @@ import {
   formValidator 
 } from './../../../../utils/Validators';
 
+import { createUserAction } from './../../../../actions';
+
 
 export default class extends React.Component<any, any> {
-  standardActions = [
-    { text: 'Cancel' },
-    { text: 'Submit', onTouchTap: this._onDialogSubmit, ref: 'submit' }
-  ];
-
   constructor(props: any) {
     super(props);
     
@@ -47,12 +44,25 @@ export default class extends React.Component<any, any> {
     });
   }
   
-  createNewAccount(event) {
+  onFormSubmit(event) {
+    event.preventDefault();
+    
     const validatorResponse = formValidator.validate(this.state);
-    console.log(validatorResponse);
     this.setState(validatorResponse.formData);
     
-    event.preventDefault();
+    if (validatorResponse.isValid) {
+      const email = this.state.email.value;
+      const password = this.state.password.value;
+       
+      createUserAction
+        .execute(email, password)
+        .then((a, b, c) => {
+          console.log('success', a, b, c);
+        })
+        .catch((a, b, c) => {
+          console.log('error', a, b, c);
+        }); 
+    }
   }
 
   render() {
@@ -60,7 +70,7 @@ export default class extends React.Component<any, any> {
       <div className='CreateUserPage'>
         <div>
           <Card>
-            <form className='CreateUserPage-content' onSubmit={this.createNewAccount.bind(this)}>
+            <form className='CreateUserPage-content' onSubmit={this.onFormSubmit.bind(this)}>
               <span className='CreateUserPage-title'>Sign up</span>
               
               <div>

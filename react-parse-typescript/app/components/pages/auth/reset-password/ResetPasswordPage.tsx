@@ -5,6 +5,7 @@ import Colors from 'material-ui/lib/styles/colors';
 import { textFieldStyles } from './../../../materialStyles';
 import TextField from 'material-ui/lib/text-field';
 
+import { Link } from 'react-router';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator} from './../../../../utils/Validators';
 
@@ -61,8 +62,12 @@ export default class extends React.Component<any, any> {
                   }}
                   type='submit'
                   label='Request Reset' />
-               </div>        
-       
+               </div>     
+               
+               <div>
+                  <Link className='PasswordReset-loginLink' to={`/auth/login`}>Already have an account? Login</Link>
+                  <div className='clearfix'/>
+               </div>
             </form>
           </Card>  
       </div>

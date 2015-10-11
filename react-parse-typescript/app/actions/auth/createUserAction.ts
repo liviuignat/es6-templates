@@ -2,10 +2,10 @@ import Parse from 'parse';
 import { appDispatcher } from './../../appDispatcher';
 import { AUTH_ACTION_TYPES } from './../../constants';
 
-class LoginAction {
+class CreateUserAction {
   execute(username: string, password: string) {
     return new Promise((resolve, reject) => {
-      const newUser = Parse.User();
+      const newUser = new Parse.User();
       newUser.set('username', username);
       newUser.set('password', password);
       newUser.set('email', username);
@@ -24,5 +24,5 @@ class LoginAction {
 }
 
 export default {
-  logoutAction: new LoginAction()
+  createUserAction: new CreateUserAction()
 };
