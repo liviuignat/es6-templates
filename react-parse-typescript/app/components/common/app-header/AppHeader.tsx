@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import AppBar from 'material-ui/lib/app-bar';
 import FontIcon from 'material-ui/lib/font-icon';
 import { Colors } from 'material-ui/lib/styles';
@@ -40,9 +41,10 @@ export default class extends React.Component<any, any> {
     return (
       <header>
         <AppBar
-          title={<a className='AppHeader-homeLink' href='/'>MATERIAL MAILS</a>}
-          showMenuIconButton={false}
+          title={<Link className='AppHeader-homeLink' to='/'>MATERIAL MAILS</Link>}
+          showMenuIconButton={this.state.isLoggedIn}
           iconElementRight={this.renderButtonsRight()}
+          onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
           />
       </header>
     );
@@ -58,7 +60,7 @@ export default class extends React.Component<any, any> {
         </div>
       );
     } else {
-      return <a className='AppHeader-navigationLink' href='/auth/login'>Login</a>;
+      return <Link className='AppHeader-navigationLink' to='/auth/login'>Login</Link>;
     }
   }
 }
