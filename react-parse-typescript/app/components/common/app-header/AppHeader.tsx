@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { AppBar, FontIcon, Colors, IconButton } from './../material-ui';
-import history from './../../../history';
+import { history } from './../../../history';
 import { logoutAction } from './../../../actions';
 import { currentUserStore } from './../../../stores';
 

@@ -1,6 +1,6 @@
 import Parse from 'parse';
 import { appDispatcher } from './../../appDispatcher';
-import { AUTH_ACTION_TYPES } from './../../constants';
+import { AUTH_ACTION_TYPES } from './../actionTypes.constant';
 
 class ResetPasswordAction {
   execute(email: string): Promise<any> {
@@ -18,6 +18,4 @@ class ResetPasswordAction {
   }
 }
 
-export default {
-  resetPasswordAction: new ResetPasswordAction()
-};
+export const resetPasswordAction = new ResetPasswordAction();

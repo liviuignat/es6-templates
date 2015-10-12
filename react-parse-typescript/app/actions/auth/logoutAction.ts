@@ -1,6 +1,6 @@
 import Parse from 'parse';
 import { appDispatcher } from './../../appDispatcher';
-import { AUTH_ACTION_TYPES } from './../../constants';
+import { AUTH_ACTION_TYPES } from './../actionTypes.constant';
 
 class LogoutAction {
   execute() {
@@ -10,6 +10,4 @@ class LogoutAction {
   }
 }
 
-export default {
-  logoutAction: new LogoutAction()
-};
+export const logoutAction = new LogoutAction();

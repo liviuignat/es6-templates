@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
-import history from './../history';
+import { history } from './../history';
 import { currentUserStore } from './../stores';
 
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
@@ -15,23 +15,23 @@ import CreateUserPage from './pages/auth/create-user/CreateUserPage';
 import AppHomePage from './pages/app/home/AppHomePage';
 
 class AppRouter extends React.Component<any, any> {
-  
+
   static childContextTypes = {
     muiTheme: React.PropTypes.object
   };
-  
+
   constructor(props, context) {
     super(props, context);
   }
-  
+
   getChildContext() {
     const muiTheme = ThemeManager.getMuiTheme(AppTheme);
-     
+
     return {
       muiTheme: muiTheme
     };
   }
-  
+
   requirePublic(nextState, replaceState) {
     if (currentUserStore.getIsLoggedIn()) {
       replaceState({ nextPathname: nextState.location.pathname }, '/app');
@@ -52,12 +52,12 @@ class AppRouter extends React.Component<any, any> {
           <Route path='auth/login' component={LoginPage} onEnter={this.requirePublic.bind(this)}/>
           <Route path='auth/signup' component={CreateUserPage} onEnter={this.requirePublic.bind(this)}/>
           <Route path='auth/resetpassword' component={ResetPasswordPage} onEnter={this.requirePublic.bind(this)}/>
-          
+
           <Route path='/app' component={AppHomePage} onEnter={this.requireAuth.bind(this)} />
-          
+
           <Route path='*' component={HomePage} />
         </Route>
-        
+
       </Router>
     );
   }

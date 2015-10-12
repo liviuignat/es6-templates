@@ -1,6 +1,6 @@
 import Parse from 'parse';
 import { appDispatcher } from './../../appDispatcher';
-import { AUTH_ACTION_TYPES } from './../../constants';
+import { AUTH_ACTION_TYPES } from './../actionTypes.constant';
 
 class CreateUserAction {
   execute(username: string, password: string) {
@@ -9,7 +9,7 @@ class CreateUserAction {
       newUser.set('username', username);
       newUser.set('password', password);
       newUser.set('email', username);
-      
+
       newUser.signUp(null, {
         success: (user: any) => {
           appDispatcher.dispatch(AUTH_ACTION_TYPES.SIGN_UP_SUCCESS);
@@ -23,6 +23,4 @@ class CreateUserAction {
   }
 }
 
-export default {
-  createUserAction: new CreateUserAction()
-};
+export const createUserAction = new CreateUserAction();

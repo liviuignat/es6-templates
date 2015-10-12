@@ -1,7 +1,8 @@
 import { Parse } from 'parse';
 import { EventEmitter } from 'events';
-import { EVENT_TYPES, AUTH_ACTION_TYPES } from './../../constants';
 import { appDispatcher } from './../../appDispatcher';
+import { EVENT_TYPES } from './../eventTypes.constant';
+import { AUTH_ACTION_TYPES } from './../../actions';
 
 class CurrentUserStore extends EventEmitter {
   private isLoggedIn = false;
@@ -51,7 +52,7 @@ class CurrentUserStore extends EventEmitter {
         this.isLoggedIn = false;
         this.emit(EVENT_TYPES.AUTH_LOGOUT);
         break;
-     
+
       case AUTH_ACTION_TYPES.RESET_PASSWORD_SUCCESS:
         break;
 
@@ -61,6 +62,4 @@ class CurrentUserStore extends EventEmitter {
   }
 }
 
-export default {
-  currentUserStore: new CurrentUserStore()
-};
+export const currentUserStore = new CurrentUserStore();

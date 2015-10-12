@@ -1,6 +1,6 @@
 import Parse from 'parse';
 import { appDispatcher } from './../../appDispatcher';
-import { AUTH_ACTION_TYPES } from './../../constants';
+import { AUTH_ACTION_TYPES } from './../actionTypes.constant';
 
 class LoginAction {
   execute(username: string, password: string): Promise<any> {
@@ -20,6 +20,4 @@ class LoginAction {
   }
 }
 
-export default {
-  loginAction: new LoginAction()
-};
+export const loginAction = new LoginAction();
