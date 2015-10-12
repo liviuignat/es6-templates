@@ -1,10 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import AppBar from 'material-ui/lib/app-bar';
-import FontIcon from 'material-ui/lib/font-icon';
-import { Colors } from 'material-ui/lib/styles';
-import IconButton from 'material-ui/lib/icon-button';
-
+import { AppBar, FontIcon, Colors, IconButton } from './../material-ui';
 import history from './../../../history';
 import { logoutAction } from './../../../actions';
 import { currentUserStore } from './../../../stores';
