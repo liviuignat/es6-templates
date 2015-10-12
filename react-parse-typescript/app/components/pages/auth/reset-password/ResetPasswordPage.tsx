@@ -1,15 +1,16 @@
-import React from 'react';
-import { RaisedButton, TextField, Card } from './../../../common';
+import * as React from 'react';
+import ComponentBase from './../../../ComponentBase';
+import { RaisedButton, TextField, Card } from './../../../common/index';
 import { Link } from 'react-router';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator} from './../../../../utils/Validators';
 
-import { resetPasswordAction } from './../../../../actions';
+import { resetPasswordAction } from './../../../../actions/index';
 
-export default class extends React.Component<any, any> {
+export default class extends ComponentBase<any, any> {
   constructor(props: any) {
     super(props);
-    
+
     this.state = {
       showInfoMessage: false,
       email: new TextFieldData({
@@ -17,13 +18,13 @@ export default class extends React.Component<any, any> {
       })
     };
   }
-  
-  onFormSubmit(event) {
+
+  onFormSubmit(event: any) {
     event.preventDefault();
-    
+
     const validatorResponse = formValidator.validate(this.state);
     this.setState(validatorResponse.formData);
-    
+
     if (validatorResponse.isValid) {
       resetPasswordAction
         .execute(this.state.email.value)
@@ -40,14 +41,14 @@ export default class extends React.Component<any, any> {
         });
     }
   }
-  
-  onEmailChange(event) {
+
+  onEmailChange(event: any) {
     this.setState({
       showInfoMessage: false,
       email: this.state.email.setValue(event.target.value)
     });
   }
-  
+
   render() {
     return (
       <div className='PasswordResetPage'>
@@ -55,7 +56,7 @@ export default class extends React.Component<any, any> {
           <Card>
             <form className='PasswordReset-content' onSubmit={this.onFormSubmit.bind(this)}>
               <span className='PasswordReset-title'>Forgot your password?</span>
-              
+
                <div>
                 <TextField
                   onChange={this.onEmailChange.bind(this)}
@@ -65,22 +66,22 @@ export default class extends React.Component<any, any> {
                   hintText='Your email'
                   floatingLabelText='Your email' />
                </div>
-                  
+
                <div className='PasswordReset-buttonContainer'>
                 <RaisedButton
                   primary={true}
                   type='submit'
                   label='Request Reset' />
-                  
+
                   <span className='PasswordReset-infoMessage'>{ this.state.showInfoMessage ? `We have sent you an email with password reset instructions.` : `` }</span>
-               </div>     
-               
+               </div>
+
                <div>
                   <Link className='PasswordReset-loginLink' to={`/auth/login`}>Already have an account? Login</Link>
                   <div className='clearfix'/>
                </div>
             </form>
-          </Card>  
+          </Card>
       </div>
     </div>
     );

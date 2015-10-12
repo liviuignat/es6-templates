@@ -1,12 +1,11 @@
-import RaisedButton from 'material-ui/lib/raised-button';
+import { RaisedButton } from 'material-ui';
 import { extend } from './utils';
 import { raisedButton } from './../../styles';
 
-class AppRaisedButton extends RaisedButton {
-  constructor(props, context) {
-    super(props, context);
-    this.getStyles = () => extend(super.getStyles(), raisedButton);
-  }
-}
+const baseGetStyles = RaisedButton.prototype.getStyles;
+RaisedButton.prototype.getStyles = function () {
+  const baseStyles = baseGetStyles.call(this);
+  return extend(baseStyles, raisedButton);
+};
 
-export default AppRaisedButton;
+export default RaisedButton;

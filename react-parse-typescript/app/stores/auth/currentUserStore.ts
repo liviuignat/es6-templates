@@ -1,8 +1,8 @@
-import { Parse } from 'parse';
+import * as Parse from 'parse';
 import { EventEmitter } from 'events';
 import { appDispatcher } from './../../appDispatcher';
 import { EVENT_TYPES } from './../eventTypes.constant';
-import { AUTH_ACTION_TYPES } from './../../actions';
+import { AUTH_ACTION_TYPES } from './../../actions/index';
 
 class CurrentUserStore extends EventEmitter {
   private isLoggedIn = false;
@@ -22,25 +22,25 @@ class CurrentUserStore extends EventEmitter {
     return this.isLoggedIn;
   }
 
-  addLoginListener(callback) {
+  addLoginListener(callback: () => void) {
     this.on(EVENT_TYPES.AUTH_LOGIN, callback);
     return this;
   }
-  removeLLoginListener(callback) {
+  removeLLoginListener(callback: () => void) {
     this.on(EVENT_TYPES.AUTH_LOGIN, callback);
     return this;
   }
 
-  addLogoutListener(callback) {
+  addLogoutListener(callback: () => void) {
     this.on(EVENT_TYPES.AUTH_LOGOUT, callback);
     return this;
   }
-  removeLLogoutListener(callback) {
+  removeLLogoutListener(callback: () => void) {
     this.on(EVENT_TYPES.AUTH_LOGOUT, callback);
     return this;
   }
 
-  onAppDispatch(data) {
+  onAppDispatch(data: IDispatcherPayload<any>) {
     switch (data.type) {
       case AUTH_ACTION_TYPES.LOG_IN_SUCCESS:
       case AUTH_ACTION_TYPES.SIGN_UP_SUCCESS:

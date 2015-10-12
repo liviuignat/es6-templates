@@ -1,10 +1,11 @@
-import React from 'react';
-import { List, ListItem } from 'material-ui/lib/lists';
+import * as React from 'react';
+import ComponentBase from './../../../ComponentBase';
+import { List, ListItem } from './../../../common/index';
 
-export default class extends React.Component<any, any> {
+class AppHomePage extends ComponentBase<any, any> {
   constructor(props: any) {
     super(props);
-    
+
     this.props.menuStyle = {
        width: '100px',
        marginLeft: '-16px',
@@ -24,3 +25,5 @@ export default class extends React.Component<any, any> {
     );
   }
 }
+
+export default AppHomePage;

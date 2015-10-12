@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import { history } from './../history';
-import { currentUserStore } from './../stores';
+import { currentUserStore } from './../stores/index';
 
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import { ThemeManager } from './common/material-ui/index';
 import AppTheme from './theme';
 
 import AppComponent from './AppComponent';
@@ -16,11 +16,11 @@ import AppHomePage from './pages/app/home/AppHomePage';
 
 class AppRouter extends React.Component<any, any> {
 
-  static childContextTypes = {
+  static childContextTypes: React.ValidationMap<any> = {
     muiTheme: React.PropTypes.object
   };
 
-  constructor(props, context) {
+  constructor(props: any, context: any) {
     super(props, context);
   }
 
@@ -32,13 +32,13 @@ class AppRouter extends React.Component<any, any> {
     };
   }
 
-  requirePublic(nextState, replaceState) {
+  requirePublic(nextState: any, replaceState: any) {
     if (currentUserStore.getIsLoggedIn()) {
       replaceState({ nextPathname: nextState.location.pathname }, '/app');
     }
   }
 
-  requireAuth(nextState, replaceState) {
+  requireAuth(nextState: any, replaceState: any) {
     if (!currentUserStore.getIsLoggedIn()) {
       replaceState({ nextPathname: nextState.location.pathname }, '/auth/login');
     }

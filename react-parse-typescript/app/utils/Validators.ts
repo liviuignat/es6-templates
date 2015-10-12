@@ -1,4 +1,4 @@
-class RequiredStringValidator implements IValidator {
+export class RequiredStringValidator implements IValidator {
   constructor(public message: string = 'Field is required') {
   }
 
@@ -7,7 +7,7 @@ class RequiredStringValidator implements IValidator {
   }
 }
 
-class PasswordValidator implements IValidator {
+export  class PasswordValidator implements IValidator {
   constructor(public message: string = 'Password is required') {
   }
 
@@ -53,8 +53,4 @@ class FormValidator {
   }
 }
 
-export default {
-  RequiredStringValidator: RequiredStringValidator,
-  PasswordValidator: PasswordValidator,
-  formValidator: new FormValidator()
-};
+export const formValidator = new FormValidator();

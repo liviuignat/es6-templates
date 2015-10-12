@@ -1,13 +1,11 @@
-import TextField from 'material-ui/lib/text-field';
+import { TextField } from 'material-ui';
 import { extend } from './utils';
 import { textField } from './../../styles';
 
-class AppTextField extends TextField {
-  constructor(props, context) {
-    super(props, context);
-    
-    this.getStyles = () => extend(super.getStyles(), textField);
-  }
-}
+const baseGetStyles = TextField.prototype.getStyles;
+TextField.prototype.getStyles = function () {
+  const baseStyles = baseGetStyles.call(this);
+  return extend(baseStyles, textField);
+};
 
-export default AppTextField;
+export default TextField;
