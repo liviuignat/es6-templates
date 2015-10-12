@@ -1,7 +1,5 @@
 import React from 'react';
- 
-import AppHeader from './common/app-header/AppHeader';
-import LeftNav from 'material-ui/lib/left-nav';
+ import { AppHeader, LeftNav } from './common';
  
 class AppComponent extends React.Component<any, any> {
   
@@ -26,8 +24,6 @@ class AppComponent extends React.Component<any, any> {
   }
  
   getSelectedIndex() {
-    console.log('AppComponent:', this.context, this.props);
-    
     let currentItem;
  
     for (let i = this.menuItems.length - 1; i >= 0; i--) {
