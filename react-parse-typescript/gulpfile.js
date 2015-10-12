@@ -7,6 +7,7 @@ const $ = require('gulp-load-plugins')();
 const browserify = require('browserify');
 const watchify = require('watchify');
 const tsify = require('tsify');
+const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const merge = require('merge2');
@@ -25,13 +26,30 @@ const paths = {
 const bundler = {
   w: null,
   init: function () {
-    this.w = watchify(browserify({
-      entries: [paths.tsc + '/app.js'],
-      insertGlobals: true,
-      debug: true,
+    const b = browserify({
       cache: {},
-      packageCache: {}
-    }));
+      packageCache: {},
+      insertGlobals: true,
+      debug: true
+    });
+    
+    b.add([
+      './app/app.tsx',
+      './app/interfaces.d.ts',
+     ])
+    .plugin('tsify', {
+      typescript: require('typescript'),
+      isolatedModules: true,
+      target: 'ES6',
+      jsx: 'react',
+      noImplicitAny: true,
+      removeComments: true,
+      preserveConstEnums: true,
+      sourceMap: true
+    })
+    .transform(babelify.configure({extensions: [".ts",".js", ".tsx"]}));
+    
+    this.w = watchify(b);
   },
   bundle: function () {
     console.log('scripts bundler start');
@@ -75,25 +93,8 @@ gulp.task('tsc', function() {
 });
 
 gulp.task('scripts', [], function () {
-  //bundler.init();
-  //return bundler.bundle();
-  browserify()
-    .add([
-      './app/interfaces.d.ts',
-      './app/app.tsx',
-     ])
-    .plugin('tsify', {
-      isolatedModules: true,
-      target: 'ES6',
-      jsx: 'react',
-      noImplicitAny: true,
-      removeComments: true,
-      preserveConstEnums: true,
-      sourceMap: true
-    })
-    .bundle()
-    .on('error', function (error) { console.error(error.toString()); })
-    .pipe(gulp.dest(paths.dist));
+  bundler.init();
+  return bundler.bundle();
 });
 
 gulp.task('styles', function () {
@@ -213,6 +214,7 @@ gulp.task('build', ['clean'], function (callback) {
 });
 
 gulp.task('watch', ['build'], function (callback) {
+  //gulp.watch(['app/**/*.ts', 'app/**/*.tsx'], ['tslint', 'tsc']);
   gulp.watch(['app/**/*.ts', 'app/**/*.tsx'], ['tslint', 'tsc']);
   gulp.watch('app/*.html', ['html']);
   gulp.watch('app/**/*.less', ['styles']);

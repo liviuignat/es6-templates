@@ -8,6 +8,8 @@ import { RequiredStringValidator, formValidator} from './../../../../utils/Valid
 import { resetPasswordAction } from './../../../../actions/index';
 
 export default class extends ComponentBase<any, any> {
+  react = React;
+  
   constructor(props: any) {
     super(props);
 

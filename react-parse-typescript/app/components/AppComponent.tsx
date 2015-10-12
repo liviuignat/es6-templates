@@ -46,7 +46,6 @@ class AppComponent extends ComponentBase<any, any> {
   }
 
   render() {
-
     return (
       <div>
 

@@ -3,6 +3,8 @@ import ComponentBase from './../../../ComponentBase';
 import { List, ListItem } from './../../../common/index';
 
 class AppHomePage extends ComponentBase<any, any> {
+  react = React;
+  
   constructor(props: any) {
     super(props);
 

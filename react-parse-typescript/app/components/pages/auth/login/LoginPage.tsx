@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ComponentBase from './../../../ComponentBase';
-import { RaisedButton, TextField, Card } from './../../../common/index';
+import { RaisedButton, TextField, AppTextField, Card } from './../../../common/index';
 import { Link } from 'react-router';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
@@ -78,7 +78,7 @@ class LoginPage extends ComponentBase<any, any> {
               <span className='LoginPage-title'>Login</span>
 
               <div>
-                <TextField
+                <AppTextField
                   value={this.state.username.value}
                   errorText={this.state.username.error}
                   onChange={this.handleUsernameChange.bind(this)}

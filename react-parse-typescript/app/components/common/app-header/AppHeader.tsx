@@ -7,6 +7,8 @@ import { logoutAction } from './../../../actions/index';
 import { currentUserStore } from './../../../stores/index';
 
 class AppHeader extends ComponentBase<any, any> {
+  react = React;
+  
   constructor(props: any, context: any) {
     super(props, context);
 
