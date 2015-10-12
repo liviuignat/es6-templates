@@ -1,8 +1,10 @@
 import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import history from './../history';
-
 import { currentUserStore } from './../stores';
+
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import AppTheme from './theme';
 
 import AppComponent from './AppComponent';
 import HomePage from './pages/home/HomePage';
@@ -14,8 +16,20 @@ import AppHomePage from './pages/app/home/AppHomePage';
 
 class AppRouter extends React.Component<any, any> {
   
+  static childContextTypes = {
+    muiTheme: React.PropTypes.object
+  };
+  
   constructor(props, context) {
     super(props, context);
+  }
+  
+  getChildContext() {
+    const muiTheme = ThemeManager.getMuiTheme(AppTheme);
+     
+    return {
+      muiTheme: muiTheme
+    };
   }
   
   requirePublic(nextState, replaceState) {

@@ -1,37 +1,23 @@
 import React from 'react';
  
-import ThemeManager from 'material-ui/lib/styles/theme-manager';
-import AppTheme from './theme';
 import AppHeader from './common/app-header/AppHeader';
 import LeftNav from 'material-ui/lib/left-nav';
  
- 
 class AppComponent extends React.Component<any, any> {
   
-  static childContextTypes = {
-    muiTheme: React.PropTypes.object
-  };
-  
   static contextTypes = {
+    muiTheme: React.PropTypes.object,
     router: React.PropTypes.func
   };
  
   constructor(props, context) {
-    super();
+    super(props, context);
     
     this.menuItems = [
       { route: '/app', text: 'Dashboard' },
       { route: '/app/about', text: 'About' },
       { route: '/app/contact', text: 'Contact' },
     ];
-  }
- 
-  getChildContext() {
-    const muiTheme = ThemeManager.getMuiTheme(AppTheme);
-     
-    return {
-      muiTheme: muiTheme
-    };
   }
  
   handleClick(e) {

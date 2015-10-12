@@ -9,8 +9,7 @@ import { loginAction } from './../../../../actions';
 class LoginPage extends React.Component<any, any> {
   
   static contextTypes = {
-    router: React.PropTypes.func.isRequired,
-    muiTheme: React.PropTypes.object
+    router: React.PropTypes.func.isRequired
   };
 
   constructor(props: any, context: any) {
