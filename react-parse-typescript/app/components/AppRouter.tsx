@@ -53,11 +53,9 @@ class AppRouter extends React.Component<any, any> {
           <Route path='auth/signup' component={CreateUserPage} onEnter={this.requirePublic.bind(this)}/>
           <Route path='auth/resetpassword' component={ResetPasswordPage} onEnter={this.requirePublic.bind(this)}/>
           
+          <Route path='/app' component={AppHomePage} onEnter={this.requireAuth.bind(this)} />
+          
           <Route path='*' component={HomePage} />
-        </Route>
-        
-        <Route path='/app' component={AppComponent} onEnter={this.requireAuth.bind(this)}>
-          <IndexRoute component={AppHomePage} />
         </Route>
         
       </Router>

@@ -5,9 +5,9 @@ import history from './../../../history';
 import { logoutAction } from './../../../actions';
 import { currentUserStore } from './../../../stores';
 
-export default class extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props);
+class AppHeader extends React.Component<any, any> {
+  constructor(props: any, context: anu) {
+    super(props, context);
 
     this.state = {
       isLoggedIn: currentUserStore.getIsLoggedIn()
@@ -60,3 +60,5 @@ export default class extends React.Component<any, any> {
     }
   }
 }
+
+export default AppHeader;
