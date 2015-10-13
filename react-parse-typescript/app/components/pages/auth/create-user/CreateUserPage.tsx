@@ -82,7 +82,7 @@ class CreateUserPage extends ComponentBase<any, ICreateUserPageState> {
       <div className='CreateUserPage'>
         <div>
           <Card>
-            <form className='CreateUserPage-content' onSubmit={this.onFormSubmit.bind(this)}>
+            <form noValidate className='CreateUserPage-content' onSubmit={this.onFormSubmit.bind(this)}>
               <span className='CreateUserPage-title'>Sign up</span>
 
               <div>

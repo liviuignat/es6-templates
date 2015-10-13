@@ -61,7 +61,7 @@ class ResetPasswordPage extends ComponentBase<any, ICreateUserPageState> {
       <div className='PasswordResetPage'>
         <div>
           <Card>
-            <form className='PasswordReset-content' onSubmit={this.onFormSubmit.bind(this)}>
+            <form noValidate className='PasswordReset-content' onSubmit={this.onFormSubmit.bind(this)}>
               <span className='PasswordReset-title'>Forgot your password?</span>
 
                <div>
