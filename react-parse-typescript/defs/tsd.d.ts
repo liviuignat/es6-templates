@@ -4,3 +4,4 @@
 /// <reference path="react/react.d.ts" />
 /// <reference path="underscore/underscore.d.ts" />
 /// <reference path="material-ui/material-ui.d.ts" />
+/// <reference path="blueimp-md5/blueimp-md5.d.ts" />

@@ -1,8 +1,9 @@
 import * as Parse from 'parse';
+import { md5 } from 'blueimp-md5';
 import { EventEmitter } from 'events';
 import { appDispatcher } from './../../appDispatcher';
 import { EVENT_TYPES } from './../eventTypes.constant';
-import { AUTH_ACTION_TYPES } from './../../actions/index';
+import { AUTH_ACTION_TYPES, MY_ACCOUNT_ACTION_TYPES, GET_CURRENT_USER } from './../../actions/index';
 
 const getUserFromParseUser = (user: any): ICurrentUserData => {
   const attr = user.attributes;
@@ -32,7 +33,6 @@ class CurrentUserStore extends EventEmitter implements ICurrentUser {
 
     if (this.isLoggedIn) {
       this.user = getUserFromParseUser(this.parseUser);
-      console.log(this.user);
     }
   }
 
@@ -47,6 +47,13 @@ class CurrentUserStore extends EventEmitter implements ICurrentUser {
   getEmail(): string {
     if (this.getIsLoggedIn()) {
       return this.getUserData().email;
+    }
+  }
+
+  getUserPhoto(): string {
+    if (this.getIsLoggedIn()) {
+      const emailMd5 = md5(this.getEmail());
+      return `http://www.gravatar.com/avatar/${emailMd5}.jpg?s=200`;
     }
   }
 
@@ -71,11 +78,18 @@ class CurrentUserStore extends EventEmitter implements ICurrentUser {
     this.on(EVENT_TYPES.AUTH_LOGIN, callback);
     return this;
   }
-  removeLLoginListener(callback: () => void) {
+  removeLoginListener(callback: () => void) {
     this.on(EVENT_TYPES.AUTH_LOGIN, callback);
     return this;
   }
-
+  addChangeListener(callback: () => void) {
+    this.on(EVENT_TYPES.CHANGE_EVENT, callback);
+    return this;
+  }
+  removeChangeListener(callback: () => void) {
+    this.on(EVENT_TYPES.CHANGE_EVENT, callback);
+    return this;
+  }
   addLogoutListener(callback: () => void) {
     this.on(EVENT_TYPES.AUTH_LOGOUT, callback);
     return this;
@@ -99,6 +113,14 @@ class CurrentUserStore extends EventEmitter implements ICurrentUser {
         break;
 
       case AUTH_ACTION_TYPES.RESET_PASSWORD_SUCCESS:
+        break;
+
+      case MY_ACCOUNT_ACTION_TYPES.MY_ACCOUNT_UPDATE_SUCCESS:
+        this.emit(EVENT_TYPES.CHANGE_EVENT);
+        break;
+
+      case GET_CURRENT_USER.GET_CURRENT_USER_SUCCESS:
+        this.emit(EVENT_TYPES.CHANGE_EVENT);
         break;
 
       default:

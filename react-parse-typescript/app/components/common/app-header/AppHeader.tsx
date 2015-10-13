@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ComponentBase from './../../ComponentBase';
 import { Link } from 'react-router';
-import { AppBar, FontIcon, Colors, IconButton } from './../material-ui/index';
+import { AppBar, Avatar } from './../material-ui/index';
 import { history } from './../../../history';
 import { logoutAction } from './../../../actions/index';
 import { currentUserStore } from './../../../stores/index';
@@ -57,9 +57,7 @@ class AppHeader extends ComponentBase<any, IAppHeaderState> {
     if (this.state.isLoggedIn) {
       return (
         <div>
-          <IconButton tooltip='logout' onClick={this.logout.bind(this)}>
-            <FontIcon className='material-icons' color={Colors.purple500}>power_settings_new</FontIcon>
-          </IconButton>
+          <Avatar src={ currentUserStore.getUserPhoto() } />
         </div>
       );
     } else {

@@ -22,6 +22,9 @@
     },
     "material-ui/material-ui.d.ts": {
       "commit": "14ab703f435375194360cdba3abab61afc879c18"
+    },
+    "blueimp-md5/blueimp-md5.d.ts": {
+      "commit": "14ab703f435375194360cdba3abab61afc879c18"
     }
   }
 }

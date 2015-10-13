@@ -13,6 +13,7 @@ import ResetPasswordPage from './pages/auth/reset-password/ResetPasswordPage';
 import CreateUserPage from './pages/auth/create-user/CreateUserPage';
 
 import AppHomePage from './pages/app/home/AppHomePage';
+import MyAccountPage from './pages/app/my-account/MyAccountPage';
 
 class AppRouter extends React.Component<any, any> {
 
@@ -54,6 +55,7 @@ class AppRouter extends React.Component<any, any> {
           <Route path='auth/resetpassword' component={ResetPasswordPage} onEnter={this.requirePublic.bind(this)}/>
 
           <Route path='/app' component={AppHomePage} onEnter={this.requireAuth.bind(this)} />
+          <Route path='/app/my-account' component={MyAccountPage} onEnter={this.requireAuth.bind(this)} />
 
           <Route path='*' component={HomePage} />
         </Route>

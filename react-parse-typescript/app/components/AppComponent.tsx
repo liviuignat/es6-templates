@@ -1,19 +1,11 @@
 import * as React from 'react';
 import ComponentBase from './ComponentBase';
-import { AppHeader, LeftNav } from './common/index';
+import { AppHeader, AppLeftNav } from './common/index';
 
 class AppComponent extends ComponentBase<any, any> {
-
   static contextTypes: React.ValidationMap<any> = {
-    muiTheme: React.PropTypes.object,
-    router: React.PropTypes.func
+    router: React.PropTypes.func.isRequired
   };
-
-  menuItems = [
-    { route: '/app', text: 'Dashboard' },
-    { route: '/app/about', text: 'About' },
-    { route: '/app/contact', text: 'Contact' },
-  ];
 
   constructor(props: any, context: any) {
     super(props, context);
@@ -26,35 +18,13 @@ class AppComponent extends ComponentBase<any, any> {
     leftNav.toggle();
   }
 
-  getSelectedIndex() {
-    let currentItem: any;
-
-    for (let i = this.menuItems.length - 1; i >= 0; i--) {
-      currentItem = this.menuItems[i];
-      const isCurrentRoute =
-        this.props.location.pathname === currentItem.route ||
-        this.props.location.pathname === currentItem.route + '/';
-
-      if (isCurrentRoute) {
-        return i;
-      }
-    }
-  }
-
-  onLeftNavChange(e: any, key: any, payload: any) {
-    this.props.history.pushState(null, payload.route);
-  }
-
   render() {
     return (
       <div>
-
-        <LeftNav
+        <AppLeftNav
           ref='leftNav'
-          docked={false}
-          menuItems={this.menuItems}
-          selectedIndex={this.getSelectedIndex.bind(this)()}
-          onChange={this.onLeftNavChange.bind(this)} />
+          location={this.props.location}
+          history={this.props.history}/>
 
         <AppHeader onLeftIconButtonTouchTap={this.handleClick.bind(this)} />
 

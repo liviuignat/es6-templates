@@ -5,6 +5,7 @@ interface ICurrentUser {
   getUserData(): ICurrentUserData;
   getEmail(): string;
   getDisplayName(): string;
+  getUserPhoto(): string;
 }
 
 interface ICurrentUserData {
@@ -15,6 +16,11 @@ interface ICurrentUserData {
   lastName?: string;
 
   updatedAt: Date;
+}
+
+interface IMyAccountUpdateModel {
+  firstName: string;
+  lastName: string;
 }
 
 interface ILoginModel {
