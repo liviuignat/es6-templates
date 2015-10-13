@@ -7,7 +7,12 @@ import { RequiredStringValidator, formValidator } from './../../../../utils/Vali
 
 import { loginAction } from './../../../../actions/index';
 
-class LoginPage extends ComponentBase<any, any> {
+interface LoginPageState {
+  email: TextFieldData;
+  password: TextFieldData;
+}
+
+class LoginPage extends ComponentBase<any, LoginPageState> {
 
   static contextTypes: React.ValidationMap<any> = {
     router: React.PropTypes.func.isRequired
@@ -17,7 +22,7 @@ class LoginPage extends ComponentBase<any, any> {
     super(props, context);
 
     this.state = {
-      username: new TextFieldData({
+      email: new TextFieldData({
         validators: [ new RequiredStringValidator() ]
       }),
       password: new TextFieldData({
@@ -36,11 +41,11 @@ class LoginPage extends ComponentBase<any, any> {
 
     if (isValid) {
       loginAction
-        .execute(user.username.value, user.password.value)
+        .execute(user.email.value, user.password.value)
         .then(() => {
           this.setState({
             password: this.state.password.reset(),
-            username: this.state.username.reset()
+            email: this.state.email.reset()
           });
 
           this.props.history.pushState(null, '/app');
@@ -55,10 +60,10 @@ class LoginPage extends ComponentBase<any, any> {
     event.preventDefault();
   }
 
-  handleUsernameChange(event: any) {
+  handleemailChange(event: any) {
     const value = event.target.value;
     this.setState({
-      username: this.state.username.setValue(value)
+      email: this.state.email.setValue(value)
     });
   }
 
@@ -79,9 +84,9 @@ class LoginPage extends ComponentBase<any, any> {
 
               <div>
                 <AppTextField
-                  value={this.state.username.value}
-                  errorText={this.state.username.error}
-                  onChange={this.handleUsernameChange.bind(this)}
+                  value={this.state.email.value}
+                  errorText={this.state.email.error}
+                  onChange={this.handleemailChange.bind(this)}
                   type='email'
                   hintText='Your email'
                   floatingLabelText='Your email' />

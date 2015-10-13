@@ -1,5 +1,4 @@
 /// <reference path='./../defs/tsd.d.ts' />
-
 interface IDispatcherPayload<T> {
   type: string;
   payload: T;
