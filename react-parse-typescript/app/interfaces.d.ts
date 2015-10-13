@@ -36,6 +36,21 @@ interface IFormValidatorResponse {
   formData: any;
 }
 
+declare namespace __MaterialUI {
+  class BaseMaterialComponent<P, S> extends __React.Component<P, S> {
+    getStyles(): void;
+  }
+
+  interface BaseMaterialProps<T> extends __React.Props<T> {
+    style?: any;
+  }
+
+  namespace Lists {
+    interface ListProps extends BaseMaterialProps<List> {
+    }
+  }
+}
+
 declare module 'events' {
   export class EventEmitter {
     on: any;

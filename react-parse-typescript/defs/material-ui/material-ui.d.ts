@@ -112,7 +112,7 @@ declare namespace __MaterialUI {
 
     // more specific than React.HTMLAttributes
 
-    interface AppBarProps extends React.Props<AppBar> {
+    interface AppBarProps extends BaseMaterialProps<AppBar> {
         iconClassNameLeft?: string;
         iconClassNameRight?: string;
         iconElementLeft?: React.ReactElement<any>;
@@ -127,19 +127,15 @@ declare namespace __MaterialUI {
         onRightIconButtonTouchTap?: TouchTapEventHandler;
     }
 
-    class BaseMaterial<P, S> extends React.Component<P, S> {
-      getStyles(): void;
+    export class AppBar extends BaseMaterialComponent<AppBarProps, {}>{
     }
 
-    export class AppBar extends BaseMaterial<AppBarProps, {}>{
+    interface AppCanvasProps extends BaseMaterialProps<AppCanvas> {
+    }
+    export class AppCanvas extends BaseMaterialComponent<AppCanvasProps, {}> {
     }
 
-    interface AppCanvasProps extends React.Props<AppCanvas> {
-    }
-    export class AppCanvas extends BaseMaterial<AppCanvasProps, {}> {
-    }
-
-    interface AvatarProps extends React.Props<Avatar> {
+    interface AvatarProps extends BaseMaterialProps<Avatar> {
         icon?: React.ReactElement<any>;
         backgroundColor?: string;
         color?: string;
@@ -147,45 +143,45 @@ declare namespace __MaterialUI {
         src?: string;
         style?: React.CSSProperties;
     }
-    export class Avatar extends BaseMaterial<AvatarProps, {}> {
+    export class Avatar extends BaseMaterialComponent<AvatarProps, {}> {
     }
 
-    interface BeforeAfterWrapperProps extends React.Props<BeforeAfterWrapper> {
+    interface BeforeAfterWrapperProps extends BaseMaterialProps<BeforeAfterWrapper> {
         beforeStyle?: React.CSSProperties;
         afterStyle?: React.CSSProperties;
         beforeElementType?: string;
         afterElementType?: string;
         elementType?: string;
     }
-    export class BeforeAfterWrapper extends BaseMaterial<BeforeAfterWrapperProps, {}> {
+    export class BeforeAfterWrapper extends BaseMaterialComponent<BeforeAfterWrapperProps, {}> {
     }
 
     namespace Card {
 
-        interface CardProps extends React.Props<Card> {
+        interface CardProps extends BaseMaterialProps<Card> {
             expandable?: boolean;
             initiallyExpanded?: boolean;
             onExpandedChange?: (isExpanded: boolean) => void;
             style?: React.CSSProperties;
         }
-        export class Card extends BaseMaterial<CardProps, {}> {
+        export class Card extends BaseMaterialComponent<CardProps, {}> {
         }
 
-        interface CardActionsProps extends React.Props<CardActions> {
+        interface CardActionsProps extends BaseMaterialProps<CardActions> {
             expandable?: boolean;
             showExpandableButton?: boolean;
         }
-        export class CardActions extends BaseMaterial<CardActionsProps, {}> {
+        export class CardActions extends BaseMaterialComponent<CardActionsProps, {}> {
         }
 
-        interface CardExpandableProps extends React.Props<CardExpandable> {
+        interface CardExpandableProps extends BaseMaterialProps<CardExpandable> {
             onExpanding?: (isExpanded: boolean) => void;
             expanded?: boolean;
         }
-        export class CardExpandable extends BaseMaterial<CardExpandableProps, {}> {
+        export class CardExpandable extends BaseMaterialComponent<CardExpandableProps, {}> {
         }
 
-        interface CardHeaderProps extends React.Props<CardHeader> {
+        interface CardHeaderProps extends BaseMaterialProps<CardHeader> {
             expandable?: boolean;
             showExpandableButton?: boolean;
             title?: string | React.ReactElement<any>;
@@ -198,10 +194,10 @@ declare namespace __MaterialUI {
             style?: React.CSSProperties;
             avatar: React.ReactElement<any> | string;
         }
-        export class CardHeader extends BaseMaterial<CardHeaderProps, {}> {
+        export class CardHeader extends BaseMaterialComponent<CardHeaderProps, {}> {
         }
 
-        interface CardMediaProps extends React.Props<CardMedia> {
+        interface CardMediaProps extends BaseMaterialProps<CardMedia> {
             expandable?: boolean;
             overlay?: React.ReactNode;
             overlayStyle?: React.CSSProperties;
@@ -210,18 +206,18 @@ declare namespace __MaterialUI {
             mediaStyle?: React.CSSProperties;
             style?: React.CSSProperties;
         }
-        export class CardMedia extends BaseMaterial<CardMediaProps, {}> {
+        export class CardMedia extends BaseMaterialComponent<CardMediaProps, {}> {
         }
 
-        interface CardTextProps extends React.Props<CardText> {
+        interface CardTextProps extends BaseMaterialProps<CardText> {
             expandable?: boolean;
             color?: string;
             style?: React.CSSProperties;
         }
-        export class CardText extends BaseMaterial<CardTextProps, {}> {
+        export class CardText extends BaseMaterialComponent<CardTextProps, {}> {
         }
 
-        interface CardTitleProps extends React.Props<CardTitle> {
+        interface CardTitleProps extends BaseMaterialProps<CardTitle> {
             expandable?: boolean;
             showExpandableButton?: boolean;
             title?: string | React.ReactElement<any>;
@@ -233,7 +229,7 @@ declare namespace __MaterialUI {
             textStyle?: React.CSSProperties;
             style?: React.CSSProperties;
         }
-        export class CardTitle extends BaseMaterial<CardTitleProps, {}> {
+        export class CardTitle extends BaseMaterialComponent<CardTitleProps, {}> {
         }
     }
 
@@ -266,7 +262,7 @@ declare namespace __MaterialUI {
         onSwitch?: (e: React.MouseEvent, isInputChecked: boolean) => void;
         labelPosition?: string;
     }
-    export class EnhancedSwitch extends BaseMaterial<EnhancedSwitchProps, {}> {
+    export class EnhancedSwitch extends BaseMaterialComponent<EnhancedSwitchProps, {}> {
         isSwitched(): boolean;
         setSwitched(newSwitchedValue: boolean): void;
         getValue(): any;
@@ -291,12 +287,12 @@ declare namespace __MaterialUI {
 
         onCheck?: (event: React.MouseEvent, checked: boolean) => void;
     }
-    export class Checkbox extends BaseMaterial<CheckboxProps, {}> {
+    export class Checkbox extends BaseMaterialComponent<CheckboxProps, {}> {
         isChecked(): void;
         setChecked(newCheckedValue: boolean): void;
     }
 
-    interface CircularProgressProps extends React.Props<CircularProgress> {
+    interface CircularProgressProps extends BaseMaterialProps<CircularProgress> {
         mode?: string;
         value?: number;
         min?: number;
@@ -306,16 +302,16 @@ declare namespace __MaterialUI {
         innerStyle?: React.CSSProperties;
 
     }
-    export class CircularProgress extends BaseMaterial<CircularProgressProps, {}> {
+    export class CircularProgress extends BaseMaterialComponent<CircularProgressProps, {}> {
     }
 
-    interface ClearFixProps extends React.Props<ClearFix> {
+    interface ClearFixProps extends BaseMaterialProps<ClearFix> {
     }
-    export class ClearFix extends BaseMaterial<ClearFixProps, {}> {
+    export class ClearFix extends BaseMaterialComponent<ClearFixProps, {}> {
     }
 
     namespace DatePicker {
-        interface DatePickerProps extends React.Props<DatePicker> {
+        interface DatePickerProps extends BaseMaterialProps<DatePicker> {
             autoOk?: boolean;
             defaultDate?: Date;
             formatDate?: string;
@@ -335,10 +331,10 @@ declare namespace __MaterialUI {
             showYearSelector?: boolean;
             textFieldStyle?: React.CSSProperties;
         }
-        export class DatePicker extends BaseMaterial<DatePickerProps, {}> {
+        export class DatePicker extends BaseMaterialComponent<DatePickerProps, {}> {
         }
 
-        interface DatePickerDialogProps extends React.Props<DatePickerDialog> {
+        interface DatePickerDialogProps extends BaseMaterialProps<DatePickerDialog> {
             disableYearSelection?: boolean;
             initialDate?: Date;
             maxDate?: Date;
@@ -350,7 +346,7 @@ declare namespace __MaterialUI {
             shouldDisableDate?: (day: Date) => boolean;
             showYearSelector?: boolean;
         }
-        export class DatePickerDialog extends BaseMaterial<DatePickerDialogProps, {}> {
+        export class DatePickerDialog extends BaseMaterialComponent<DatePickerDialogProps, {}> {
         }
     }
 
@@ -362,7 +358,7 @@ declare namespace __MaterialUI {
         onTouchTap?: TouchTapEventHandler;
         onClick?: React.MouseEventHandler;
     }
-    interface DialogProps extends React.Props<Dialog> {
+    interface DialogProps extends BaseMaterialProps<Dialog> {
         actions?: Array<DialogAction | React.ReactElement<any>>;
         actionFocus?: string;
         autoDetectWindowHeight?: boolean;
@@ -380,12 +376,12 @@ declare namespace __MaterialUI {
         onDismiss?: () => void;
         onShow?: () => void;
     }
-    export class Dialog extends BaseMaterial<DialogProps, {}> {
+    export class Dialog extends BaseMaterialComponent<DialogProps, {}> {
         dismiss(): void;
         show(): void;
     }
 
-    interface DropDownIconProps extends React.Props<DropDownIcon> {
+    interface DropDownIconProps extends BaseMaterialProps<DropDownIcon> {
         menuItems: Menu.MenuItemRequest[];
         closeOnMenuItemTouchTap?: boolean;
         iconStyle?: React.CSSProperties;
@@ -394,10 +390,10 @@ declare namespace __MaterialUI {
 
         onChange?: Menu.ItemTapEventHandler;
     }
-    export class DropDownIcon extends BaseMaterial<DropDownIconProps, {}> {
+    export class DropDownIcon extends BaseMaterialComponent<DropDownIconProps, {}> {
     }
 
-    interface DropDownMenuProps extends React.Props<DropDownMenu> {
+    interface DropDownMenuProps extends BaseMaterialProps<DropDownMenu> {
         displayMember?: string;
         valueMember?: string;
         autoWidth?: boolean;
@@ -414,7 +410,7 @@ declare namespace __MaterialUI {
 
         onChange?: Menu.ItemTapEventHandler;
     }
-    export class DropDownMenu extends BaseMaterial<DropDownMenuProps, {}> {
+    export class DropDownMenu extends BaseMaterialComponent<DropDownMenuProps, {}> {
     }
 
     // non generally overridden elements of EnhancedButton
@@ -449,7 +445,7 @@ declare namespace __MaterialUI {
         focusRippleColor?: string;
         style?: React.CSSProperties;
     }
-    export class EnhancedButton extends BaseMaterial<EnhancedButtonProps, {}> {
+    export class EnhancedButton extends BaseMaterialComponent<EnhancedButtonProps, {}> {
     }
 
     interface FlatButtonProps extends SharedEnhancedButtonProps<FlatButton> {
@@ -463,7 +459,7 @@ declare namespace __MaterialUI {
         rippleColor?: string;
         style?: React.CSSProperties;
     }
-    export class FlatButton extends BaseMaterial<FlatButtonProps, {}> {
+    export class FlatButton extends BaseMaterialComponent<FlatButtonProps, {}> {
     }
 
     interface FloatingActionButtonProps extends SharedEnhancedButtonProps<FloatingActionButton> {
@@ -476,10 +472,10 @@ declare namespace __MaterialUI {
         secondary?: boolean;
         style?: React.CSSProperties;
     }
-    export class FloatingActionButton extends BaseMaterial<FloatingActionButtonProps, {}> {
+    export class FloatingActionButton extends BaseMaterialComponent<FloatingActionButtonProps, {}> {
     }
 
-    interface FontIconProps extends React.Props<FontIcon> {
+    interface FontIconProps extends BaseMaterialProps<FontIcon> {
         color?: string;
         hoverColor?: string;
         onMouseLeave?: React.MouseEventHandler;
@@ -487,7 +483,7 @@ declare namespace __MaterialUI {
         style?: React.CSSProperties;
         className?: string;
     }
-    export class FontIcon extends BaseMaterial<FontIconProps, {}> {
+    export class FontIcon extends BaseMaterialComponent<FontIconProps, {}> {
     }
 
     interface IconButtonProps extends SharedEnhancedButtonProps<IconButton> {
@@ -502,10 +498,10 @@ declare namespace __MaterialUI {
         onBlur?: React.FocusEventHandler;
         onFocus?: React.FocusEventHandler;
     }
-    export class IconButton extends BaseMaterial<IconButtonProps, {}> {
+    export class IconButton extends BaseMaterialComponent<IconButtonProps, {}> {
     }
 
-    interface LeftNavProps extends React.Props<LeftNav> {
+    interface LeftNavProps extends BaseMaterialProps<LeftNav> {
         disableSwipeToOpen?: boolean;
         docked?: boolean;
         header?: React.ReactElement<any>;
@@ -519,36 +515,35 @@ declare namespace __MaterialUI {
         menuItemClassNameSubheader?: string;
         menuItemClassNameLink?: string;
     }
-    export class LeftNav extends BaseMaterial<LeftNavProps, {}> {
+    export class LeftNav extends BaseMaterialComponent<LeftNavProps, {}> {
     }
 
-    interface LinearProgressProps extends React.Props<LinearProgress> {
+    interface LinearProgressProps extends BaseMaterialProps<LinearProgress> {
         mode?: string;
         value?: number;
         min?: number;
         max?: number;
     }
-    export class LinearProgress extends BaseMaterial<LinearProgressProps, {}> {
+    export class LinearProgress extends BaseMaterialComponent<LinearProgressProps, {}> {
     }
 
     namespace Lists {
-        interface ListProps extends React.Props<List> {
-            style?: any;
+        interface ListProps extends BaseMaterialProps<List> {
             insetSubheader?: boolean;
             subheader?: string;
             subheaderStyle?: React.CSSProperties;
             zDepth?: number;
         }
-        export class List extends BaseMaterial<ListProps, {}> {
+        export class List extends BaseMaterialComponent<ListProps, {}> {
         }
 
-        interface ListDividerProps extends React.Props<ListDivider> {
+        interface ListDividerProps extends BaseMaterialProps<ListDivider> {
             inset?: boolean;
         }
-        export class ListDivider extends BaseMaterial<ListDividerProps, {}> {
+        export class ListDivider extends BaseMaterialComponent<ListDividerProps, {}> {
         }
 
-        interface ListItemProps extends React.Props<ListItem> {
+        interface ListItemProps extends BaseMaterialProps<ListItem> {
             autoGenerateNestedIndicator?: boolean;
             disableKeyboardFocus?: boolean;
             initiallyOpen?: boolean;
@@ -570,7 +565,7 @@ declare namespace __MaterialUI {
             secondaryText?: React.ReactNode;
             secondaryTextLines?: number;
         }
-        export class ListItem extends BaseMaterial<ListItemProps, {}> {
+        export class ListItem extends BaseMaterialComponent<ListItemProps, {}> {
         }
     }
 
@@ -581,7 +576,7 @@ declare namespace __MaterialUI {
         }
 
         // almost extends MenuItemProps, but certain required items are generated in Menu and not passed here.
-        interface MenuItemRequest extends React.Props<MenuItem> {
+        interface MenuItemRequest extends BaseMaterialProps<MenuItem> {
             // use value from MenuItem.Types.*
             type?: string;
 
@@ -602,7 +597,7 @@ declare namespace __MaterialUI {
             [propertyName: string]: any;
         }
 
-        interface MenuProps extends React.Props<Menu> {
+        interface MenuProps extends BaseMaterialProps<Menu> {
             index: number;
             text?: string;
             menuItems: MenuItemRequest[];
@@ -611,10 +606,10 @@ declare namespace __MaterialUI {
             onItemTap?: ItemTapEventHandler;
             menuItemStyle?: React.CSSProperties;
         }
-        export class Menu extends BaseMaterial<MenuProps, {}> {
+        export class Menu extends BaseMaterialComponent<MenuProps, {}> {
         }
 
-        interface MenuItemProps extends React.Props<MenuItem> {
+        interface MenuItemProps extends BaseMaterialProps<MenuItem> {
             index: number;
             icon?: React.ReactElement<any>;
             iconClassName?: string;
@@ -630,7 +625,7 @@ declare namespace __MaterialUI {
             selected?: boolean;
             active?: boolean;
         }
-        export class MenuItem extends BaseMaterial<MenuItemProps, {}> {
+        export class MenuItem extends BaseMaterialComponent<MenuItemProps, {}> {
             static Types: { LINK: string, SUBHEADER: string, NESTED: string, }
         }
     }
@@ -653,12 +648,12 @@ declare namespace __MaterialUI {
         var StyleResizable: StyleResizable
     }
 
-    interface OverlayProps extends React.Props<Overlay> {
+    interface OverlayProps extends BaseMaterialProps<Overlay> {
         autoLockScrolling?: boolean;
         show?: boolean;
         transitionEnabled?: boolean;
     }
-    export class Overlay extends BaseMaterial<OverlayProps, {}> {
+    export class Overlay extends BaseMaterialComponent<OverlayProps, {}> {
     }
 
     interface PaperProps extends React.HTMLAttributesBase<Paper> {
@@ -667,7 +662,7 @@ declare namespace __MaterialUI {
         transitionEnabled?: boolean;
         zDepth?: number;
     }
-    export class Paper extends BaseMaterial<PaperProps, {}> {
+    export class Paper extends BaseMaterialComponent<PaperProps, {}> {
     }
 
     interface RadioButtonProps extends CommonEnhancedSwitchProps<RadioButton> {
@@ -682,10 +677,10 @@ declare namespace __MaterialUI {
 
         onCheck?: (e: React.FormEvent, selected: string) => void;
     }
-    export class RadioButton extends BaseMaterial<RadioButtonProps, {}> {
+    export class RadioButton extends BaseMaterialComponent<RadioButtonProps, {}> {
     }
 
-    interface RadioButtonGroupProps extends React.Props<RadioButtonGroup> {
+    interface RadioButtonGroupProps extends BaseMaterialProps<RadioButtonGroup> {
         defaultSelected?: string;
         labelPosition?: string;
         name: string;
@@ -694,7 +689,7 @@ declare namespace __MaterialUI {
 
         onChange?: (e: React.FormEvent, selected: string) => void;
     }
-    export class RadioButtonGroup extends BaseMaterial<RadioButtonGroupProps, {}> {
+    export class RadioButtonGroup extends BaseMaterialComponent<RadioButtonGroupProps, {}> {
         getSelectedValue(): string;
         setSelectedValue(newSelectionValue: string): void;
         clearValue(): void;
@@ -713,46 +708,46 @@ declare namespace __MaterialUI {
         disabledLabelColor?: string;
         fullWidth?: boolean;
     }
-    export class RaisedButton extends BaseMaterial<RaisedButtonProps, {}> {
+    export class RaisedButton extends BaseMaterialComponent<RaisedButtonProps, {}> {
     }
 
-    interface RefreshIndicatorProps extends React.Props<RefreshIndicator> {
+    interface RefreshIndicatorProps extends BaseMaterialProps<RefreshIndicator> {
         left: number;
         percentage?: number;
         size?: number;
         status?: string;
         top: number;
     }
-    export class RefreshIndicator extends BaseMaterial<RefreshIndicatorProps, {}> {
+    export class RefreshIndicator extends BaseMaterialComponent<RefreshIndicatorProps, {}> {
     }
 
     namespace Ripples {
-        interface CircleRippleProps extends React.Props<CircleRipple> {
+        interface CircleRippleProps extends BaseMaterialProps<CircleRipple> {
             color?: string;
             opacity?: number;
         }
-        export class CircleRipple extends BaseMaterial<CircleRippleProps, {}> {
+        export class CircleRipple extends BaseMaterialComponent<CircleRippleProps, {}> {
         }
 
-        interface FocusRippleProps extends React.Props<FocusRipple> {
+        interface FocusRippleProps extends BaseMaterialProps<FocusRipple> {
             color?: string;
             innerStyle?: React.CSSProperties;
             opacity?: number;
             show?: boolean;
         }
-        export class FocusRipple extends BaseMaterial<FocusRippleProps, {}> {
+        export class FocusRipple extends BaseMaterialComponent<FocusRippleProps, {}> {
         }
 
-        interface TouchRippleProps extends React.Props<TouchRipple> {
+        interface TouchRippleProps extends BaseMaterialProps<TouchRipple> {
             centerRipple?: boolean;
             color?: string;
             opacity?: number;
         }
-        export class TouchRipple extends BaseMaterial<TouchRippleProps, {}> {
+        export class TouchRipple extends BaseMaterialComponent<TouchRippleProps, {}> {
         }
     }
 
-    interface SelectFieldProps extends React.Props<SelectField> {
+    interface SelectFieldProps extends BaseMaterialProps<SelectField> {
         // passed to TextField
         errorStyle?: React.CSSProperties;
         errorText?: string;
@@ -786,10 +781,10 @@ declare namespace __MaterialUI {
         rows?: number;
         inputStyle?: React.CSSProperties;
     }
-    export class SelectField extends BaseMaterial<SelectFieldProps, {}> {
+    export class SelectField extends BaseMaterialComponent<SelectFieldProps, {}> {
     }
 
-    interface SliderProps extends React.Props<Slider> {
+    interface SliderProps extends BaseMaterialProps<Slider> {
         name: string;
         defaultValue?: number;
         description?: string;
@@ -800,30 +795,30 @@ declare namespace __MaterialUI {
         step?: number;
         value?: number;
     }
-    export class Slider extends BaseMaterial<SliderProps, {}> {
+    export class Slider extends BaseMaterialComponent<SliderProps, {}> {
     }
 
-    interface SvgIconProps extends React.Props<SvgIcon> {
+    interface SvgIconProps extends BaseMaterialProps<SvgIcon> {
         color?: string;
         hoverColor?: string;
         viewBox?: string;
     }
-    export class SvgIcon extends BaseMaterial<SvgIconProps, {}> {
+    export class SvgIcon extends BaseMaterialComponent<SvgIconProps, {}> {
     }
 
-    interface NavigationMenuProps extends React.Props<NavigationMenu> {
+    interface NavigationMenuProps extends BaseMaterialProps<NavigationMenu> {
     }
-    export class NavigationMenu extends BaseMaterial<NavigationMenuProps, {}> {
-    }
-
-    interface NavigationChevronLeftProps extends React.Props<NavigationChevronLeft> {
-    }
-    export class NavigationChevronLeft extends BaseMaterial<NavigationChevronLeftProps, {}> {
+    export class NavigationMenu extends BaseMaterialComponent<NavigationMenuProps, {}> {
     }
 
-    interface NavigationChevronRightProps extends React.Props<NavigationChevronRight> {
+    interface NavigationChevronLeftProps extends BaseMaterialProps<NavigationChevronLeft> {
     }
-    export class NavigationChevronRight extends BaseMaterial<NavigationChevronRightProps, {}> {
+    export class NavigationChevronLeft extends BaseMaterialComponent<NavigationChevronLeftProps, {}> {
+    }
+
+    interface NavigationChevronRightProps extends BaseMaterialProps<NavigationChevronRight> {
+    }
+    export class NavigationChevronRight extends BaseMaterialComponent<NavigationChevronRightProps, {}> {
     }
 
     export namespace Styles {
@@ -1096,7 +1091,7 @@ declare namespace __MaterialUI {
         export var LightRawTheme: RawTheme;
     }
 
-    interface SnackbarProps extends React.Props<Snackbar> {
+    interface SnackbarProps extends BaseMaterialProps<Snackbar> {
         message: string;
         action?: string;
         autoHideDuration?: number;
@@ -1105,11 +1100,11 @@ declare namespace __MaterialUI {
         onDismiss?: () => void;
         openOnMount?: boolean;
     }
-    export class Snackbar extends BaseMaterial<SnackbarProps, {}> {
+    export class Snackbar extends BaseMaterialComponent<SnackbarProps, {}> {
     }
 
     namespace Tabs {
-        interface TabProps extends React.Props<Tab> {
+        interface TabProps extends BaseMaterialProps<Tab> {
             label?: string;
             value?: string;
             selected?: boolean;
@@ -1120,10 +1115,10 @@ declare namespace __MaterialUI {
 
             onTouchTap?: (value: string, e: TouchTapEvent, tab: Tab) => void;
         }
-        export class Tab extends BaseMaterial<TabProps, {}> {
+        export class Tab extends BaseMaterialComponent<TabProps, {}> {
         }
 
-        interface TabsProps extends React.Props<Tabs> {
+        interface TabsProps extends BaseMaterialProps<Tabs> {
             contentContainerStyle?: React.CSSProperties;
             initialSelectedIndex?: number;
             inkBarStyle?: React.CSSProperties;
@@ -1134,12 +1129,12 @@ declare namespace __MaterialUI {
 
             onChange?: (value: string | number, e: React.FormEvent, tab: Tab) => void;
         }
-        export class Tabs extends BaseMaterial<TabsProps, {}> {
+        export class Tabs extends BaseMaterialComponent<TabsProps, {}> {
         }
     }
 
     namespace Table {
-        interface TableProps extends React.Props<Table> {
+        interface TableProps extends BaseMaterialProps<Table> {
             allRowsSelected?: boolean;
             fixedFooter?: boolean;
             fixedHeader?: boolean;
@@ -1153,10 +1148,10 @@ declare namespace __MaterialUI {
             onRowSelection?: (selectedRows: number[])=> void;
             selectable?: boolean;
         }
-        export class Table extends BaseMaterial<TableProps, {}> {
+        export class Table extends BaseMaterialComponent<TableProps, {}> {
         }
 
-        interface TableBodyProps extends React.Props<TableBody> {
+        interface TableBodyProps extends BaseMaterialProps<TableBody> {
             allRowsSelected?: boolean;
             deselectOnClickaway?: boolean;
             displayRowCheckbox?: boolean;
@@ -1172,35 +1167,35 @@ declare namespace __MaterialUI {
             showRowHover?: boolean;
             stripedRows?: boolean;
         }
-        export class TableBody extends BaseMaterial<TableBodyProps, {}> {
+        export class TableBody extends BaseMaterialComponent<TableBodyProps, {}> {
         }
 
-        interface TableFooterProps extends React.Props<TableFooter> {
+        interface TableFooterProps extends BaseMaterialProps<TableFooter> {
             adjustForCheckbox?: boolean;
         }
-        export class TableFooter extends BaseMaterial<TableFooterProps, {}> {
+        export class TableFooter extends BaseMaterialComponent<TableFooterProps, {}> {
         }
 
-        interface TableHeaderProps extends React.Props<TableHeader> {
+        interface TableHeaderProps extends BaseMaterialProps<TableHeader> {
             adjustForCheckbox?: boolean;
             displaySelectAll?: boolean;
             enableSelectAll?: boolean;
             onSelectAll?: (event: React.MouseEvent) => void;
             selectAllSelected?: boolean;
         }
-        export class TableHeader extends BaseMaterial<TableHeaderProps, {}> {
+        export class TableHeader extends BaseMaterialComponent<TableHeaderProps, {}> {
         }
 
-        interface TableHeaderColumnProps extends React.Props<TableHeaderColumn> {
+        interface TableHeaderColumnProps extends BaseMaterialProps<TableHeaderColumn> {
             columnNumber?: number;
             onClick?:  (e: React.MouseEvent, column: number) => void;
             tooltip?: string;
             tooltipStyle?: React.CSSProperties;
         }
-        export class TableHeaderColumn extends BaseMaterial<TableHeaderColumnProps, {}> {
+        export class TableHeaderColumn extends BaseMaterialComponent<TableHeaderColumnProps, {}> {
         }
 
-        interface TableRowProps extends React.Props<TableRow> {
+        interface TableRowProps extends BaseMaterialProps<TableRow> {
             displayBorder?: boolean;
             hoverable?: boolean;
             onCellClick?: (e: React.MouseEvent, row: number, column: number) => void;
@@ -1214,23 +1209,23 @@ declare namespace __MaterialUI {
             selected?: boolean;
             striped?: boolean;
         }
-        export class TableRow extends BaseMaterial<TableRowProps, {}> {
+        export class TableRow extends BaseMaterialComponent<TableRowProps, {}> {
         }
 
-        interface TableRowColumnProps extends React.Props<TableRowColumn> {
+        interface TableRowColumnProps extends BaseMaterialProps<TableRowColumn> {
             columnNumber?: number;
             hoverable?: boolean;
             onHover?: (e: React.MouseEvent, column: number) => void;
             onHoverExit?: (e: React.MouseEvent, column: number) => void;
         }
-        export class TableRowColumn extends BaseMaterial<TableRowColumnProps, {}> {
+        export class TableRowColumn extends BaseMaterialComponent<TableRowColumnProps, {}> {
         }
     }
 
-    interface ThemeWrapperProps extends React.Props<ThemeWrapper> {
+    interface ThemeWrapperProps extends BaseMaterialProps<ThemeWrapper> {
         theme: Styles.MuiTheme;
     }
-    export class ThemeWrapper extends BaseMaterial<ThemeWrapperProps, {}> {
+    export class ThemeWrapper extends BaseMaterialComponent<ThemeWrapperProps, {}> {
     }
 
     interface ToggleProps extends CommonEnhancedSwitchProps<Toggle> {
@@ -1242,12 +1237,12 @@ declare namespace __MaterialUI {
         toggled?: boolean;
         defaultToggled?: boolean;
     }
-    export class Toggle extends BaseMaterial<ToggleProps, {}> {
+    export class Toggle extends BaseMaterialComponent<ToggleProps, {}> {
         isToggled(): boolean;
         setToggled(newToggledValue: boolean): void;
     }
 
-    interface TimePickerProps extends React.Props<TimePicker> {
+    interface TimePickerProps extends BaseMaterialProps<TimePicker> {
         defaultTime?: Date;
         format?: string;
         pedantic?: boolean;
@@ -1257,10 +1252,10 @@ declare namespace __MaterialUI {
         onShow?: () => void;
         onDismiss?: () => void;
     }
-    export class TimePicker extends BaseMaterial<TimePickerProps, {}> {
+    export class TimePicker extends BaseMaterialComponent<TimePickerProps, {}> {
     }
 
-    interface TextFieldProps extends React.Props<TextField> {
+    interface TextFieldProps extends BaseMaterialProps<TextField> {
         errorStyle?: React.CSSProperties;
         errorText?: string;
         floatingLabelText?: string;
@@ -1289,7 +1284,7 @@ declare namespace __MaterialUI {
         onFocus?: React.FocusEventHandler;
         onKeyDown?: React.KeyboardEventHandler;
     }
-    export class TextField extends BaseMaterial<TextFieldProps, {}> {
+    export class TextField extends BaseMaterialComponent<TextFieldProps, {}> {
         blur(): void;
         clearValue(): void;
         focus(): void;
@@ -1299,37 +1294,37 @@ declare namespace __MaterialUI {
     }
 
     namespace Toolbar {
-        interface ToolbarProps extends React.Props<Toolbar> {
+        interface ToolbarProps extends BaseMaterialProps<Toolbar> {
         }
-        export class Toolbar extends BaseMaterial<ToolbarProps, {}> {
+        export class Toolbar extends BaseMaterialComponent<ToolbarProps, {}> {
         }
 
-        interface ToolbarGroupProps extends React.Props<ToolbarGroup> {
+        interface ToolbarGroupProps extends BaseMaterialProps<ToolbarGroup> {
             float?: string;
         }
-        export class ToolbarGroup extends BaseMaterial<ToolbarGroupProps, {}> {
+        export class ToolbarGroup extends BaseMaterialComponent<ToolbarGroupProps, {}> {
         }
 
-        interface ToolbarSeparatorProps extends React.Props<ToolbarSeparator> {
+        interface ToolbarSeparatorProps extends BaseMaterialProps<ToolbarSeparator> {
         }
-        export class ToolbarSeparator extends BaseMaterial<ToolbarSeparatorProps, {}> {
+        export class ToolbarSeparator extends BaseMaterialComponent<ToolbarSeparatorProps, {}> {
         }
 
         interface ToolbarTitleProps extends React.HTMLAttributesBase<ToolbarTitle> {
            text?: string;
         }
-        export class ToolbarTitle extends BaseMaterial<ToolbarTitleProps, {}> {
+        export class ToolbarTitle extends BaseMaterialComponent<ToolbarTitleProps, {}> {
         }
     }
 
-    interface TooltipProps extends React.Props<Tooltip> {
+    interface TooltipProps extends BaseMaterialProps<Tooltip> {
         label: string;
         show?: boolean;
         touch?: boolean;
         verticalPosition?: string;
         horizontalPosition?: string;
     }
-    export class Tooltip extends BaseMaterial<TooltipProps, {}> {
+    export class Tooltip extends BaseMaterialComponent<TooltipProps, {}> {
     }
 
     export namespace Utils {
@@ -1422,7 +1417,7 @@ declare namespace __MaterialUI {
 
     // New menus available only through requiring directly to the end file
     namespace Menus {
-        interface IconMenuProps extends React.Props<IconMenu> {
+        interface IconMenuProps extends BaseMaterialProps<IconMenu> {
             closeOnItemTouchTap?: boolean;
             desktop?: boolean;
             iconButtonElement: React.ReactElement<IconButtonProps>;
@@ -1437,10 +1432,10 @@ declare namespace __MaterialUI {
             onItemTouchTap?: (e: TouchTapEvent, item: React.ReactElement<any>) => void;
             onChange?: (e: React.FormEvent, value: string | Array<string>) => void;
         }
-        export class IconMenu extends BaseMaterial<IconMenuProps, {}> {
+        export class IconMenu extends BaseMaterialComponent<IconMenuProps, {}> {
         }
 
-        interface MenuProps extends React.Props<Menu> {
+        interface MenuProps extends BaseMaterialProps<Menu> {
             animated?: boolean;
             autoWidth?: boolean;
             desktop?: boolean;
@@ -1452,10 +1447,10 @@ declare namespace __MaterialUI {
             width?: string | number;
             zDepth?: number;
         }
-        export class Menu extends BaseMaterial<MenuProps, {}>{
+        export class Menu extends BaseMaterialComponent<MenuProps, {}>{
         }
 
-        interface MenuItemProps extends React.Props<MenuItem> {
+        interface MenuItemProps extends BaseMaterialProps<MenuItem> {
             checked?: boolean;
             desktop?: boolean;
             disabled?: boolean;
@@ -1471,14 +1466,14 @@ declare namespace __MaterialUI {
             onItemTouchTap?: (e: TouchTapEvent, item: React.ReactElement<any>) => void;
             onChange?: (e: React.FormEvent, value: string) => void;
         }
-        export class MenuItem extends BaseMaterial<MenuItemProps, {}>{
+        export class MenuItem extends BaseMaterialComponent<MenuItemProps, {}>{
         }
 
-        interface MenuDividerProps extends React.Props<MenuDivider> {
+        interface MenuDividerProps extends BaseMaterialProps<MenuDivider> {
             inset?: boolean;
             style?: React.CSSProperties;
         }
-        export class MenuDivider extends BaseMaterial<MenuDividerProps, {}>{
+        export class MenuDivider extends BaseMaterialComponent<MenuDividerProps, {}>{
         }
     }
 }    // __MaterialUI
