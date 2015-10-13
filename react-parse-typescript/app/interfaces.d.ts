@@ -1,4 +1,22 @@
 /// <reference path='./../defs/tsd.d.ts' />
+
+interface ICurrentUser {
+  getIsLoggedIn(): boolean;
+  getUserData(): ICurrentUserData;
+  getEmail(): string;
+  getDisplayName(): string;
+}
+
+interface ICurrentUserData {
+  email: string;
+  emailVerified: boolean;
+  sessionToken: string;
+  firstName?: string;
+  lastName?: string;
+
+  updatedAt: Date;
+}
+
 interface ILoginModel {
   email: string;
   password: string;

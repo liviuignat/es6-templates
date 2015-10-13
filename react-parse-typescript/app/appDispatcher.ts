@@ -10,9 +10,21 @@ class AppDispatcher extends Dispatcher<any> {
     super();
   }
 
-  dispatch<T>(type: string, payload?: T) {
-    const data = new DispatcherPayload<T>(type, payload);
+  dispatch<TPayload>(type: string, payload?: TPayload) {
+    const data = new DispatcherPayload<TPayload>(type, payload);
     super.dispatch(data);
+  }
+
+  register<TPayload>(callback: (payload: TPayload) => void): string {
+    return super.register(callback);
+  }
+
+  unregister(id: string): void {
+    super.unregister(id);
+  }
+
+  isDispatching(): boolean {
+    return super.isDispatching();
   }
 }
 

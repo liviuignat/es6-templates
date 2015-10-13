@@ -8,10 +8,10 @@ class FormValidator {
       const hasAnyValidator = formFieldData && formFieldData.validators && formFieldData.validators.length;
 
       if (hasAnyValidator) {
-        for (let i = 0; i <= formFieldData.validators.length; i++) {
+        for (let i = 0; i < formFieldData.validators.length; i++) {
           const validator: IValidator = formFieldData.validators[i];
           const isValid = validator.getIsValid(formFieldData.value);
-          
+
           if (!isValid) {
             formFieldData.error = validator.message;
             currentFieldIsValid = false;
