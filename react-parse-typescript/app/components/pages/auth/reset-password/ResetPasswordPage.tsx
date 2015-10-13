@@ -2,8 +2,8 @@ import * as React from 'react';
 import ComponentBase from './../../../ComponentBase';
 import { RaisedButton, TextField, Card } from './../../../common/index';
 import { Link } from 'react-router';
-import { TextFieldData } from './../../../../utils/FormFieldData';
-import { RequiredStringValidator, formValidator} from './../../../../utils/Validators';
+import { TextFieldData } from './../../../../utils/FormFieldData/index';
+import { RequiredStringValidator, EmailValidator, formValidator} from './../../../../utils/Validators/index';
 
 import { resetPasswordAction } from './../../../../actions/index';
 
@@ -21,7 +21,7 @@ class ResetPasswordPage extends ComponentBase<any, ICreateUserPageState> {
     this.state = {
       showInfoMessage: false,
       email: new TextFieldData({
-        validators: [ new RequiredStringValidator() ]
+        validators: [ new RequiredStringValidator(), new EmailValidator() ]
       })
     };
   }

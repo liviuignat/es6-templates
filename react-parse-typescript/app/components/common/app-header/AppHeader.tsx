@@ -6,9 +6,13 @@ import { history } from './../../../history';
 import { logoutAction } from './../../../actions/index';
 import { currentUserStore } from './../../../stores/index';
 
-class AppHeader extends ComponentBase<any, any> {
+interface IAppHeaderState {
+  isLoggedIn: boolean;
+}
+
+class AppHeader extends ComponentBase<any, IAppHeaderState> {
   react = React;
-  
+
   constructor(props: any, context: any) {
     super(props, context);
 

@@ -1,9 +1,9 @@
-export class TextFieldData implements ITextFieldData {
+export class TextFieldData implements IFormFieldData {
   public value = '';
   public error = '';
   public validators: IValidator[] = [];
 
-  constructor(data: ITextFieldData) {
+  constructor(data: IFormFieldDataInput) {
     if (data) {
       this.value = data.value || this.value;
       this.error = data.error || this.error;

@@ -14,9 +14,14 @@ interface IDispatcherPayload<T> {
   payload: T;
 }
 
+interface IFormFieldDataInput {
+  value?: any;
+  error?: string;
+  validators?: any[];
+}
 
-interface ITextFieldData {
-  value?: string;
+interface IFormFieldData {
+  value?: any;
   error?: string;
   validators?: any[];
 }

@@ -1,4 +1,4 @@
- import { RequiredStringValidator } from './Validators';
+ import { RequiredStringValidator } from './index';
 
 describe('Required string validator', () => {
   let validator = new RequiredStringValidator();

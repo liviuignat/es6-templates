@@ -2,12 +2,13 @@ import * as React from 'react';
 import ComponentBase from './../../../ComponentBase';
 import { RaisedButton, TextField, Card } from './../../../common/index';
 import { Link } from 'react-router';
-import { TextFieldData } from './../../../../utils/FormFieldData';
+import { TextFieldData } from './../../../../utils/FormFieldData/index';
 import {
+  EmailValidator,
   RequiredStringValidator,
   PasswordValidator,
   formValidator
-} from './../../../../utils/Validators';
+} from './../../../../utils/Validators/index';
 
 import { createUserAction } from './../../../../actions/index';
 
@@ -26,7 +27,7 @@ class CreateUserPage extends ComponentBase<any, ICreateUserPageState> {
 
     this.state = {
       email: new TextFieldData({
-        validators: [ new RequiredStringValidator() ]
+        validators: [ new RequiredStringValidator(), new EmailValidator() ]
       }),
       password: new TextFieldData({
         validators: [ new PasswordValidator() ]

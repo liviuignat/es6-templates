@@ -1,9 +1,9 @@
 import * as React from 'react';
 import ComponentBase from './../../../ComponentBase';
-import { RaisedButton, TextField, AppTextField, Card } from './../../../common/index';
+import { RaisedButton, TextField, Card } from './../../../common/index';
 import { Link } from 'react-router';
-import { TextFieldData } from './../../../../utils/FormFieldData';
-import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
+import { TextFieldData } from './../../../../utils/FormFieldData/index';
+import { RequiredStringValidator, EmailValidator, formValidator } from './../../../../utils/Validators/index';
 
 import { loginAction } from './../../../../actions/index';
 
@@ -23,7 +23,7 @@ class LoginPage extends ComponentBase<any, ILoginPageState> {
 
     this.state = {
       email: new TextFieldData({
-        validators: [ new RequiredStringValidator() ]
+        validators: [ new RequiredStringValidator(), new EmailValidator() ]
       }),
       password: new TextFieldData({
         validators: [ new RequiredStringValidator() ]
@@ -63,7 +63,7 @@ class LoginPage extends ComponentBase<any, ILoginPageState> {
     e.preventDefault();
   }
 
-  handleemailChange(e: any) {
+  handleEmailChange(e: any) {
     const value = e.target.value;
     this.setState({
       email: this.state.email.setValue(value)
@@ -82,14 +82,14 @@ class LoginPage extends ComponentBase<any, ILoginPageState> {
       <div className='LoginPage'>
         <div>
           <Card>
-            <form className='LoginPage-content' onSubmit={this.onFormSubmit.bind(this)}>
+            <form noValidate className='LoginPage-content' onSubmit={this.onFormSubmit.bind(this)}>
               <span className='LoginPage-title'>Login</span>
 
               <div>
-                <AppTextField
+                <TextField
                   value={this.state.email.value}
                   errorText={this.state.email.error}
-                  onChange={this.handleemailChange.bind(this)}
+                  onChange={this.handleEmailChange.bind(this)}
                   type='email'
                   hintText='Your email'
                   floatingLabelText='Your email' />
