@@ -5,7 +5,7 @@ class DispatcherPayload<T> implements IDispatcherPayload<T> {
   }
 }
 
-class AppDispatcher extends Dispatcher {
+class AppDispatcher extends Dispatcher<any> {
   constructor() {
     super();
   }
@@ -16,6 +16,4 @@ class AppDispatcher extends Dispatcher {
   }
 }
 
-export default {
-  appDispatcher: new AppDispatcher()
-};
+export const appDispatcher = new AppDispatcher();

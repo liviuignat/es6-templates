@@ -1,22 +1,28 @@
-import React from 'react';
-import { RaisedButton, TextField, Card } from './../../../common';  
+import * as React from 'react';
+import ComponentBase from './../../../ComponentBase';
+import { RaisedButton, TextField, AppTextField, Card } from './../../../common/index';
 import { Link } from 'react-router';
 import { TextFieldData } from './../../../../utils/FormFieldData';
 import { RequiredStringValidator, formValidator } from './../../../../utils/Validators';
 
-import { loginAction } from './../../../../actions';
+import { loginAction } from './../../../../actions/index';
 
-class LoginPage extends React.Component<any, any> {
-  
-  static contextTypes = {
+interface LoginPageState {
+  email: TextFieldData;
+  password: TextFieldData;
+}
+
+class LoginPage extends ComponentBase<any, LoginPageState> {
+
+  static contextTypes: React.ValidationMap<any> = {
     router: React.PropTypes.func.isRequired
   };
 
   constructor(props: any, context: any) {
     super(props, context);
-    
+
     this.state = {
-      username: new TextFieldData({
+      email: new TextFieldData({
         validators: [ new RequiredStringValidator() ]
       }),
       password: new TextFieldData({
@@ -25,7 +31,7 @@ class LoginPage extends React.Component<any, any> {
     };
   }
 
-  onFormSubmit(event) {
+  onFormSubmit(event: any) {
     const user = this.state;
     const validatorResponse = formValidator.validate(user);
     const formData = validatorResponse.formData;
@@ -35,11 +41,11 @@ class LoginPage extends React.Component<any, any> {
 
     if (isValid) {
       loginAction
-        .execute(user.username.value, user.password.value)
+        .execute(user.email.value, user.password.value)
         .then(() => {
           this.setState({
             password: this.state.password.reset(),
-            username: this.state.username.reset()
+            email: this.state.email.reset()
           });
 
           this.props.history.pushState(null, '/app');
@@ -54,14 +60,14 @@ class LoginPage extends React.Component<any, any> {
     event.preventDefault();
   }
 
-  handleUsernameChange(event) {
+  handleemailChange(event: any) {
     const value = event.target.value;
     this.setState({
-      username: this.state.username.setValue(value)
+      email: this.state.email.setValue(value)
     });
   }
 
-  handlePasswordChange(event) {
+  handlePasswordChange(event: any) {
     const value = event.target.value;
     this.setState({
       password: this.state.password.setValue(value)
@@ -75,17 +81,17 @@ class LoginPage extends React.Component<any, any> {
           <Card>
             <form className='LoginPage-content' onSubmit={this.onFormSubmit.bind(this)}>
               <span className='LoginPage-title'>Login</span>
-              
+
               <div>
-                <TextField
-                  value={this.state.username.value}
-                  errorText={this.state.username.error}
-                  onChange={this.handleUsernameChange.bind(this)}
+                <AppTextField
+                  value={this.state.email.value}
+                  errorText={this.state.email.error}
+                  onChange={this.handleemailChange.bind(this)}
                   type='email'
                   hintText='Your email'
                   floatingLabelText='Your email' />
               </div>
-      
+
               <div>
                 <TextField
                   value={this.state.password.value}
@@ -95,14 +101,14 @@ class LoginPage extends React.Component<any, any> {
                   hintText='Your password'
                   floatingLabelText='Your password' />
               </div>
-      
+
               <div className='LoginPage-loginButtonContainer'>
                 <RaisedButton
                   primary={true}
                   type='submit'
                   label='Login' />
               </div>
-                
+
               <div>
                 <Link className='LoginPage-signUpLink' to={`/auth/signup`}>Create a new account</Link>
                 <Link className='LoginPage-resetPasswordLink' to={`/auth/resetpassword`}>I forgot my password</Link>

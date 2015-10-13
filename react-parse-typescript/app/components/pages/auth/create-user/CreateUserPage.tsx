@@ -1,23 +1,24 @@
-import React from 'react';
-import { RaisedButton, TextField, Card } from './../../../common';
+import * as React from 'react';
+import ComponentBase from './../../../ComponentBase';
+import { RaisedButton, TextField, Card } from './../../../common/index';
 import { Link } from 'react-router';
 import { TextFieldData } from './../../../../utils/FormFieldData';
-import { 
-  RequiredStringValidator, 
-  PasswordValidator, 
-  formValidator 
+import {
+  RequiredStringValidator,
+  PasswordValidator,
+  formValidator
 } from './../../../../utils/Validators';
 
-import { createUserAction } from './../../../../actions';
+import { createUserAction } from './../../../../actions/index';
 
-class CreateUserPage extends React.Component<any, any> {
-  static contextTypes = {
+class CreateUserPage extends ComponentBase<any, any> {
+  static contextTypes: React.ValidationMap<any> = {
     router: React.PropTypes.func.isRequired
   };
-  
+
   constructor(props: any, context: any) {
     super(props, context);
-    
+
     this.state = {
       email: new TextFieldData({
         validators: [ new RequiredStringValidator() ]
@@ -27,31 +28,31 @@ class CreateUserPage extends React.Component<any, any> {
       })
     };
   }
-  
-  handleEmailChange(event) {
+
+  handleEmailChange(event: any) {
     const value = event.target.value;
     this.setState({
       email: this.state.email.setValue(value)
     });
   }
-  
-  handlePasswordChange(event) {
+
+  handlePasswordChange(event: any) {
     const value = event.target.value;
     this.setState({
       password: this.state.password.setValue(value)
     });
   }
-  
-  onFormSubmit(event) {
+
+  onFormSubmit(event: any) {
     event.preventDefault();
-    
+
     const validatorResponse = formValidator.validate(this.state);
     this.setState(validatorResponse.formData);
-    
+
     if (validatorResponse.isValid) {
       const email = this.state.email.value;
       const password = this.state.password.value;
-       
+
       createUserAction
         .execute(email, password)
         .then(() => {
@@ -66,7 +67,7 @@ class CreateUserPage extends React.Component<any, any> {
           this.setState({
             password: this.state.password.setError(error.message)
           });
-        }); 
+        });
     }
   }
 
@@ -77,18 +78,18 @@ class CreateUserPage extends React.Component<any, any> {
           <Card>
             <form className='CreateUserPage-content' onSubmit={this.onFormSubmit.bind(this)}>
               <span className='CreateUserPage-title'>Sign up</span>
-              
+
               <div>
-                <TextField 
+                <TextField
                   value={this.state.email.value}
                   errorText={this.state.email.error}
                   onChange={this.handleEmailChange.bind(this)}
                   type='email'
                   hintText='Your email'
                   floatingLabelText='Your email'
-                />       
+                />
               </div>
-              
+
               <div>
                 <TextField
                   value={this.state.password.value}
@@ -99,14 +100,14 @@ class CreateUserPage extends React.Component<any, any> {
                   floatingLabelText='Your new password'
                 />
               </div>
-              
+
               <div className='CreateUserPage-buttonContainer'>
                 <RaisedButton
                   primary={true}
                   type='submit'
                   label='Create new account' />
               </div>
-              
+
               <div>
                   <Link className='CreateUserPage-loginLink' to={`/auth/login`}>Already have an account? Login</Link>
                   <Link className='CreateUserPage-resetPasswordLink' to={`/auth/resetpassword`}>I forgot my password</Link>

@@ -1,4 +1,4 @@
-class TextFieldData implements ITextFieldData {
+export class TextFieldData implements ITextFieldData {
   public value = '';
   public error = '';
   public validators: IValidator[] = [];
@@ -32,7 +32,3 @@ class TextFieldData implements ITextFieldData {
     return this;
   }
 }
-
-export default {
-  TextFieldData
-};

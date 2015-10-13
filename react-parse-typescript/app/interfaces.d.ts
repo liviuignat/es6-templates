@@ -1,5 +1,4 @@
-/// <reference path="./../defs/tsd.d.ts" />
-
+/// <reference path='./../defs/tsd.d.ts' />
 interface IDispatcherPayload<T> {
   type: string;
   payload: T;
@@ -19,4 +18,32 @@ interface IValidator {
 interface IFormValidatorResponse {
   isValid: boolean;
   formData: any;
+}
+
+declare module 'events' {
+  export class EventEmitter {
+    on: any;
+    emit: any;
+  }
+}
+
+declare module 'react-tap-event-plugin' {
+  export default function injectTapEventPlugin(): any;
+}
+
+declare module 'history/lib/createBrowserHistory' {
+  export default function createBrowserHistory(): any;
+}
+
+declare module 'parse' {
+  export const User: any;
+  export const Query: any;
+  export const initialize: any;
+}
+
+declare module 'react-router' {
+  export const Router: any;
+  export const Route: any;
+  export const IndexRoute: any;
+  export const Link: any;
 }

@@ -1,12 +1,11 @@
-export default {
-  textField: {
-    root: {
-      width: '100%'
-    }  
-  },
-  raisedButton: {
-    root: {
-      width: '100%'
-    }
+export const textField = {
+  root: {
+    width: '100%'
+  }
+};
+
+export const raisedButton = {
+  root: {
+    width: '100%'
   }
 };

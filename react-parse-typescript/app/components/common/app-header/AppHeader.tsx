@@ -1,12 +1,15 @@
-import React from 'react';
+import * as React from 'react';
+import ComponentBase from './../../ComponentBase';
 import { Link } from 'react-router';
-import { AppBar, FontIcon, Colors, IconButton } from './../material-ui';
+import { AppBar, FontIcon, Colors, IconButton } from './../material-ui/index';
 import { history } from './../../../history';
-import { logoutAction } from './../../../actions';
-import { currentUserStore } from './../../../stores';
+import { logoutAction } from './../../../actions/index';
+import { currentUserStore } from './../../../stores/index';
 
-class AppHeader extends React.Component<any, any> {
-  constructor(props: any, context: anu) {
+class AppHeader extends ComponentBase<any, any> {
+  react = React;
+  
+  constructor(props: any, context: any) {
     super(props, context);
 
     this.state = {

@@ -1,4 +1,4 @@
-import Parse from 'parse';
+import * as Parse from 'parse';
 import { appDispatcher } from './../../appDispatcher';
 import { AUTH_ACTION_TYPES } from './../actionTypes.constant';
 
