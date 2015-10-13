@@ -7,9 +7,14 @@ import { RequiredStringValidator, formValidator} from './../../../../utils/Valid
 
 import { resetPasswordAction } from './../../../../actions/index';
 
-export default class extends ComponentBase<any, any> {
+interface ICreateUserPageState {
+  showInfoMessage: boolean;
+  email: TextFieldData;
+}
+
+class ResetPasswordPage extends ComponentBase<any, ICreateUserPageState> {
   react = React;
-  
+
   constructor(props: any) {
     super(props);
 
@@ -89,3 +94,5 @@ export default class extends ComponentBase<any, any> {
     );
   }
 }
+
+export default ResetPasswordPage;

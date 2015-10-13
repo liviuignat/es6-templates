@@ -1,8 +1,19 @@
 /// <reference path='./../defs/tsd.d.ts' />
+interface ILoginModel {
+  email: string;
+  password: string;
+}
+
+interface ICreateUserModel {
+  email: string;
+  password: string;
+}
+
 interface IDispatcherPayload<T> {
   type: string;
   payload: T;
 }
+
 
 interface ITextFieldData {
   value?: string;

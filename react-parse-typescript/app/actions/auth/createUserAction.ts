@@ -3,12 +3,12 @@ import { appDispatcher } from './../../appDispatcher';
 import { AUTH_ACTION_TYPES } from './../actionTypes.constant';
 
 class CreateUserAction {
-  execute(username: string, password: string) {
+  execute(data: ICreateUserModel) {
     return new Promise((resolve, reject) => {
       const newUser = new Parse.User();
-      newUser.set('username', username);
-      newUser.set('password', password);
-      newUser.set('email', username);
+      newUser.set('username', data.email);
+      newUser.set('password', data.password);
+      newUser.set('email', data.email);
 
       newUser.signUp(null, {
         success: (user: any) => {

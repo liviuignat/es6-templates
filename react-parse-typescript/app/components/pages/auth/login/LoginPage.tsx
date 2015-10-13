@@ -7,12 +7,12 @@ import { RequiredStringValidator, formValidator } from './../../../../utils/Vali
 
 import { loginAction } from './../../../../actions/index';
 
-interface LoginPageState {
+interface ILoginPageState {
   email: TextFieldData;
   password: TextFieldData;
 }
 
-class LoginPage extends ComponentBase<any, LoginPageState> {
+class LoginPage extends ComponentBase<any, ILoginPageState> {
 
   static contextTypes: React.ValidationMap<any> = {
     router: React.PropTypes.func.isRequired
@@ -31,7 +31,7 @@ class LoginPage extends ComponentBase<any, LoginPageState> {
     };
   }
 
-  onFormSubmit(event: any) {
+  onFormSubmit(e: any) {
     const user = this.state;
     const validatorResponse = formValidator.validate(user);
     const formData = validatorResponse.formData;
@@ -41,7 +41,10 @@ class LoginPage extends ComponentBase<any, LoginPageState> {
 
     if (isValid) {
       loginAction
-        .execute(user.email.value, user.password.value)
+        .execute({
+          email: user.email.value,
+          password: user.password.value
+        })
         .then(() => {
           this.setState({
             password: this.state.password.reset(),
@@ -57,18 +60,18 @@ class LoginPage extends ComponentBase<any, LoginPageState> {
         });
     }
 
-    event.preventDefault();
+    e.preventDefault();
   }
 
-  handleemailChange(event: any) {
-    const value = event.target.value;
+  handleemailChange(e: any) {
+    const value = e.target.value;
     this.setState({
       email: this.state.email.setValue(value)
     });
   }
 
-  handlePasswordChange(event: any) {
-    const value = event.target.value;
+  handlePasswordChange(e: any) {
+    const value = e.target.value;
     this.setState({
       password: this.state.password.setValue(value)
     });

@@ -3,11 +3,11 @@ import { appDispatcher } from './../../appDispatcher';
 import { AUTH_ACTION_TYPES } from './../actionTypes.constant';
 
 class LoginAction {
-  execute(username: string, password: string): Promise<any> {
+  execute(data: ILoginModel): Promise<any> {
     return new Promise((resolve, reject) => {
       Parse.User.logOut();
 
-      Parse.User.logIn(username, password, {
+      Parse.User.logIn(data.email, data.password, {
         success: (user: any) => {
           appDispatcher.dispatch(AUTH_ACTION_TYPES.LOG_IN_SUCCESS, user);
           return resolve(user);

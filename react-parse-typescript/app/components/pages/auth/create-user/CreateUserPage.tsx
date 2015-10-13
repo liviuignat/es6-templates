@@ -11,7 +11,12 @@ import {
 
 import { createUserAction } from './../../../../actions/index';
 
-class CreateUserPage extends ComponentBase<any, any> {
+interface ICreateUserPageState {
+  email: TextFieldData;
+  password: TextFieldData;
+}
+
+class CreateUserPage extends ComponentBase<any, ICreateUserPageState> {
   static contextTypes: React.ValidationMap<any> = {
     router: React.PropTypes.func.isRequired
   };
@@ -29,22 +34,22 @@ class CreateUserPage extends ComponentBase<any, any> {
     };
   }
 
-  handleEmailChange(event: any) {
-    const value = event.target.value;
+  handleEmailChange(e: any) {
+    const value = e.target.value;
     this.setState({
       email: this.state.email.setValue(value)
     });
   }
 
-  handlePasswordChange(event: any) {
-    const value = event.target.value;
+  handlePasswordChange(e: any) {
+    const value = e.target.value;
     this.setState({
       password: this.state.password.setValue(value)
     });
   }
 
-  onFormSubmit(event: any) {
-    event.preventDefault();
+  onFormSubmit(e: any) {
+    e.preventDefault();
 
     const validatorResponse = formValidator.validate(this.state);
     this.setState(validatorResponse.formData);
@@ -54,7 +59,7 @@ class CreateUserPage extends ComponentBase<any, any> {
       const password = this.state.password.value;
 
       createUserAction
-        .execute(email, password)
+        .execute({ email: email, password: password })
         .then(() => {
           this.setState({
             email: this.state.email.reset(),
