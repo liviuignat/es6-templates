@@ -1,6 +1,6 @@
 import { Colors } from './common/index';
-import { ColorManipulator } from 'material-ui/lib/utils';
-import { Spacing } from 'material-ui/lib/styles';
+import { ColorManipulator } from 'material-ui/lib/utils/';
+import { Spacing } from 'material-ui/lib/styles/';
 
  export default {
   spacing: Spacing,

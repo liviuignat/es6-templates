@@ -2,10 +2,12 @@ import { TextField } from 'material-ui';
 import { extend } from './utils';
 import { textField } from './../../styles';
 
-const baseGetStyles = TextField.prototype.getStyles;
-TextField.getStyles = TextField.prototype.getStyles = function () {
-  const baseStyles = baseGetStyles.call(this);
-  return extend(baseStyles, textField);
-};
+class AppRaisedButton extends TextField {
+  constructor(props: any, context: any) {
+    super(props, context);
 
-export default TextField;
+    this.getStyles = () => extend(super.getStyles(), textField);
+  }
+}
+
+export default AppRaisedButton;
