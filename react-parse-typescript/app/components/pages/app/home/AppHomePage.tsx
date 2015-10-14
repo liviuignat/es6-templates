@@ -1,10 +1,10 @@
 import * as React from 'react';
 import ComponentBase from './../../../ComponentBase';
-import { List, ListItem } from './../../../common/index';
+import { currentUserStore } from './../../../../stores/index';
 
 class AppHomePage extends ComponentBase<any, any> {
   react = React;
-  
+
   constructor(props: any) {
     super(props);
 
@@ -18,11 +18,7 @@ class AppHomePage extends ComponentBase<any, any> {
   render() {
     return (
       <div>
-        <List style={ this.props.menuStyle }>
-          <ListItem primaryText='Dashboard' />
-          <ListItem primaryText='Layouts' />
-          <ListItem primaryText='Languages'/>
-        </List>
+        <h1>Hi {currentUserStore.getDisplayName()}, you are now logged in. Please use the menu on the left corner.</h1>
       </div>
     );
   }

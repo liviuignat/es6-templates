@@ -1,3 +1,3 @@
 export default {
-  title: 'material email'
+  title: 'material es-templates'
 };

@@ -1,6 +1,13 @@
 import * as React from 'react';
+import config from './../../../app.config';
+import ComponentBase from './../../ComponentBase';
 
-export default class extends React.Component<any, any> {
+class HomePage extends ComponentBase<any, any> {
+
+  static contextTypes: React.ValidationMap<any> = {
+    router: React.PropTypes.func.isRequired
+  };
+
   constructor(props: any) {
     super(props);
   }
@@ -8,8 +15,10 @@ export default class extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <h3>Welcome to material emails</h3>
+        <h3>Welcome to { config.title }</h3>
       </div>
     );
   }
 }
+
+export default HomePage;

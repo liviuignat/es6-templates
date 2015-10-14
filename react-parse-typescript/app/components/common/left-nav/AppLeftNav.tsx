@@ -59,7 +59,7 @@ class AppLeftNav extends ComponentBase<IAppLeftNavProps, any> {
   logout() {
     logoutAction.execute()
       .then(() => {
-        history.replaceState(null, '/');
+        this.props.history.pushState(null, '/');
       });
   }
 

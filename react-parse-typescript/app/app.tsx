@@ -11,7 +11,7 @@ const render = () => {
 };
 
 injectTapEventPlugin();
-Parse.initialize('HrMPFQFNyOPjq8cR9i67xSyAzAggfJYwTetpDUwB', 'Pm8doOztn0N8iXfNzisX5RrV4r2y1wbbTKHxRoUr');
+Parse.initialize('ivU6GsPnN0aXfBPsfmEpAkl3P1Lh57XufS3rWBnt', 'vSLeA3vsKyflN8OytBOPjExzwL45wAeC1gn7MXdT');
 
 currentUserStore.initialize();
 if (currentUserStore.getIsLoggedIn()) {

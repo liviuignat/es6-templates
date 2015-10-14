@@ -1,4 +1,5 @@
 import * as React from 'react';
+import config from './../../../app.config';
 import ComponentBase from './../../ComponentBase';
 import { Link } from 'react-router';
 import { AppBar, Avatar } from './../material-ui/index';
@@ -44,7 +45,7 @@ class AppHeader extends ComponentBase<any, IAppHeaderState> {
     return (
       <header>
         <AppBar
-          title={<Link className='AppHeader-homeLink' to='/'>MATERIAL MAILS</Link>}
+          title={<Link className='AppHeader-homeLink' to='/'>{ config.title }</Link>}
           showMenuIconButton={this.state.isLoggedIn}
           iconElementRight={this.renderButtonsRight()}
           onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
