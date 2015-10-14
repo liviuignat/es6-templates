@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "es6-templates"
+    },
+    "es6-templates": {
+      "applicationId": "ivU6GsPnN0aXfBPsfmEpAkl3P1Lh57XufS3rWBnt"
+    }
+  }
+}

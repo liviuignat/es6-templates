@@ -20,7 +20,8 @@ require('harmonize')();
 
 const paths = {
   tsc: '.tmp/tsc',
-  dist: '.tmp/dist'
+  dist: '.tmp/dist',
+  deploy: './parse-cloud/public'
 };
 
 const bundler = {
@@ -32,7 +33,7 @@ const bundler = {
       insertGlobals: true,
       debug: true
     });
-    
+
     b.add([
       './app/app.tsx',
       './app/interfaces.d.ts',
@@ -48,7 +49,7 @@ const bundler = {
       sourceMap: true
     })
     .transform(babelify.configure({extensions: [".ts",".js", ".tsx"]}));
-    
+
     this.w = watchify(b);
   },
   bundle: function () {
@@ -147,6 +148,7 @@ gulp.task('extras', function () {
 
 gulp.task('clean-tsc', del.bind(null, paths.tsc));
 gulp.task('clean-dist', del.bind(null, paths.dist));
+gulp.task('clean-deploy', del.bind(null, paths.deploy));
 gulp.task('clean', ['clean-tsc', 'clean-dist']);
 
 gulp.task('html', function () {
@@ -210,11 +212,24 @@ gulp.task('test', function () {
 });
 
 gulp.task('build', ['clean'], function (callback) {
-  return runSequence('tslint', 'tsc', ['scripts', 'styles', 'html'], callback);
+  return runSequence('tslint', 'tsc', 'test', ['scripts', 'styles', 'html'], callback);
+});
+
+gulp.task('deploy', ['clean-deploy', 'build'], function (callback) {
+  var jsFilter = $.filter(['**/*.js'], {restore: true});
+  var cssFilter = $.filter(['**/*.css'], {restore: true});
+
+  return gulp.src(paths.dist + '/**/*')
+    .pipe(jsFilter)
+    .pipe($.uglify())
+    .pipe(jsFilter.restore)
+    .pipe(cssFilter)
+    .pipe($.minifyCss())
+    .pipe(cssFilter.restore)
+    .pipe(gulp.dest(paths.deploy));
 });
 
 gulp.task('watch', ['build'], function (callback) {
-  //gulp.watch(['app/**/*.ts', 'app/**/*.tsx'], ['tslint', 'tsc']);
   gulp.watch(['app/**/*.ts', 'app/**/*.tsx'], ['tslint', 'tsc']);
   gulp.watch('app/*.html', ['html']);
   gulp.watch('app/**/*.less', ['styles']);
