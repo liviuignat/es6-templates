@@ -1,0 +1,7 @@
+.dist
+.deploy
+bower_components
+node_modules
+npm-debug.log
+parse.exe
+parse/public
