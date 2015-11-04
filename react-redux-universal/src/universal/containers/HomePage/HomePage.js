@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import config from './../../../config';
 
 export default class Home extends Component {
   render() {
     return (
       <div>
-        <Link to="/login">Login</Link>
-        Home Page
+        <h3>Welcome to { config.app.title }</h3>
       </div>
     );
   }

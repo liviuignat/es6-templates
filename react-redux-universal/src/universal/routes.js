@@ -30,7 +30,11 @@ export default (store) => {
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
 
-      <Route path="/login" component={LoginPage} />
+      <Route path="/auth/login" component={LoginPage} />
+
+      <Route onEnter={requireLogin}>
+        <Route path="/app" component={HomePage} />
+      </Route>
 
       <Route path="*" component={NotFoundPage} status={404} />
     </Route>
