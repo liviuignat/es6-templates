@@ -1,3 +1,5 @@
+import * as Parse from 'parse';
+
 const LOAD = 'es6-templates/auth/LOAD';
 const LOAD_SUCCESS = 'es6-templates/auth/LOAD_SUCCESS';
 const LOAD_FAIL = 'es6-templates/auth/LOAD_FAIL';
@@ -39,6 +41,14 @@ export function isLoaded(globalState) {
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/loadAuth')
+    promise: (client) => {
+      if (__SERVER__) {
+        return client.get('/user/me');
+      }
+
+      const user = Parse.User.current();
+      console.log('<===== load user action', user);
+      return Promise.resolve();
+    }
   };
 }
