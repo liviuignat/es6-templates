@@ -1,6 +1,3 @@
-/**
- * THIS IS THE ENTRY POINT FOR THE CLIENT, JUST LIKE server.js IS THE ENTRY POINT FOR THE SERVER.
- */
 import 'babel-core/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';

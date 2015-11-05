@@ -21,6 +21,7 @@ import ApiClient from './helpers/ApiClient';
 import Html from './helpers/Html';
 import getStatusFromRoutes from './helpers/getStatusFromRoutes';
 import config from './../config';
+import * as middleware from './../api/middleware';
 
 const pretty = new PrettyError();
 const app = new Express();
@@ -96,7 +97,6 @@ app.use((req, res, next) => {
   }));
 });
 
-const middleware = require('./../api/middleware');
 app.use(middleware.requestAuthToken);
 app.use(middleware.userFromParse);
 require('./../api').setupRoutes(app);

@@ -1,4 +1,4 @@
-import * as Parse from 'parse';
+import { currentUserService } from './../../../client';
 
 const LOAD = 'es6-templates/auth/LOAD';
 const LOAD_SUCCESS = 'es6-templates/auth/LOAD_SUCCESS';
@@ -70,9 +70,7 @@ export function load() {
         return client.get('/user/me');
       }
 
-      const user = Parse.User.current();
-      console.log('<===== load user action', user);
-      return Promise.resolve();
+      return Promise.resolve(currentUserService.getCurrentUser());
     }
   };
 }
@@ -81,9 +79,13 @@ export function loginAction(email, password) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
     promise: (client) => {
-      return client.post('/auth/login', {
-        data: { email, password }
-      });
+      if (__SERVER__) {
+        return client.post('/auth/login', {
+          data: { email, password }
+        });
+      }
+
+      return currentUserService.logIn(email, password);
     }
   };
 }
