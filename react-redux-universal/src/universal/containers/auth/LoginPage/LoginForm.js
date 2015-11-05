@@ -18,7 +18,6 @@ export default class LoginForm extends Component {
     } = this.props;
 
     const renderInput = (field) => {
-      console.log(field);
       return (
         <div className="form-group">
           <input type="text" className="form-control" {...field}/>

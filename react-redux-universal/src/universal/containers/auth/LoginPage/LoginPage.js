@@ -2,12 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import {connect} from 'react-redux';
 import {initialize} from 'redux-form';
 import LoginForm from './LoginForm';
-import { loginAction } from './../../../redux/reducers';
+import { loginAction } from './../../../redux/reducers/auth';
 
-@connect(() => ({}), {
-  initialize,
-  loginAction
-})
+@connect(
+  state => ({user: state.auth.user}), {
+    initialize,
+    loginAction
+  })
 export default class LoginPage extends Component {
   static propTypes = {
     initialize: PropTypes.func.isRequired,
