@@ -51,8 +51,8 @@ export function userFromParse(req, res, next) {
 export function requiredAuthenticated(req, res, next) {
   if(!req.user) {
     return res
-      .status(400)
-      .send('Not authorized');
+      .status(401)
+      .json('Not authorized');
   }
 
   return next();

@@ -7,13 +7,8 @@ import {reduxForm} from 'redux-form';
 })
 export default class LoginForm extends Component {
   static propTypes = {
-    active: PropTypes.string,
-    dirty: PropTypes.bool.isRequired,
     fields: PropTypes.object.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    invalid: PropTypes.bool.isRequired,
-    pristine: PropTypes.bool.isRequired,
-    valid: PropTypes.bool.isRequired
+    handleSubmit: PropTypes.func.isRequired
   }
 
   render() {
@@ -22,16 +17,20 @@ export default class LoginForm extends Component {
       handleSubmit
     } = this.props;
 
-    const renderInput = (field) =>
-      <div className="form-group">
-        <input type="text" className="form-control" id={field.name} {...field}/>
-      </div>;
+    const renderInput = (field) => {
+      console.log(field);
+      return (
+        <div className="form-group">
+          <input type="text" className="form-control" {...field}/>
+        </div>
+      );
+    };
 
     return (
       <div>
         <form className="form-horizontal" onSubmit={handleSubmit}>
-          {renderInput(email, 'Email')}
-          {renderInput(password, 'Password', true)}
+          {renderInput(email)}
+          {renderInput(password)}
 
           <button type="submit">Login</button>
         </form>

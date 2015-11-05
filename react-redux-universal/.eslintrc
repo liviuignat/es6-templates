@@ -29,7 +29,7 @@
   "settings": {
     "import/parser": "babel-eslint",
     "import/resolve": {
-      moduleDirectory: ["node_modules", "src/universal"]
+      moduleDirectory: ["node_modules", "src/universal", "src/api"]
     }
   },
   "globals": {
