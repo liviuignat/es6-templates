@@ -43,8 +43,8 @@ class _ApiClient {
             request.send(data);
           }
 
-          request.end((err, { body, status } = {}) => {
-            console.info('  <===== API CLIENT', formatUrl(path), err, body, status);
+          request.end((err, { body } = {}) => {
+            console.info('  <===== API CLIENT', formatUrl(path));
             if (err) {
               return reject(body || err);
             }
