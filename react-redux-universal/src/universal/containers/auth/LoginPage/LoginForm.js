@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {reduxForm} from 'redux-form';
 import { loginFormValidator } from './loginFormValidator';
-import { FormTextField } from './../../../components';
+import { FormTextField, RaisedButton } from './../../../components';
 
 @reduxForm({
   form: 'login',
@@ -36,7 +36,11 @@ export default class LoginForm extends Component {
           </div>
 
           <div>
-            <button disabled={isLoggingIn} onClick={handleSubmit}>Login</button>
+            <RaisedButton
+              labelText="Login"
+              primary
+              disabled={isLoggingIn}
+              onClick={handleSubmit}/>
           </div>
         </form>
       </div>
