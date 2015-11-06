@@ -1,15 +1,22 @@
 import React, { Component, PropTypes } from 'react';
 import {reduxForm} from 'redux-form';
+import { loginFormValidator } from './loginFormValidator';
+import { FormTextField } from './../../../components';
 
 @reduxForm({
   form: 'login',
-  fields: ['email', 'password']
+  fields: ['email', 'password'],
+  validate: loginFormValidator,
 })
 export default class LoginForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    isLoggingIn: PropTypes.bool
+    isLoggingIn: PropTypes.bool,
+    dirty: PropTypes.bool.isRequired,
+    invalid: PropTypes.bool.isRequired,
+    pristine: PropTypes.bool.isRequired,
+    valid: PropTypes.bool.isRequired
   }
 
   render() {
@@ -19,21 +26,13 @@ export default class LoginForm extends Component {
       handleSubmit
     } = this.props;
 
-    const renderInput = (field) => {
-      return (
-        <div className="form-group">
-          <input type="text" className="form-control" {...field}/>
-        </div>
-      );
-    };
-
     return (
       <div>
         <form className="form-horizontal" onSubmit={handleSubmit}>
-          {renderInput(email)}
-          {renderInput(password)}
+          <FormTextField field={email} type="email" />
+          <FormTextField field={password} type="password" />
 
-          <button type="submit" disabled={isLoggingIn}>Login</button>
+          <button disabled={isLoggingIn} onClick={handleSubmit}>Login</button>
         </form>
       </div>
     );
