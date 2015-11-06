@@ -3,11 +3,10 @@ import { currentUserService } from './../../client';
 
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
-function formatUrl(path, req) {
+function formatUrl(path) {
   const adjustedPath = path[0] !== '/' ? '/' + path : path;
   if (__SERVER__) {
-    const host = req('host');
-    return 'http://' + `${host}/api${adjustedPath}`;
+    return 'http://' + `localhost:3000/api${adjustedPath}`;
   }
   return '/api' + adjustedPath;
 }
@@ -19,7 +18,8 @@ class _ApiClient {
         const { params, data } = requestData;
 
         return new Promise((resolve, reject) => {
-          const request = superagent[method](formatUrl(path, req));
+          const url = formatUrl(path);
+          const request = superagent[method](url);
 
           if (params) {
             request.query(params);

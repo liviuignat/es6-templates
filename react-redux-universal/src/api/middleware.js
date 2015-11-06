@@ -18,7 +18,6 @@ export function userFromParse(req, res, next) {
   if (req.authToken) {
     getUserFromSession(req.authToken).then((user) => {
       req.user = getUserFromParse(user);
-      console.log('user', req.user);
     }).catch(() => {
     }).then(() => {
       return next();
@@ -50,6 +49,9 @@ function getUserFromSession(sessionToken) {
 };
 
 function getUserFromParse(parseUser) {
+  if (!parseUser) {
+    return null;
+  }
   return {
     email: parseUser.email,
     emailVerified: parseUser.emailVerified,

@@ -5,7 +5,7 @@ import { pushState } from 'redux-router';
 import config from './../../../config';
 
 import { AppHeader } from './../../components';
-import { isLoaded as isAuthLoaded, load as loadAuth } from './../../redux/reducers/auth';
+import { isUserLoaded, loadUserAction } from './../../redux/reducers/auth';
 
 @connect(
   state => ({user: state.auth.user}),
@@ -24,8 +24,8 @@ export default class App extends Component {
   static fetchData(getState, dispatch) {
     const promises = [];
 
-    if (!isAuthLoaded(getState())) {
-      promises.push(dispatch(loadAuth()));
+    if (!isUserLoaded(getState())) {
+      promises.push(dispatch(loadUserAction()));
     }
     return Promise.all(promises);
   }
@@ -33,7 +33,7 @@ export default class App extends Component {
   render() {
     const {user} = this.props;
     const isLoggedIn = !!user;
-    const styles = require('./App.scss');
+    const styles = require('./AppContainer.scss');
 
     return (
       <div className={styles.app}>

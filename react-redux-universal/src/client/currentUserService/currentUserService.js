@@ -5,7 +5,6 @@ const COOKIE_NAME = 'auth_token';
 
 export function getCurrentUser() {
   const cookie = cookieService.getCookie(COOKIE_NAME);
-  console.log('AAAA');
   if (!cookie) {
     logOut();
     return null;
@@ -21,6 +20,7 @@ export function getCurrentAuthSession() {
 }
 
 export function logIn(email, password) {
+  Parse.User.logOut();
   return new Promise((resolve, reject) => {
     Parse.User.logIn(email, password, {
       success: (user) => {
@@ -36,6 +36,7 @@ export function logIn(email, password) {
 
 export function logOut() {
   Parse.User.logOut();
+  return Promise.resolve();
 }
 
 function setUserCookie(user) {

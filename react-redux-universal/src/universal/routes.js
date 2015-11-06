@@ -1,10 +1,11 @@
 import React from 'react';
 import {IndexRoute, Route} from 'react-router';
-import { isLoaded as isAuthLoaded, load as loadAuth } from './redux/reducers';
+import { isUserLoaded, loadUserAction } from './redux/reducers/auth';
 import {
-    App,
+    AppContainer,
     HomePage,
     LoginPage,
+    DashboardPage,
     NotFoundPage
   } from './containers';
 
@@ -19,21 +20,21 @@ export default (store) => {
       cb();
     }
 
-    if (!isAuthLoaded(store.getState())) {
-      store.dispatch(loadAuth()).then(checkAuth);
+    if (!isUserLoaded(store.getState())) {
+      store.dispatch(loadUserAction()).then(checkAuth);
     } else {
       checkAuth();
     }
   };
 
   return (
-    <Route path="/" component={App}>
+    <Route path="/" component={AppContainer}>
       <IndexRoute component={HomePage} />
 
       <Route path="/auth/login" component={LoginPage} />
 
       <Route onEnter={requireLogin}>
-        <Route path="/app" component={HomePage} />
+        <Route path="/app" component={DashboardPage} />
       </Route>
 
       <Route path="*" component={NotFoundPage} status={404} />

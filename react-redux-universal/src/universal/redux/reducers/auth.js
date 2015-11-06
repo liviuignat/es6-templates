@@ -3,12 +3,12 @@ import { currentUserService } from './../../../client';
 const LOAD = 'es6-templates/auth/LOAD';
 const LOAD_SUCCESS = 'es6-templates/auth/LOAD_SUCCESS';
 const LOAD_FAIL = 'es6-templates/auth/LOAD_FAIL';
-const LOGIN = 'redux-example/auth/LOGIN';
-const LOGIN_SUCCESS = 'redux-example/auth/LOGIN_SUCCESS';
-const LOGIN_FAIL = 'redux-example/auth/LOGIN_FAIL';
-// const LOGOUT = 'redux-example/auth/LOGOUT';
-// const LOGOUT_SUCCESS = 'redux-example/auth/LOGOUT_SUCCESS';
-// const LOGOUT_FAIL = 'redux-example/auth/LOGOUT_FAIL';
+const LOGIN = 'es6-templates/auth/LOGIN';
+const LOGIN_SUCCESS = 'es6-templates/auth/LOGIN_SUCCESS';
+const LOGIN_FAIL = 'es6-templates/auth/LOGIN_FAIL';
+const LOGOUT = 'es6-templates/auth/LOGOUT';
+const LOGOUT_SUCCESS = 'es6-templates/auth/LOGOUT_SUCCESS';
+const LOGOUT_FAIL = 'es6-templates/auth/LOGOUT_FAIL';
 
 const initialState = {
   loaded: false
@@ -58,11 +58,11 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-export function isLoaded(globalState) {
+export function isUserLoaded(globalState) {
   return globalState.auth && globalState.auth.loaded;
 }
 
-export function load() {
+export function loadUserAction() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => {
@@ -84,8 +84,22 @@ export function loginAction(email, password) {
           data: { email, password }
         });
       }
-
       return currentUserService.logIn(email, password);
     }
   };
 }
+
+export function logoutAction() {
+  return {
+    types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
+    promise: () => {
+      if (__SERVER__) {
+        return Promise.resolve();
+      }
+
+      return currentUserService.logOut();
+    }
+  };
+}
+
+
