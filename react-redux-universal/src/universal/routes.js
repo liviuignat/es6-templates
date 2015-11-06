@@ -29,7 +29,6 @@ export default (store) => {
   const requireNotLogin = (nextState, replaceState, cb) => {
     function checkAuth() {
       const { auth: { user }} = store.getState();
-      console.log('cacat', store.getState());
       if (user) {
         replaceState(null, '/app');
       }
