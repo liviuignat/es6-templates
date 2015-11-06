@@ -14,8 +14,24 @@ export default (store) => {
     function checkAuth() {
       const { auth: { user }} = store.getState();
       if (!user) {
-        // oops, not logged in, so can't be here!
-        replaceState(null, '/');
+        replaceState(null, '/auth/login');
+      }
+      cb();
+    }
+
+    if (!isUserLoaded(store.getState())) {
+      store.dispatch(loadUserAction()).then(checkAuth);
+    } else {
+      checkAuth();
+    }
+  };
+
+  const requireNotLogin = (nextState, replaceState, cb) => {
+    function checkAuth() {
+      const { auth: { user }} = store.getState();
+      console.log('cacat', store.getState());
+      if (user) {
+        replaceState(null, '/app');
       }
       cb();
     }
@@ -31,7 +47,7 @@ export default (store) => {
     <Route path="/" component={AppContainer}>
       <IndexRoute component={HomePage} />
 
-      <Route path="/auth/login" component={LoginPage} />
+      <Route path="/auth/login" component={LoginPage} onEnter={requireNotLogin} />
 
       <Route onEnter={requireLogin}>
         <Route path="/app" component={DashboardPage} />

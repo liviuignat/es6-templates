@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import config from './../../../config';
 import { Link } from 'react-router';
+import LogoutButton from './../LogoutButton/LogoutButton';
 
 class AppHeader extends Component {
   static propTypes = {
@@ -15,17 +16,6 @@ class AppHeader extends Component {
     return this.props.isLoggedIn ? '/app' : '/';
   }
 
-  getNav() {
-    const styles = require('./AppHeader.scss');
-
-    return (
-      <nav className="mdl-navigation">
-        <Link className={styles['AppHeader-navigationLink'] + ' mdl-navigation__link'}
-          to="/auth/login">Login</Link>
-      </nav>
-    );
-  }
-
   render() {
     const { isLoggedIn } = this.props;
     const styles = require('./AppHeader.scss');
@@ -35,7 +25,14 @@ class AppHeader extends Component {
         <div className="mdl-layout__header-row">
           <Link className={ styles['AppHeader-homeLink'] + ' mdl-layout-title' } to={ this.getHomeLink.call(this) }>{ config.app.title }</Link>
           <div className={ styles['AppHeader-navigationContainer'] }>
-            { isLoggedIn ? <span /> : this.getNav() }
+          <nav className="mdl-navigation">
+            {
+              !isLoggedIn && <Link className={styles['AppHeader-navigationLink'] + ' mdl-navigation__link'} to="/auth/login">Login</Link>
+            }
+            {
+              isLoggedIn && <LogoutButton />
+            }
+           </nav>
           </div>
           <div className="mdl-layout-spacer"></div>
         </div>

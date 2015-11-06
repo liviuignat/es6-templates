@@ -16,6 +16,7 @@
   }
 
   .AppHeader-navigationLink {
+    cursor: pointer;
     text-transform: uppercase;
     color: $color-grey600;
     font-weight: 700;
@@ -25,6 +26,7 @@
     line-height: 60px;
     background-color: transparent;
     border-bottom: 4px solid transparent;
+    text-decoration: none;
 
     &:hover {
       border-bottom: 4px solid #8bc34a;

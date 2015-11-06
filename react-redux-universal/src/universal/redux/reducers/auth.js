@@ -53,6 +53,23 @@ export default function reducer(state = initialState, action = {}) {
         user: null,
         loginError: action.error
       };
+    case LOGOUT:
+      return {
+        ...state,
+        loggingOut: true
+      };
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        loggingOut: false,
+        user: null
+      };
+    case LOGOUT_FAIL:
+      return {
+        ...state,
+        loggingOut: false,
+        logoutError: action.error
+      };
     default:
       return state;
   }

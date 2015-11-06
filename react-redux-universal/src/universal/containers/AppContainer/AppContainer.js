@@ -14,12 +14,21 @@ import { isUserLoaded, loadUserAction } from './../../redux/reducers/auth';
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.object.isRequired,
+    pushState: PropTypes.func.isRequired,
     user: PropTypes.object
   };
 
   static contextTypes = {
     store: PropTypes.object.isRequired
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.user && nextProps.user) {
+      this.props.pushState(null, '/app');
+    } else if (this.props.user && !nextProps.user) {
+      this.props.pushState(null, '/auth/login');
+    }
+  }
 
   static fetchData(getState, dispatch) {
     const promises = [];

@@ -6,7 +6,10 @@ import LoginForm from './LoginForm';
 import { loginAction } from './../../../redux/reducers/auth';
 
 @connect(
-  state => ({user: state.auth.user}), {
+  state => ({
+    user: state.auth.user,
+    loggingIn: state.auth.loggingIn
+  }), {
     initialize,
     loginAction,
     pushState
@@ -14,6 +17,7 @@ import { loginAction } from './../../../redux/reducers/auth';
 export default class LoginPage extends Component {
   static propTypes = {
     user: PropTypes.object,
+    loggingIn: PropTypes.bool,
     initialize: PropTypes.func.isRequired,
     loginAction: PropTypes.func.isRequired,
     pushState: PropTypes.func.isRequired
@@ -25,14 +29,9 @@ export default class LoginPage extends Component {
 
   componentWillMount() {
     this.props.initialize('login', {
-      email: 'liviu@ignat.email'
+      email: 'liviu@ignat.email',
+      password: 'test123'
     });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.user && nextProps.user) {
-      this.props.pushState(null, '/app');
-    }
   }
 
   handleSubmit(data) {
@@ -41,9 +40,11 @@ export default class LoginPage extends Component {
   }
 
   render() {
+    const {loggingIn} = this.props;
+
     return (
       <div>
-        <LoginForm onSubmit={::this.handleSubmit} />
+        <LoginForm onSubmit={::this.handleSubmit} isLoggingIn={loggingIn || false} />
       </div>
     );
   }

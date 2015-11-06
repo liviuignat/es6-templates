@@ -11,6 +11,11 @@ export default class DashboardPage extends Component {
 
   render() {
     const { user } = this.props;
+
+    if (!user) {
+      return <div />;
+    }
+
     return (
       <div>
         <h2> Hi {user.firstName } </h2>

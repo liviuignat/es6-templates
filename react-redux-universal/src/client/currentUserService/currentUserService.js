@@ -36,6 +36,7 @@ export function logIn(email, password) {
 
 export function logOut() {
   Parse.User.logOut();
+  cookieService.deleteCookie(COOKIE_NAME);
   return Promise.resolve();
 }
 
