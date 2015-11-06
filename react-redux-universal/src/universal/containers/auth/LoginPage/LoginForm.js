@@ -12,14 +12,22 @@ export default class LoginForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    isLoggingIn: PropTypes.bool
+    isLoggingIn: PropTypes.bool,
+    loginError: PropTypes.string,
+    dirty: PropTypes.bool.isRequired,
+    pristine: PropTypes.bool.isRequired,
+    invalid: PropTypes.bool.isRequired,
+    valid: PropTypes.bool.isRequired
   }
 
   render() {
+    const styles = require('./LoginPage.scss');
     const {
       fields: {email, password},
       isLoggingIn,
-      handleSubmit
+      handleSubmit,
+      loginError,
+      valid
     } = this.props;
 
     return (
@@ -40,6 +48,8 @@ export default class LoginForm extends Component {
               fullWidth
               disabled={isLoggingIn}/>
           </div>
+
+          <span className={styles.LoginPageErrorMessage}>{valid && loginError}</span>
 
           <div>
             <RaisedButton

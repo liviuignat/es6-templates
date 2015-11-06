@@ -27,8 +27,8 @@ export function logIn(email, password) {
         setUserCookie(user);
         return resolve(getUserFromParse(user));
       },
-      error: (user, error) => {
-        return reject(error);
+      error: () => {
+        return reject('Login parameters are invalid');
       }
     });
   });

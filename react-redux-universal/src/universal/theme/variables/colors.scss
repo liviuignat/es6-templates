@@ -1,8 +1,3 @@
-$color-dark-grey: #666666;
-$color-grey: #999999;
-$color-light-grey: #DCDCDC;
-$color-error: #de3226;
-
 $color-red50: #ffebee;
 $color-red100: #ffcdd2;
 $color-red200: #ef9a9a;
@@ -290,3 +285,7 @@ $color-darkWhite: rgba(255, 255, 255, 0.87);
 $color-lightWhite: rgba(255, 255, 255, 0.5);
 
 $link-color: $color-blue700;
+$color-dark-grey: #666666;
+$color-grey: #999999;
+$color-light-grey: #DCDCDC;
+$color-error: $color-red500;

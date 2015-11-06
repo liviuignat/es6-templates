@@ -9,6 +9,7 @@ import { Paper } from './../../../components';
 @connect(
   state => ({
     user: state.auth.user,
+    loginError: state.auth.loginError,
     loggingIn: state.auth.loggingIn
   }), {
     initialize,
@@ -18,6 +19,7 @@ import { Paper } from './../../../components';
 export default class LoginPage extends Component {
   static propTypes = {
     user: PropTypes.object,
+    loginError: PropTypes.string,
     loggingIn: PropTypes.bool,
     initialize: PropTypes.func.isRequired,
     loginAction: PropTypes.func.isRequired,
@@ -37,13 +39,15 @@ export default class LoginPage extends Component {
   }
 
   render() {
-    const {loggingIn} = this.props;
+    const {loggingIn, loginError} = this.props;
     const styles = require('./LoginPage.scss');
 
     return (
       <Paper className={styles.LoginPage}>
-        <LoginForm onSubmit={::this.handleSubmit}
-          isLoggingIn={loggingIn || false}/>
+        <LoginForm
+          onSubmit={::this.handleSubmit}
+          isLoggingIn={loggingIn || false}
+          loginError={loginError}/>
       </Paper>
     );
   }

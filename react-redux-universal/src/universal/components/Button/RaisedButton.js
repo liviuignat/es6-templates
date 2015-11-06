@@ -13,8 +13,8 @@ export default class FormTextField extends Component {
 
     return (
       <RaisedButton
-        label={labelText}
-        {...this.props} />
+        {...this.props}
+        label={labelText} />
     );
   }
 }
