@@ -1,0 +1,9 @@
+@import "../../theme/variables.scss";
+
+.TextField {
+  &.is-dirty {
+    .mdl-textfield__label.is-invalid {
+      color: $color-error;
+    }
+  }
+}

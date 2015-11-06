@@ -45,7 +45,7 @@ export default class App extends Component {
     const styles = require('./AppContainer.scss');
 
     return (
-      <div className={styles.app}>
+      <div>
         <DocumentMeta {...config.app} />
 
         <AppHeader isLoggedIn={isLoggedIn} />

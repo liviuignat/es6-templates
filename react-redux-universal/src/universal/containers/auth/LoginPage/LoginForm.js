@@ -24,11 +24,20 @@ export default class LoginForm extends Component {
 
     return (
       <div>
-        <form className="form-horizontal" onSubmit={handleSubmit}>
-          <FormTextField field={email} type="email"/>
-          <FormTextField field={password} type="password"/>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <FormTextField field={email} type="email"
+              labelText="Your email"/>
+          </div>
 
-          <button disabled={isLoggingIn} onClick={handleSubmit}>Login</button>
+          <div>
+            <FormTextField field={password} type="password"
+              labelText="Your password"/>
+          </div>
+
+          <div>
+            <button disabled={isLoggingIn} onClick={handleSubmit}>Login</button>
+          </div>
         </form>
       </div>
     );
