@@ -4,6 +4,7 @@ import {initialize} from 'redux-form';
 import { pushState } from 'redux-router';
 import LoginForm from './LoginForm';
 import { loginAction } from './../../../redux/reducers/auth';
+import { Paper } from './../../../components';
 
 @connect(
   state => ({
@@ -28,25 +29,22 @@ export default class LoginPage extends Component {
   }
 
   componentWillMount() {
-    this.props.initialize('login', {
-      email: 'liviu@ignat.email',
-      password: 'test123'
-    });
+    this.props.initialize('login', {});
   }
 
   handleSubmit(data) {
     this.props.loginAction(data.email, data.password);
-    this.props.initialize('login', {});
   }
 
   render() {
     const {loggingIn} = this.props;
+    const styles = require('./LoginPage.scss');
 
     return (
-      <div>
+      <Paper className={styles.LoginPage}>
         <LoginForm onSubmit={::this.handleSubmit}
           isLoggingIn={loggingIn || false}/>
-      </div>
+      </Paper>
     );
   }
 }

@@ -26,18 +26,25 @@ export default class LoginForm extends Component {
       <div>
         <form onSubmit={handleSubmit}>
           <div>
-            <FormTextField field={email} type="email"
-              labelText="Your email"/>
+            <FormTextField field={email}
+              type="email"
+              labelText="Your email"
+              fullWidth
+              disabled={isLoggingIn}/>
           </div>
 
           <div>
-            <FormTextField field={password} type="password"
-              labelText="Your password"/>
+            <FormTextField field={password}
+              type="password"
+              labelText="Your password"
+              fullWidth
+              disabled={isLoggingIn}/>
           </div>
 
           <div>
             <RaisedButton
               labelText="Login"
+              fullWidth
               primary
               disabled={isLoggingIn}
               onClick={handleSubmit}/>

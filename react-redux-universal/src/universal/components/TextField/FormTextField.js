@@ -13,11 +13,14 @@ export default class FormTextField extends Component {
       field
     } = this.props;
 
+    const errorMessage =
+      field.error && field.touched ? field.error : '';
+
     return (
       <TextField
         hintText={labelText}
         floatingLabelText={labelText}
-        errorText={field.error}
+        errorText={errorMessage}
         {...field}
         {...this.props} />
     );
