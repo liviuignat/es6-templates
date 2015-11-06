@@ -44,7 +44,8 @@ export default class LoginPage extends Component {
 
     return (
       <div>
-        <LoginForm onSubmit={::this.handleSubmit} isLoggingIn={loggingIn || false} />
+        <LoginForm onSubmit={::this.handleSubmit}
+          isLoggingIn={loggingIn || false}/>
       </div>
     );
   }

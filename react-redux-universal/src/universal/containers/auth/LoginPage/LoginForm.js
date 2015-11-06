@@ -12,11 +12,7 @@ export default class LoginForm extends Component {
   static propTypes = {
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    isLoggingIn: PropTypes.bool,
-    dirty: PropTypes.bool.isRequired,
-    invalid: PropTypes.bool.isRequired,
-    pristine: PropTypes.bool.isRequired,
-    valid: PropTypes.bool.isRequired
+    isLoggingIn: PropTypes.bool
   }
 
   render() {
@@ -29,8 +25,8 @@ export default class LoginForm extends Component {
     return (
       <div>
         <form className="form-horizontal" onSubmit={handleSubmit}>
-          <FormTextField field={email} type="email" />
-          <FormTextField field={password} type="password" />
+          <FormTextField field={email} type="email"/>
+          <FormTextField field={password} type="password"/>
 
           <button disabled={isLoggingIn} onClick={handleSubmit}>Login</button>
         </form>

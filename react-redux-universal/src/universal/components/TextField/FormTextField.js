@@ -7,7 +7,6 @@ export default class FormTextField extends Component {
   };
 
   render() {
-
     const {
       field
     } = this.props;
