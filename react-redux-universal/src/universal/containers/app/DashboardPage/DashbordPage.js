@@ -18,7 +18,7 @@ export default class DashboardPage extends Component {
 
     return (
       <div>
-        <h2> Hi {user.firstName } </h2>
+        <h2> Hi {user.displayName} </h2>
       </div>
     );
   }
