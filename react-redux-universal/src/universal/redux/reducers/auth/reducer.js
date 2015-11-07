@@ -1,4 +1,4 @@
-import * as Md5 from 'blueimp-md5';
+import md5 from 'md5';
 import * as actions from './actions';
 
 const initialState = {
@@ -71,10 +71,12 @@ function getFullUser(user) {
     return null;
   }
 
-  return Object.assign({}, user, {
+  const extendedUser = Object.assign({}, user, {
     displayName: getDisplayName(user),
     profilePhoto: getUserPhoto(user)
   });
+
+  return extendedUser;
 }
 
 function getDisplayName(user) {
@@ -100,7 +102,7 @@ function getUserPhoto(user) {
     return '';
   }
 
-  const emailMd5 = Md5.default(user.email);
+  const emailMd5 = md5(user.email);
   return `http://www.gravatar.com/avatar/${emailMd5}.jpg?s=200`;
 }
 

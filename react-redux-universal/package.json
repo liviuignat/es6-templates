@@ -58,7 +58,6 @@
   "dependencies": {
     "babel": "^6.0.12",
     "babel-plugin-typecheck": "^2.0.0",
-    "blueimp-md5": "^1.1.1",
     "body-parser": "^1.14.1",
     "compression": "^1.6.0",
     "cookie-parser": "^1.4.0",
@@ -72,6 +71,7 @@
     "lru-memoize": "^1.0.0",
     "map-props": "^1.0.0",
     "material-ui": "^0.13.1",
+    "md5": "^2.0.0",
     "multireducer": "^1.0.2",
     "node-parse-api": "^0.3.8",
     "parse": "^1.6.8",

@@ -11,7 +11,7 @@ export function getCurrentUser() {
   }
 
   const { attributes } = Parse.User.current() || {};
-  return attributes;
+  return getUserFromParse(attributes);
 }
 
 export function getCurrentAuthSession() {
@@ -24,8 +24,8 @@ export function logIn(email, password) {
   return new Promise((resolve, reject) => {
     Parse.User.logIn(email, password, {
       success: (user) => {
-        setUserCookie(user);
-        return resolve(getUserFromParse(user));
+        setUserCookie(user.attributes);
+        return resolve(getUserFromParse(user.attributes));
       },
       error: () => {
         return reject('Login parameters are invalid');
@@ -43,7 +43,7 @@ export function logOut() {
 function setUserCookie(user) {
   const exdays = 10000;
   const cname = COOKIE_NAME;
-  const cvalue = user.attributes.sessionToken;
+  const cvalue = user.sessionToken;
   const expires = exdays * 24 * 60 * 60 * 1000;
 
   cookieService.setCookie({
@@ -54,6 +54,10 @@ function setUserCookie(user) {
 }
 
 function getUserFromParse(parseUser) {
+  if (!parseUser) {
+    return null;
+  }
+
   return {
     email: parseUser.email,
     emailVerified: parseUser.emailVerified,
