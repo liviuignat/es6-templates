@@ -67,6 +67,10 @@ export function reducer(state = initialState, action = {}) {
 }
 
 function getFullUser(user) {
+  if (!user) {
+    return null;
+  }
+
   return Object.assign({}, user, {
     displayName: getDisplayName(user),
     profilePhoto: getUserPhoto(user)
@@ -74,6 +78,10 @@ function getFullUser(user) {
 }
 
 function getDisplayName(user) {
+  if (!user) {
+    return '';
+  }
+
   let displayName = user.username;
 
   if (user.firstName && user.lastName) {
@@ -88,6 +96,10 @@ function getDisplayName(user) {
 }
 
 function getUserPhoto(user) {
+  if (!user) {
+    return '';
+  }
+
   const emailMd5 = Md5.default(user.email);
   return `http://www.gravatar.com/avatar/${emailMd5}.jpg?s=200`;
 }
