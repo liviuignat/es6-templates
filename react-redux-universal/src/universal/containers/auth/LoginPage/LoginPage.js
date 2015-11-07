@@ -44,6 +44,7 @@ export default class LoginPage extends Component {
 
     return (
       <Paper className={styles.LoginPage}>
+        <h4>Login</h4>
         <LoginForm
           onSubmit={::this.handleSubmit}
           isLoggingIn={loggingIn || false}
